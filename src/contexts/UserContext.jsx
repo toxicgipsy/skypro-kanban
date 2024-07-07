@@ -4,7 +4,7 @@ import { paths } from "../lib/paths";
 
 export const UserContext = createContext(null);
 
-const checkLS = () => {
+const getUserLocalStorage = () => {
   try {
     const user = JSON.parse(localStorage.getItem("user"));
     return user
@@ -17,7 +17,7 @@ const checkLS = () => {
 
 export const UserProvider = ({children}) => {
 
-    const [user, setUser] = useState(checkLS());
+    const [user, setUser] = useState(getUserLocalStorage());
     const navigete = useNavigate();
 
     function login(newUser) {
