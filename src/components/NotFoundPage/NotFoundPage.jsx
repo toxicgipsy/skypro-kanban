@@ -1,5 +1,5 @@
 function NotFoundPage() {
-  return "Страница не найдена :)";
+  return "Страница не найдена :) Практикуем";
 }
 
 export default NotFoundPage;
