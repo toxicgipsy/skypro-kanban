@@ -30,6 +30,8 @@ function PopBrowse() {
     date: indexCard?.date,
   });
 
+  const [editError, setEditError] = useState(null);
+
   const clickDeleteTask = async () => {
     await deleteTasks({ id, token: user?.token })
       .then((response) => {
@@ -49,6 +51,7 @@ function PopBrowse() {
         navigate(paths.MAIN);
       })
       .catch((error) => {
+        setEditError(error.message);
         console.log(error.message);
       });
   };
@@ -144,6 +147,9 @@ function PopBrowse() {
                       setEditTask({ ...editTask, description: e.target.value });
                     }}
                   ></S.FormBrowseArea>
+                  {editError && (
+                    <span style={{ color: "red" }}>{editError}</span>
+                  )}
                 </S.FormBrowseBlock>
               </S.PopBrowseForm>
               <S.PopBrowseWrap2>

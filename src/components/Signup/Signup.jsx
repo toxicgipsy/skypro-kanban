@@ -26,7 +26,7 @@ function Signup() {
       return;
     }
 
-    await regUser(getLogin, getPassword, getFirstName)
+    await regUser(getLogin.trim(), getPassword.trim(), getFirstName.trim())
       .then((response) => {
         login(response.user);
       })
@@ -50,7 +50,7 @@ function Signup() {
               placeholder="Имя"
               value={getFirstName}
               onChange={(e) => {
-                setGetFirstName(e.target.value);
+                setGetFirstName(e.target.value.trim());
               }}
             />
             <S.ModalInput
@@ -60,7 +60,7 @@ function Signup() {
               placeholder="Эл. почта"
               value={getLogin}
               onChange={(e) => {
-                setGetLogin(e.target.value);
+                setGetLogin(e.target.value.trim());
               }}
             />
             <S.ModalInput
@@ -70,7 +70,7 @@ function Signup() {
               placeholder="Пароль"
               value={getPassword}
               onChange={(e) => {
-                setGetPassword(e.target.value);
+                setGetPassword(e.target.value.trim());
               }}
             />
             <span style={{ color: "red", marginTop: "10px" }}>{isError}</span>
