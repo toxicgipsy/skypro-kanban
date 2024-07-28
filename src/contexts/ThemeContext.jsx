@@ -1,27 +1,19 @@
 import { createContext, useEffect, useState } from "react";
+import { getFromLocalStorage } from "../lib/utiles.js";
 
 export const ThemesContext = createContext(null);
 
-const getThemeLocalStorage = () => {
-  try {
-    const theme = JSON.parse(localStorage.getItem("theme"));
-    return theme;
-  } catch (error) {
-    console.log(error.message);
-    localStorage.removeItem("theme");
-    return null;
-  }
-};
 export const ThemesProvider = ({ children }) => {
-  const [theme, setTheme] = useState(getThemeLocalStorage());
+  const storedTheme = getFromLocalStorage("theme");
+  const initialTheme = storedTheme !== null ? JSON.parse(storedTheme) : false;
+  const [theme, setTheme] = useState(initialTheme);
 
   useEffect(() => {
-    handleTheme();
-  }, []);
+    localStorage.setItem("theme", JSON.stringify(theme));
+  }, [theme]);
 
   const handleTheme = () => {
-    theme ? setTheme(false) : setTheme(true);
-    localStorage.setItem("theme", JSON.stringify(theme));
+    setTheme((prevTheme) => !prevTheme);
   };
 
   return (

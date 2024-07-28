@@ -1,5 +1,18 @@
+import { useNavigate } from "react-router-dom";
+
 const NotFoundPage = () => {
-  return <h1>страница не найдена</h1>;
+  const navigate = useNavigate();
+
+  const handleGoHome = () => {
+    navigate("/");
+  };
+
+  return (
+    <>
+      <h1>Такой страницы нет :( </h1>
+      <button onClick={handleGoHome}>Вернуться на главную</button>
+    </>
+  );
 };
 
 export default NotFoundPage;
