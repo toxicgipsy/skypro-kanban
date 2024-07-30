@@ -6,20 +6,35 @@ import { regUser } from "../../lib/api";
 import { useUserContext } from "../../contexts/hooks/useUser";
 
 function Signup() {
-
-  const {login} = useUserContext();
+  const { login } = useUserContext();
   const [getFirstName, setGetFirstName] = useState("");
   const [getLogin, setGetLogin] = useState("");
   const [getPassword, setGetPassword] = useState("");
   const [isError, setIsError] = useState(null);
 
+  const validateInput = (input) => {
+    return input.trim() !== "";
+  };
+
   const onClickSignUp = async () => {
-    await regUser(getLogin, getPassword, getFirstName).then((response) => {
-      login(response.user)
-    }).catch((error) => {
-      setIsError(error.message);
-    });
-  }
+    if (
+      !validateInput(getFirstName) ||
+      !validateInput(getLogin) ||
+      !validateInput(getPassword)
+    ) {
+      setIsError("Заполните все поля корректно.");
+      return;
+    }
+
+    await regUser(getLogin.trim(), getPassword.trim(), getFirstName.trim())
+      .then((response) => {
+        login(response.user);
+      })
+      .catch((error) => {
+        setIsError(error.message);
+      });
+  };
+
   return (
     <S.ContainerSignup>
       <S.Modal>
@@ -34,26 +49,36 @@ function Signup() {
               id="first-name"
               placeholder="Имя"
               value={getFirstName}
-              onChange={(e) => {setGetFirstName(e.target.value)}}
-            ></S.ModalInput>
+              onChange={(e) => {
+                setGetFirstName(e.target.value.trim());
+              }}
+            />
             <S.ModalInput
               type="text"
               name="login"
               id="loginReg"
               placeholder="Эл. почта"
               value={getLogin}
-              onChange={(e) => {setGetLogin(e.target.value)}}
-            ></S.ModalInput>
+              onChange={(e) => {
+                setGetLogin(e.target.value.trim());
+              }}
+            />
             <S.ModalInput
               type="password"
               name="password"
               id="passwordFirst"
               placeholder="Пароль"
               value={getPassword}
-              onChange={(e) => {setGetPassword(e.target.value)}}
-            ></S.ModalInput>
-            <span style={{color: "red", marginTop: "10px"}}>{isError}</span>
-            <S.ModalBtnSignupEnt type="button" id="SignUpEnter" onClick={onClickSignUp}>
+              onChange={(e) => {
+                setGetPassword(e.target.value.trim());
+              }}
+            />
+            <span style={{ color: "red", marginTop: "10px" }}>{isError}</span>
+            <S.ModalBtnSignupEnt
+              type="button"
+              id="SignUpEnter"
+              onClick={onClickSignUp}
+            >
               Зарегистрироваться
             </S.ModalBtnSignupEnt>
             <S.ModalFormGroup>

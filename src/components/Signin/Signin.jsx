@@ -6,19 +6,30 @@ import { useState } from "react";
 import { useUserContext } from "../../contexts/hooks/useUser";
 
 function Signin() {
-
-  const {login} = useUserContext();
+  const { login } = useUserContext();
   const [getLogin, setGetLogin] = useState("");
   const [getPassword, setGetPassword] = useState("");
   const [isError, setIsError] = useState(null);
-  const onClickSignIn = async() => {    
-    await loginUser(getLogin, getPassword).then((response) => {
-      login(response.user);
-    }).catch((error) => {
-      setIsError(error.message);
-    })
-    
-  }
+
+  const validateInput = (input) => {
+    return input.trim() !== "";
+  };
+
+  const onClickSignIn = async () => {
+    if (!validateInput(getLogin) || !validateInput(getPassword)) {
+      setIsError("Заполните все поля корректно.");
+      return;
+    }
+
+    await loginUser(getLogin, getPassword)
+      .then((response) => {
+        login(response.user);
+      })
+      .catch((error) => {
+        setIsError(error.message);
+      });
+  };
+
   return (
     <S.ContainerSignin>
       <S.Modal>
@@ -33,7 +44,9 @@ function Signin() {
               id="formlogin"
               placeholder="Эл. почта"
               value={getLogin}
-              onChange={(e) => {setGetLogin(e.target.value)}}
+              onChange={(e) => {
+                setGetLogin(e.target.value);
+              }}
             />
             <S.ModalInput
               type="password"
@@ -41,10 +54,16 @@ function Signin() {
               id="formpassword"
               placeholder="Пароль"
               value={getPassword}
-              onChange={(e) => {setGetPassword(e.target.value)}}
+              onChange={(e) => {
+                setGetPassword(e.target.value);
+              }}
             />
-            <span style={{color: "red", marginTop: "10px"}}>{isError}</span>
-            <S.ModalBtnEnter type="button" id="btnEnter" onClick={onClickSignIn}>
+            <span style={{ color: "red", marginTop: "10px" }}>{isError}</span>
+            <S.ModalBtnEnter
+              type="button"
+              id="btnEnter"
+              onClick={onClickSignIn}
+            >
               Войти
             </S.ModalBtnEnter>
             <S.ModalFormGroup>
