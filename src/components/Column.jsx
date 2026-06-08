@@ -1,3 +1,5 @@
+import Card from "./Card";
+
 export function Column() {
   return (
     <>
@@ -5,6 +7,7 @@ export function Column() {
         <div className="column__title">
           <p>Без статуса</p>
         </div>
+        <Card/>
         {/* <div className="cards">
           <div className="cards__item">
             <div className="cards__card card">

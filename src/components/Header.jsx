@@ -1,5 +1,6 @@
 import logo from "../public/logo.png";
 import logo_dark from "../public/logo_dark.png";
+import PopUser from "./PopUser";
 
 function Header() {
   return (
@@ -9,12 +10,12 @@ function Header() {
           <div className="header__block">
             <div className="header__logo _show _light">
               <a href="" target="_self">
-                <img src={logo} classNameName="vite" alt="Vite logo" />
+                <img src={logo} className="vite" alt="Vite logo" />
               </a>
             </div>
             <div className="header__logo _dark">
               <a href="" target="_self">
-                <img src={logo_dark} classNameName="vite" alt="Vite logo" />
+                <img src={logo_dark} className="vite" alt="Vite logo" />
               </a>
             </div>
             <nav className="header__nav">
@@ -24,6 +25,7 @@ function Header() {
               <a href="#user-set-target" className="header__user _hover02">
                 Ivan Ivanov
               </a>
+              <PopUser/>
               {/* <div
                 className="header__pop-user-set pop-user-set"
                 id="user-set-target"

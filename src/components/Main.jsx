@@ -1,3 +1,5 @@
+import Column from "./Column";
+
 export function Main() {
   return (
     <>
@@ -5,6 +7,7 @@ export function Main() {
         <div className="container">
           <div className="main__block">
             <div className="main__content">
+                <Column/>
               {/* <div className="main__column column">
                                 <div className="column__title">
                                     <p>Без статуса</p>

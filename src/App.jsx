@@ -1,6 +1,9 @@
 // import { useState } from 'react'
 import "./App.css";
-import { Header } from "./components/Header.jsx";
+import Header from "./components/Header";
+import Main from "./components/Main";
+import PopBrowse from "./components/PopBrowse";
+import PopNewCard from "./components/PopNewCard";
 
 function App() {
   // const [count, setCount] = useState(0)
@@ -29,6 +32,7 @@ function App() {
           </div>
         </div>
 
+        <PopNewCard/>
         {/* <div className="pop-new-card" id="popNewCard">
                 <div className="pop-new-card__container">
                     <div className="pop-new-card__block">
@@ -140,6 +144,7 @@ function App() {
                 </div>
             </div> */}
 
+            <PopBrowse/>
         {/* <div className="pop-browse" id="popBrowse">
                 <div className="pop-browse__container">
                     <div className="pop-browse__block">
@@ -280,18 +285,18 @@ function App() {
 
         {/* pop-up end */}
 
-        <Header />
+        <Header/>
         {/* <header className="header">
           <div className="container">
             <div className="header__block">
               <div className="header__logo _show _light">
                 <a href="" target="_self">
-                  <img src={logo} classNameName="vite" alt="Vite logo" />
+                  <img src={logo} className="vite" alt="Vite logo" />
                 </a>
               </div>
               <div className="header__logo _dark">
                 <a href="" target="_self">
-                  <img src={logo_dark} classNameName="vite" alt="Vite logo" />
+                  <img src={logo_dark} className="vite" alt="Vite logo" />
                 </a>
               </div>
               <nav className="header__nav">
@@ -327,6 +332,7 @@ function App() {
           </div>
         </header> */}
 
+        <Main/>
         {/* <main className="main">
                 <div className="container">
 
