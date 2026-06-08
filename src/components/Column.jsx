@@ -620,3 +620,5 @@ export function Column() {
     </>
   );
 }
+
+export default Column;

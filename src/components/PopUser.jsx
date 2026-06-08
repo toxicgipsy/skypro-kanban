@@ -13,3 +13,5 @@ export function PopUser() {
             </div>
   </>;
 }
+
+export default PopUser;
