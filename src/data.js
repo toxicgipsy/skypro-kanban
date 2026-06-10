@@ -35,3 +35,5 @@ export const cardList = [
         status: "Готово",
     },
 ]
+
+export const columnStatus = ["Без статуса", "Нужно сделать", "В работе", "Тестирование", "Готово"]

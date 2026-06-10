@@ -1,10 +1,10 @@
 import { cardList } from "../data.js";
 
 export function Card() {
-  return 
+  return (
   <>
-  {cardList.map((card) => {
-        <div className="cards">
+    {cardList.map((card) => (
+        <div className="cards" key={card.id}>
           <div className="cards__item">
             <div className="cards__card card">
               <div className="card__group">
@@ -58,8 +58,8 @@ export function Card() {
             </div>
           </div>
         </div>
-      })}
-  </>;
+      ))}
+  </>)
 }
 
 export default Card;
