@@ -1,4 +1,5 @@
 import Column from "./Column";
+import { columnStatus } from "../data";
 
 export function Main() {
   return (
@@ -7,7 +8,9 @@ export function Main() {
         <div className="container">
           <div className="main__block">
             <div className="main__content">
-                <Column/>
+              {columnStatus.map((status) => (
+                <Column title={status} key={status} />
+              ))}
             </div>
           </div>
         </div>
