@@ -1,6 +1,6 @@
 const Loader = () => {
   return (
-    <div>
+    <div className="loader-wrapper">
       <p>Данные загружаются</p>
     </div>
   );

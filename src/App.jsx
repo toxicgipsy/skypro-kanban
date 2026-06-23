@@ -5,13 +5,14 @@ import Main from "./components/Main";
 import PopBrowse from "./components/PopBrowse";
 import PopExit from "./components/PopExit";
 import PopNewCard from "./components/PopNewCard";
+import Loader from "./components/Loader";
 
 function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setTimeout(() => {
-      loading ? <Main /> : setLoading(false);
+      setLoading(false);
     }, 2000);
   }, []);
 
@@ -21,7 +22,7 @@ function App() {
       <PopNewCard />
       <PopBrowse />
       <Header />
-      {/* <Main /> */}
+      {loading ? <Loader /> : <Main />}
     </div>
   );
 }

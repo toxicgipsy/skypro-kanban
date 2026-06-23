@@ -819,6 +819,13 @@ body {
   display: block;
 }
 
+.loader-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+}
+
 .column__title {
   padding: 0 10px;
   margin: 15px 0;
