@@ -1,8 +1,14 @@
+import { useState } from "react";
 import logo from "/logo.png";
 import logo_dark from "/logo_dark.png";
 import PopUser from "./PopUser";
 
 function Header() {
+
+  const [isPopUserOpen, setIsPopUserOpen] = useState(false)
+
+  const toggleUserPopup = () => setIsPopUserOpen(prev => !prev);
+
   return (
     <>
       <header className="header">
@@ -22,10 +28,10 @@ function Header() {
               <button className="header__btn-main-new _hover01" id="btnMainNew">
                 <a href="#popNewCard">Создать новую задачу</a>
               </button>
-              <a href="#user-set-target" className="header__user _hover02">
+              <a href="#user-set-target" className="header__user _hover02" onClick={toggleUserPopup}>
                 Ivan Ivanov
               </a>
-              <PopUser/>
+                { isPopUserOpen && <PopUser/>}
             </nav>
           </div>
         </div>
