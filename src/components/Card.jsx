@@ -1,12 +1,16 @@
+import { color } from "../data";
+
 export function Card({ item: card }) {
+  const themeColor = color[card.theme] || "_gray";
+  
   return (
     <>
       <div className="cards" key={card.id}>
         <div className="cards__item">
           <div className="cards__card card">
             <div className="card__group">
-              <div className="card__theme _orange">
-                <p className="_orange">{card.theme}</p>
+              <div className={`card__theme ${themeColor}`}>
+                <p className={themeColor}>{card.theme}</p>
               </div>
               <a href="#popBrowse" target="_self">
                 <div className="card__btn">

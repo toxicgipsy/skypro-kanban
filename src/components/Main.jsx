@@ -8,9 +8,12 @@ export function Main() {
         <div className="container">
           <div className="main__block">
             <div className="main__content">
+              {cardList.
+                filter((item) => item.status === title)}
               {columnStatus.map((status) => (
                 <Column title={status} key={status} />
-              ))}
+              ).cardList.
+                filter((item) => item.status === title))}
             </div>
           </div>
         </div>

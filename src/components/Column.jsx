@@ -1,4 +1,3 @@
-import { cardList } from "../data";
 import Card from "./Card";
 
 export function Column({ title }) {
@@ -8,9 +7,7 @@ export function Column({ title }) {
         <div className="column__title">
           <p>{title}</p>
         </div>
-        {cardList
-          .filter((item) => item.status === title)
-          .map((item) => (
+        {сard.map((item) => (
             <Card item={item} key={item.id} />
           ))}
       </div>
