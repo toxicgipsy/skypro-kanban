@@ -42,7 +42,7 @@ function PopNewCard() {
                     ></textarea>
                   </div>
                 </form>
-                <Calendar/>
+                <Calendar />
               </div>
               <div className="pop-new-card__categories categories">
                 <p className="categories__p subttl">Категория</p>
