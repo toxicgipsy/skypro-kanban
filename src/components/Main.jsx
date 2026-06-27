@@ -1,5 +1,5 @@
 import Column from "./Column";
-import { columnStatus } from "../data";
+import { cardList, columnStatus } from "../data";
 
 export function Main() {
   return (
@@ -8,12 +8,15 @@ export function Main() {
         <div className="container">
           <div className="main__block">
             <div className="main__content">
-              {cardList.
-                filter((item) => item.status === title)}
-              {columnStatus.map((status) => (
-                <Column title={status} key={status} />
-              ).cardList.
-                filter((item) => item.status === title))}
+              {columnStatus.map((status) => {
+                const filterCards = cardList.filter(
+                  (item) => item.status === status,
+                );
+
+                return (
+                  <Column cards={filterCards} title={status} key={status} />
+                );
+              })}
             </div>
           </div>
         </div>

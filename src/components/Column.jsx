@@ -1,15 +1,15 @@
 import Card from "./Card";
 
-export function Column({ title }) {
+export function Column({ title, cards }) {
   return (
     <>
       <div className="main__column column">
         <div className="column__title">
           <p>{title}</p>
         </div>
-        {сard.map((item) => (
-            <Card item={item} key={item.id} />
-          ))}
+        {cards.map((item) => (
+          <Card item={item} key={item.id} />
+        ))}
       </div>
     </>
   );
