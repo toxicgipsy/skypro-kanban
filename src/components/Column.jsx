@@ -1,19 +1,20 @@
 import { cardList } from "../data";
 import Card from "./Card";
+import { SColumnTitle, SColumnTitlP, SMainColumn } from "./Column.styled";
 
 export function Column({ title }) {
   return (
     <>
-      <div className="main__column column">
-        <div className="column__title">
-          <p>{title}</p>
-        </div>
+      <SMainColumn>
+        <SColumnTitle>
+          <SColumnTitlP>{title}</SColumnTitlP>
+        </SColumnTitle>
         {cardList
           .filter((item) => item.status === title)
           .map((item) => (
             <Card item={item} key={item.id} />
           ))}
-      </div>
+      </SMainColumn>
     </>
   );
 }
