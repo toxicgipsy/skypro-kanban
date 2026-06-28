@@ -97,7 +97,7 @@ body {
   left: 0;
 }
 
-.pop-exit {
+/* .pop-exit {
   display: none;
   width: 100%;
   height: 100%;
@@ -192,9 +192,9 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
+} */
 
-.pop-user-set__name {
+/* .pop-user-set__name {
   color: #000;
   font-size: 14px;
   font-weight: 500;
@@ -256,7 +256,7 @@ body {
 }
 .pop-user-set button a {
   color: #565eef;
-}
+} */
 
 .pop-new-card {
   display: none;
@@ -870,7 +870,7 @@ body {
     height: 37px;
   }
 }
-@media only screen and (max-width: 375px) {
+/* @media only screen and (max-width: 375px) {
   .pop-exit__block {
     padding: 50px 20px;
   }
@@ -887,4 +887,4 @@ body {
   .pop-exit__form-group {
     display: block;
   }
-}
+} */

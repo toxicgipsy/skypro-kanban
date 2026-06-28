@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const SPopBrowseWrapper = styled.div`
-  /* display: ${({ $isOpen }) => ($isOpen ? "block" : "none")}; */
+  display: ${({ $isOpen }) => ($isOpen ? "block" : "none")};
   width: 100%;
   height: 100%;
   min-width: 375px;
