@@ -48,7 +48,7 @@ body {
   width: 100vw;
   min-height: 100vh;
   overflow: hidden;
-  background-color: #f1f1f1;
+  background-color: #eaeef6;
 }
 
 .container {
@@ -817,6 +817,13 @@ body {
   width: 20%;
   margin: 0 auto;
   display: block;
+}
+
+.loader-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
 }
 
 .column__title {

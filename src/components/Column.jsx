@@ -1,37 +1,15 @@
 import Card from "./Card";
 
-export function Column() {
+export function Column({ title, cards }) {
   return (
     <>
       <div className="main__column column">
         <div className="column__title">
-          <p>Без статуса</p>
+          <p>{title}</p>
         </div>
-          <Card/>
-      </div>
-      <div className="main__column">
-        <div className="column__title">
-          <p>Нужно сделать</p>
-        </div>
-          <Card/>
-      </div>
-      <div className="main__column">
-        <div className="column__title">
-          <p>В работе</p>
-        </div>
-          <Card/>
-      </div>
-      <div className="main__column">
-        <div className="column__title">
-          <p>Тестирование</p>
-        </div>
-          <Card/>
-      </div>
-      <div className="main__column">
-        <div className="column__title">
-          <p>Готово</p>
-        </div>
-          <Card/>
+        {cards.map((item) => (
+          <Card item={item} key={item.id} />
+        ))}
       </div>
     </>
   );
