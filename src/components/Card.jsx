@@ -12,8 +12,11 @@ import {
   SCardThemeP,
   SCardTitle,
 } from "./Card.styled";
+import { color } from "../data";
 
 export function Card({ item: card }) {
+  const themeColor = color[card.theme] || "_gray";
+
   return (
     <SCardsWrapper key={card.id}>
       <SCardsItem>
@@ -22,6 +25,9 @@ export function Card({ item: card }) {
             <SCardTheme>
               <SCardThemeP>{card.theme}</SCardThemeP>
             </SCardTheme>
+            <div className={`card__theme ${themeColor}`}>
+              <p className={themeColor}>{card.theme}</p>
+            </div>
             <a href="#popBrowse" target="_self">
               <SCardBtn>
                 <SCardBtn></SCardBtn>

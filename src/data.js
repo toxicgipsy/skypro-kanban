@@ -50,8 +50,15 @@ export const cardList = [
   },
 ];
 
+export const color = {
+  "Web Design": "_orange",
+  Research: "_green",
+  Copywriting: "_purple",
+}
+
 export const columnStatus = [
   "Без статуса",
+  "Новая",
   "Нужно сделать",
   "В работе",
   "Тестирование",
