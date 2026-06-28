@@ -47,14 +47,42 @@ export const SCardTheme = styled.div`
   border-radius: 18px;
   background-color: #ffe4c2;
   color: #ff6d00;
+
+  background-color: ${({ $themeColor }) =>
+    themeStyles[$themeColor]?.background || themeStyles._gray.background};
+
+  color: ${({ $themeColor }) =>
+    themeStyles[$themeColor]?.color || themeStyles._gray.color};
 `;
 
 export const SCardThemeP = styled.p`
   font-size: 10px;
   font-weight: 600;
   line-height: 10px;
-  color: #ff6d00;
+  color: inherit;
 `;
+
+const themeStyles = {
+  _orange: {
+    background: "#ffe4c2",
+    color: "#ff6d00",
+  },
+
+  _green: {
+    background: "#b4fdd1",
+    color: "#06b16e",
+  },
+
+  _purple: {
+    background: "#e9d4ff",
+    color: "#9a48f1",
+  },
+
+  _gray: {
+    background: "#94a6be",
+    color: "#ffffff",
+  },
+};
 
 export const SCardBtn = styled.div`
   width: 24px;

@@ -18,21 +18,18 @@ export function Card({ item: card }) {
   const themeColor = color[card.theme] || "_gray";
 
   return (
-    <SCardsWrapper key={card.id}>
+    <SCardsWrapper>
       <SCardsItem>
         <SCardsCard>
           <SCardGroup>
-            <SCardTheme>
+            <SCardTheme $themeColor={themeColor}>
               <SCardThemeP>{card.theme}</SCardThemeP>
             </SCardTheme>
-            <div className={`card__theme ${themeColor}`}>
-              <p className={themeColor}>{card.theme}</p>
-            </div>
             <a href="#popBrowse" target="_self">
               <SCardBtn>
-                <SCardBtn></SCardBtn>
-                <SCardBtn></SCardBtn>
-                <SCardBtn></SCardBtn>
+                <div></div>
+                <div></div>
+                <div></div>
               </SCardBtn>
             </a>
           </SCardGroup>
