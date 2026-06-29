@@ -13,7 +13,6 @@ export function Main() {
                 const filterCards = cardList.filter(
                   (item) => item.status === status,
                 );
-
                 return (
                   <Column cards={filterCards} title={status} key={status} />
                 );

@@ -1,9 +1,15 @@
 import Calendar from "./Calendar";
 import {
+  SBtnBg,
+  SBtnBor,
+  SBtnBorA,
+  SCategoriesP,
   SCategoriesTheme,
   SCategoriesThemeP,
   SFormBrowseArea,
   SPopBrowseBlock,
+  SPopBrowseBtnBrowse,
+  SPopBrowseBtnEdit,
   SPopBrowseContainer,
   SPopBrowseContent,
   SPopBrowseForm,
@@ -13,11 +19,14 @@ import {
   SPopBrowseWrap,
   SPopBrowseWrapForm,
   SPopBrowseWrapper,
+  SStatus,
   SStatusP,
   SStatusTheme,
   SStatusThemeP,
   SStatusThemes,
   SSubttl,
+  SThemeDownCategories,
+  SThemeTop,
 } from "./PopBrowse.styled";
 
 export function PopBrowse() {
@@ -28,11 +37,13 @@ export function PopBrowse() {
           <SPopBrowseContent>
             <SPopBrowseTopBlock>
               <SPopBrowseTtl>Название задачи</SPopBrowseTtl>
+              <SThemeTop>
               <SCategoriesTheme $active>
                 <SCategoriesThemeP>Web Design</SCategoriesThemeP>
               </SCategoriesTheme>
+              </SThemeTop>
             </SPopBrowseTopBlock>
-            <SPopBrowseWrap>
+            <SStatus>
               <SStatusP>Статус</SStatusP>
               <SStatusThemes>
                 <SStatusTheme>
@@ -51,7 +62,7 @@ export function PopBrowse() {
                   <SStatusThemeP>Готово</SStatusThemeP>
                 </SStatusTheme>
               </SStatusThemes>
-            </SPopBrowseWrap>
+            </SStatus>
             <SPopBrowseWrapForm>
               <SPopBrowseForm
                 id="formBrowseCard"
@@ -71,44 +82,41 @@ export function PopBrowse() {
               </SPopBrowseForm>
               <Calendar />
             </SPopBrowseWrapForm>
-            <div className="theme-down__categories theme-down">
-              <p className="categories__p subttl">Категория</p>
-              <div className="categories__theme _orange _active-category">
-                <p className="_orange">Web Design</p>
-              </div>
-            </div>
-            <div className="pop-browse__btn-browse ">
+            <SThemeDownCategories>
+              <SCategoriesP>Категория</SCategoriesP>
+              <SCategoriesTheme $active>
+                <SCategoriesThemeP>Web Design</SCategoriesThemeP>
+              </SCategoriesTheme>
+            </SThemeDownCategories>
+            <SPopBrowseBtnBrowse>
               <div className="btn-group">
-                <button className="btn-browse__edit _btn-bor _hover03">
-                  <a href="#">Редактировать задачу</a>
-                </button>
-                <button className="btn-browse__delete _btn-bor _hover03">
-                  <a href="#">Удалить задачу</a>
-                </button>
+                <SBtnBor>
+                  <SBtnBorA href="#">Редактировать задачу</SBtnBorA>
+                </SBtnBor>
+                <SBtnBor>
+                  <SBtnBorA href="#">Удалить задачу</SBtnBorA>
+                </SBtnBor>
               </div>
-              <button className="btn-browse__close _btn-bg _hover01">
-                <a href="#">Закрыть</a>
-              </button>
-            </div>
-            <div className="pop-browse__btn-edit _hide">
+              <SBtnBg>
+                <SBtnBorA href="#">Закрыть</SBtnBorA>
+              </SBtnBg>
+            </SPopBrowseBtnBrowse>
+            <SPopBrowseBtnEdit $hide>
               <div className="btn-group">
-                <button className="btn-edit__edit _btn-bg _hover01">
-                  <a href="#">Сохранить</a>
-                </button>
-                <button className="btn-edit__edit _btn-bor _hover03">
-                  <a href="#">Отменить</a>
-                </button>
-                <button
-                  className="btn-edit__delete _btn-bor _hover03"
-                  id="btnDelete"
-                >
-                  <a href="#">Удалить задачу</a>
-                </button>
+                <SBtnBg>
+                  <SBtnBorA href="#">Сохранить</SBtnBorA>
+                </SBtnBg>
+                <SBtnBor>
+                  <SBtnBorA href="#">Отменить</SBtnBorA>
+                </SBtnBor>
+                <SBtnBor id="btnDelete">
+                  <SBtnBorA href="#">Удалить задачу</SBtnBorA>
+                </SBtnBor>
               </div>
-              <button className="btn-edit__close _btn-bg _hover01">
-                <a href="#">Закрыть</a>
-              </button>
-            </div>
+              <SBtnBg>
+                <SBtnBorA href="#">Закрыть</SBtnBorA>
+              </SBtnBg>
+            </SPopBrowseBtnEdit>
           </SPopBrowseContent>
         </SPopBrowseBlock>
       </SPopBrowseContainer>
