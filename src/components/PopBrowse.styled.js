@@ -215,10 +215,26 @@ export const SPopBrowseBtnEdit = styled.div`
   align-items: flex-start;
   justify-content: space-between;
 
-    .btn-group button {
+  .btn-group button {
     margin-right: 8px;
   }
 `
+
+export const SBtnGroup = styled.div`
+  display: flex;
+
+  button {
+    margin-right: 8px;
+  }
+
+  @media screen and (max-width: 495px) {
+    width: 100%;
+
+    button {
+      margin-right: 0;
+    }
+  }
+`;
 
 export const SBtnBor = styled.button`
   border-radius: 4px;

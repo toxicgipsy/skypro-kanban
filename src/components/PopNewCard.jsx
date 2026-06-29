@@ -1,11 +1,12 @@
 import Calendar from "./Calendar";
+import { SPopNewCard, SPopNewCardContainer } from "./PopNewCard.styled";
 
 function PopNewCard() {
   return (
     <>
-      <div className="pop-new-card" id="popNewCard">
-        <div className="pop-new-card__container">
-          <div className="pop-new-card__block">
+      <SPopNewCard id="popNewCard">
+        <SPopNewCardContainer>
+          <SPopNewCardBlock>
             <div className="pop-new-card__content">
               <h3 className="pop-new-card__ttl">Создание задачи</h3>
               <a href="#" className="pop-new-card__close">
@@ -62,9 +63,9 @@ function PopNewCard() {
                 Создать задачу
               </button>
             </div>
-          </div>
-        </div>
-      </div>
+          </SPopNewCardBlock>
+        </SPopNewCardContainer>
+      </SPopNewCard>
     </>
   );
 }

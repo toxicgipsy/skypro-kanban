@@ -3,6 +3,7 @@ import {
   SBtnBg,
   SBtnBor,
   SBtnBorA,
+  SBtnGroup,
   SCategoriesP,
   SCategoriesTheme,
   SCategoriesThemeP,
@@ -89,20 +90,20 @@ export function PopBrowse() {
               </SCategoriesTheme>
             </SThemeDownCategories>
             <SPopBrowseBtnBrowse>
-              <div className="btn-group">
+              <SBtnGroup>
                 <SBtnBor>
                   <SBtnBorA href="#">Редактировать задачу</SBtnBorA>
                 </SBtnBor>
                 <SBtnBor>
                   <SBtnBorA href="#">Удалить задачу</SBtnBorA>
                 </SBtnBor>
-              </div>
+              </SBtnGroup>
               <SBtnBg>
                 <SBtnBorA href="#">Закрыть</SBtnBorA>
               </SBtnBg>
             </SPopBrowseBtnBrowse>
             <SPopBrowseBtnEdit $hide>
-              <div className="btn-group">
+              <SBtnGroup>
                 <SBtnBg>
                   <SBtnBorA href="#">Сохранить</SBtnBorA>
                 </SBtnBg>
@@ -112,7 +113,7 @@ export function PopBrowse() {
                 <SBtnBor id="btnDelete">
                   <SBtnBorA href="#">Удалить задачу</SBtnBorA>
                 </SBtnBor>
-              </div>
+              </SBtnGroup>
               <SBtnBg>
                 <SBtnBorA href="#">Закрыть</SBtnBorA>
               </SBtnBg>
