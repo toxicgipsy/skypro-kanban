@@ -2,12 +2,22 @@ import Calendar from "./Calendar";
 import {
   SCategoriesTheme,
   SCategoriesThemeP,
+  SFormBrowseArea,
   SPopBrowseBlock,
   SPopBrowseContainer,
   SPopBrowseContent,
+  SPopBrowseForm,
+  SPopBrowseFormBlock,
   SPopBrowseTopBlock,
   SPopBrowseTtl,
+  SPopBrowseWrap,
+  SPopBrowseWrapForm,
   SPopBrowseWrapper,
+  SStatusP,
+  SStatusTheme,
+  SStatusThemeP,
+  SStatusThemes,
+  SSubttl,
 } from "./PopBrowse.styled";
 
 export function PopBrowse() {
@@ -22,47 +32,45 @@ export function PopBrowse() {
                 <SCategoriesThemeP>Web Design</SCategoriesThemeP>
               </SCategoriesTheme>
             </SPopBrowseTopBlock>
-            <div className="pop-browse__status status">
-              <p className="status__p subttl">Статус</p>
-              <div className="status__themes">
-                <div className="status__theme _hide">
-                  <p>Без статуса</p>
-                </div>
-                <div className="status__theme _gray">
-                  <p className="_gray">Нужно сделать</p>
-                </div>
-                <div className="status__theme _hide">
-                  <p>В работе</p>
-                </div>
-                <div className="status__theme _hide">
-                  <p>Тестирование</p>
-                </div>
-                <div className="status__theme _hide">
-                  <p>Готово</p>
-                </div>
-              </div>
-            </div>
-            <div className="pop-browse__wrap">
-              <form
-                className="pop-browse__form form-browse"
+            <SPopBrowseWrap>
+              <SStatusP>Статус</SStatusP>
+              <SStatusThemes>
+                <SStatusTheme>
+                  <SStatusThemeP>Без статуса</SStatusThemeP>
+                </SStatusTheme>
+                <SStatusTheme>
+                  <SStatusThemeP>Нужно сделать</SStatusThemeP>
+                </SStatusTheme>
+                <SStatusTheme>
+                  <SStatusThemeP>В работе</SStatusThemeP>
+                </SStatusTheme>
+                <SStatusTheme>
+                  <SStatusThemeP>Тестирование</SStatusThemeP>
+                </SStatusTheme>
+                <SStatusTheme>
+                  <SStatusThemeP>Готово</SStatusThemeP>
+                </SStatusTheme>
+              </SStatusThemes>
+            </SPopBrowseWrap>
+            <SPopBrowseWrapForm>
+              <SPopBrowseForm
                 id="formBrowseCard"
                 action="#"
               >
-                <div className="form-browse__block">
-                  <label htmlFor="textArea01" className="subttl">
+                <SPopBrowseFormBlock>
+                  <SSubttl htmlFor="textArea01">
                     Описание задачи
-                  </label>
-                  <textarea
-                    className="form-browse__area"
+                  </SSubttl>
+                  <SFormBrowseArea
                     name="text"
                     id="textArea01"
                     readOnly
                     placeholder="Введите описание задачи..."
-                  ></textarea>
-                </div>
-              </form>
+                  ></SFormBrowseArea>
+                </SPopBrowseFormBlock>
+              </SPopBrowseForm>
               <Calendar />
-            </div>
+            </SPopBrowseWrapForm>
             <div className="theme-down__categories theme-down">
               <p className="categories__p subttl">Категория</p>
               <div className="categories__theme _orange _active-category">
