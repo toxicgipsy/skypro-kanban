@@ -107,7 +107,7 @@ export const SPopExitNo = styled.button`
   height: 30px;
   background-color: transparent;
   border-radius: 4px;
-  border: 0.7px solid var(--palette-navy-60, #565eef);
+  border: 0.7px solid #565eef;
   outline: none;
   display: flex;
   align-items: center;
@@ -116,7 +116,7 @@ export const SPopExitNo = styled.button`
   line-height: 21px;
   font-weight: 500;
   letter-spacing: -0.14px;
-  color: #ffffff;
+  color: #565eef;
 
   &:hover {
     background-color: #33399b;
@@ -132,7 +132,7 @@ export const SPopExitNo = styled.button`
 export const SPopExitNoA = styled.a`
   width: 100%;
   height: 100%;
-  color: #565eef;
+  color: inherit;
   display: flex;
   align-items: center;
   justify-content: center;

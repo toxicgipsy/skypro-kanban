@@ -11,7 +11,7 @@ export const SPopBrowseWrapper = styled.div`
   left: 0;
   z-index: 7;
 
-    &:target {
+  &:target {
     display: block;
   }
 `;
@@ -109,16 +109,20 @@ export const SStatusThemes = styled.div`
 export const SStatusTheme = styled.div`
   border-radius: 24px;
   border: 0.7px solid rgba(148, 166, 190, 0.4);
-  color: #94a6be;
   padding: 11px 14px 10px;
   margin-right: 7px;
   margin-bottom: 7px;
+  cursor: pointer;
+
+  color: ${({ $active }) => ($active ? "#ffffff" : "#94a6be")};
+  background-color: ${({ $active }) => ($active ? "#94A6BE" : "transparent")};
 `;
 
 export const SStatusThemeP = styled.p`
   font-size: 14px;
   line-height: 1;
   letter-spacing: -0.14px;
+  color: inherit;
 `;
 
 export const SPopBrowseWrapForm = styled.div`
@@ -157,7 +161,7 @@ export const SSubttl = styled.label`
   font-size: 14px;
   font-weight: 600;
   line-height: 1;
-`
+`;
 
 export const SFormBrowseArea = styled.textarea`
   max-width: 370px;
@@ -174,21 +178,21 @@ export const SFormBrowseArea = styled.textarea`
   height: 200px;
 
   &::-moz-placeholder {
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 1px;
-  color: #94a6be;
-  letter-spacing: -0.14px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1px;
+    color: #94a6be;
+    letter-spacing: -0.14px;
   }
 
   &::placeholder {
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 1px;
-  color: #94a6be;
-  letter-spacing: -0.14px;
-}
-`
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1px;
+    color: #94a6be;
+    letter-spacing: -0.14px;
+  }
+`;
 
 export const SCategoriesP = styled.p`
   margin-bottom: 14px;
@@ -196,29 +200,21 @@ export const SCategoriesP = styled.p`
   font-size: 14px;
   font-weight: 600;
   line-height: 1;
-`
+`;
 
 export const SPopBrowseBtnBrowse = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
   justify-content: space-between;
-
-  .btn-group button {
-    margin-right: 8px;
-  }
-`
+`;
 
 export const SPopBrowseBtnEdit = styled.div`
-  display: ${({$hide}) => ($hide ? "none" : "flex")};
+  display: ${({ $hide }) => ($hide ? "none" : "flex")};
   flex-wrap: wrap;
   align-items: flex-start;
   justify-content: space-between;
-
-  .btn-group button {
-    margin-right: 8px;
-  }
-`
+`;
 
 export const SBtnGroup = styled.div`
   display: flex;
@@ -247,10 +243,10 @@ export const SBtnBor = styled.button`
   padding: 0 14px;
 
   &:hover {
-  background-color: #33399b;
-  color: #ffffff;
-}
-`
+    background-color: #33399b;
+    color: #ffffff;
+  }
+`;
 
 export const SBtnBorA = styled.a`
   color: inherit;
@@ -259,12 +255,7 @@ export const SBtnBorA = styled.a`
   display: flex;
   align-items: center;
   justify-content: center;
-
-  &:hover a {
-  color: #ffffff;
-  }
-`
-
+`;
 
 export const SBtnBg = styled.button`
   border-radius: 4px;
@@ -277,6 +268,6 @@ export const SBtnBg = styled.button`
   padding: 0 14px;
 
   &:hover {
-  background-color: #33399b;
+    background-color: #33399b;
   }
-`
+`;

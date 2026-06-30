@@ -38,9 +38,9 @@ export function PopBrowse() {
             <SPopBrowseTopBlock>
               <SPopBrowseTtl>Название задачи</SPopBrowseTtl>
               <SThemeTop>
-              <SCategoriesTheme $active>
-                <SCategoriesThemeP>Web Design</SCategoriesThemeP>
-              </SCategoriesTheme>
+                <SCategoriesTheme $active>
+                  <SCategoriesThemeP>Web Design</SCategoriesThemeP>
+                </SCategoriesTheme>
               </SThemeTop>
             </SPopBrowseTopBlock>
             <SStatus>
@@ -49,7 +49,7 @@ export function PopBrowse() {
                 <SStatusTheme>
                   <SStatusThemeP>Без статуса</SStatusThemeP>
                 </SStatusTheme>
-                <SStatusTheme>
+                <SStatusTheme $active>
                   <SStatusThemeP>Нужно сделать</SStatusThemeP>
                 </SStatusTheme>
                 <SStatusTheme>
@@ -64,14 +64,9 @@ export function PopBrowse() {
               </SStatusThemes>
             </SStatus>
             <SPopBrowseWrapForm>
-              <SPopBrowseForm
-                id="formBrowseCard"
-                action="#"
-              >
+              <SPopBrowseForm id="formBrowseCard" action="#">
                 <SPopBrowseFormBlock>
-                  <SSubttl htmlFor="textArea01">
-                    Описание задачи
-                  </SSubttl>
+                  <SSubttl htmlFor="textArea01">Описание задачи</SSubttl>
                   <SFormBrowseArea
                     name="text"
                     id="textArea01"

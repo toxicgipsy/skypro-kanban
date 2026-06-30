@@ -6,9 +6,12 @@ import PopBrowse from "./components/PopBrowse";
 import PopExit from "./components/PopExit";
 import PopNewCard from "./components/PopNewCard";
 import Loader from "./components/Loader";
+import { GlobalStyle } from "./styles/GlobalStyle";
+import { SWrapper } from "./App.styled";
 
 function App() {
   const [loading, setLoading] = useState(true);
+  const [selectCard, setSelectCard] = useState(null);
 
   useEffect(() => {
     setTimeout(() => {
@@ -17,13 +20,16 @@ function App() {
   }, []);
 
   return (
-    <div className="wrapper">
-      <PopExit />
-      <PopNewCard />
-      <PopBrowse />
-      <Header />
-      {loading ? <Loader /> : <Main />}
-    </div>
+    <>
+      <GlobalStyle />
+      <SWrapper>
+        <PopExit />
+        <PopNewCard />
+        <PopBrowse card={selectCard} />
+        <Header />
+        {loading ? <Loader /> : <Main onClickCard={setSelectCard} />}
+      </SWrapper>
+    </>
   );
 }
 

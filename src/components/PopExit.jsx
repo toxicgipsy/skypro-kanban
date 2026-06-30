@@ -15,19 +15,15 @@ function PopExit() {
     <SPopExitWrapper id="popExit">
       <SPopExitContainer>
         <SPopExitBlock>
-          <SPopExitTtl>
-            <h2>Выйти из аккаунта?</h2>
-          </SPopExitTtl>
-          <form className="pop-exit__form" id="formExit" action="#">
-            <SPopExitFormGroup>
-              <SPopExitYes id="exitYes">
-                <SPopExitYesA href="modal/signin.html">Да, выйти</SPopExitYesA>
-              </SPopExitYes>
-              <SPopExitNo id="exitNo">
-                <SPopExitNoA href="main.html">Нет, остаться</SPopExitNoA>
-              </SPopExitNo>
-            </SPopExitFormGroup>
-          </form>
+          <SPopExitTtl>Выйти из аккаунта?</SPopExitTtl>
+          <SPopExitFormGroup>
+            <SPopExitYes id="exitYes">
+              <SPopExitYesA href="modal/signin.html">Да, выйти</SPopExitYesA>
+            </SPopExitYes>
+            <SPopExitNo id="exitNo">
+              <SPopExitNoA href="main.html">Нет, остаться</SPopExitNoA>
+            </SPopExitNo>
+          </SPopExitFormGroup>
         </SPopExitBlock>
       </SPopExitContainer>
     </SPopExitWrapper>
