@@ -10,6 +10,10 @@ export const SPopExitWrapper = styled.div`
   top: 0;
   left: 0;
   z-index: 5;
+
+  &:target {
+    display: block;
+  }
 `;
 
 export const SPopExitContainer = styled.div`

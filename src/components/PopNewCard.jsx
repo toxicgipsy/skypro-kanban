@@ -1,72 +1,77 @@
 import Calendar from "./Calendar";
-import { SPopNewCard, SPopNewCardContainer } from "./PopNewCard.styled";
+import {
+  SCategories,
+  SCategoriesP,
+  SCategoriesTheme,
+  SCategoriesThemeP,
+  SCategoriesThemes,
+  SFormNewArea,
+  SFormNewBlock,
+  SFormNewCreate,
+  SFormNewInput,
+  SPopNewCard,
+  SPopNewCardBlock,
+  SPopNewCardClose,
+  SPopNewCardContainer,
+  SPopNewCardContent,
+  SPopNewCardForm,
+  SPopNewCardTtl,
+  SPopNewCardWrap,
+  SSubttl,
+} from "./PopNewCard.styled";
 
 function PopNewCard() {
   return (
-    <>
-      <SPopNewCard id="popNewCard">
-        <SPopNewCardContainer>
-          <SPopNewCardBlock>
-            <div className="pop-new-card__content">
-              <h3 className="pop-new-card__ttl">Создание задачи</h3>
-              <a href="#" className="pop-new-card__close">
-                &#10006;
-              </a>
-              <div className="pop-new-card__wrap">
-                <form
-                  className="pop-new-card__form form-new"
-                  id="formNewCard"
-                  action="#"
-                >
-                  <div className="form-new__block">
-                    <label htmlFor="formTitle" className="subttl">
-                      Название задачи
-                    </label>
-                    <input
-                      className="form-new__input"
-                      type="text"
-                      name="name"
-                      id="formTitle"
-                      placeholder="Введите название задачи..."
-                      autoFocus
-                    />
-                  </div>
-                  <div className="form-new__block">
-                    <label htmlFor="textArea" className="subttl">
-                      Описание задачи
-                    </label>
-                    <textarea
-                      className="form-new__area"
-                      name="text"
-                      id="textArea"
-                      placeholder="Введите описание задачи..."
-                    ></textarea>
-                  </div>
-                </form>
-                <Calendar />
-              </div>
-              <div className="pop-new-card__categories categories">
-                <p className="categories__p subttl">Категория</p>
-                <div className="categories__themes">
-                  <div className="categories__theme _orange _active-category">
-                    <p className="_orange">Web Design</p>
-                  </div>
-                  <div className="categories__theme _green">
-                    <p className="_green">Research</p>
-                  </div>
-                  <div className="categories__theme _purple">
-                    <p className="_purple">Copywriting</p>
-                  </div>
-                </div>
-              </div>
-              <button className="form-new__create _hover01" id="btnCreate">
-                Создать задачу
-              </button>
-            </div>
-          </SPopNewCardBlock>
-        </SPopNewCardContainer>
-      </SPopNewCard>
-    </>
+    <SPopNewCard id="popNewCard">
+      <SPopNewCardContainer>
+        <SPopNewCardBlock>
+          <SPopNewCardContent>
+            <SPopNewCardTtl>Создание задачи</SPopNewCardTtl>
+            <SPopNewCardClose href="#">&#10006;</SPopNewCardClose>
+            <SPopNewCardWrap>
+              <SPopNewCardForm id="formNewCard" action="#">
+                <SFormNewBlock>
+                  <SSubttl htmlFor="formTitle">Название задачи</SSubttl>
+                  <SFormNewInput
+                    type="text"
+                    name="name"
+                    id="formTitle"
+                    placeholder="Введите название задачи..."
+                    autoFocus
+                  />
+                </SFormNewBlock>
+                <SFormNewBlock>
+                  <SSubttl>Описание задачи</SSubttl>
+                  <SFormNewArea
+                    name="text"
+                    id="textArea"
+                    placeholder="Введите описание задачи..."
+                  ></SFormNewArea>
+                </SFormNewBlock>
+              </SPopNewCardForm>
+              <Calendar />
+            </SPopNewCardWrap>
+            <SCategories>
+              <SCategoriesP>Категория</SCategoriesP>
+              <SCategoriesThemes>
+                <SCategoriesTheme $themeColor="_orange" $active>
+                  <SCategoriesThemeP>Web Design</SCategoriesThemeP>
+                </SCategoriesTheme>
+                <SCategoriesTheme $themeColor="_green">
+                  <SCategoriesThemeP>Research</SCategoriesThemeP>
+                </SCategoriesTheme>
+                <SCategoriesTheme $themeColor="_purple">
+                  <SCategoriesThemeP>Copywriting</SCategoriesThemeP>
+                </SCategoriesTheme>
+              </SCategoriesThemes>
+            </SCategories>
+            <SFormNewCreate id="btnCreate" type="button">
+              Создать задачу
+            </SFormNewCreate>
+          </SPopNewCardContent>
+        </SPopNewCardBlock>
+      </SPopNewCardContainer>
+    </SPopNewCard>
   );
 }
 
