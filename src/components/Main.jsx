@@ -1,26 +1,26 @@
 import Column from "./Column";
 import { cardList, columnStatus } from "../data";
+import { SContainer, SMainBlock, SMainContent, SMainWrapper } from "./Main.styled";
 
 export function Main() {
   return (
     <>
-      <main className="main">
-        <div className="container">
-          <div className="main__block">
-            <div className="main__content">
+      <SMainWrapper>
+        <SContainer>
+          <SMainBlock>
+            <SMainContent>
               {columnStatus.map((status) => {
                 const filterCards = cardList.filter(
                   (item) => item.status === status,
                 );
-
                 return (
                   <Column cards={filterCards} title={status} key={status} />
                 );
               })}
-            </div>
-          </div>
-        </div>
-      </main>
+            </SMainContent>
+          </SMainBlock>
+        </SContainer>
+      </SMainWrapper>
     </>
   );
 }

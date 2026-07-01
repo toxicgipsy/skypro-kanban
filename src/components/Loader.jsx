@@ -1,8 +1,10 @@
+import { SLoaderWrapper } from "./Loader.styled";
+
 const Loader = () => {
   return (
-    <div className="loader-wrapper">
+    <SLoaderWrapper>
       <p>Данные загружаются</p>
-    </div>
+    </SLoaderWrapper>
   );
 };
 
