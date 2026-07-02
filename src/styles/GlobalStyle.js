@@ -7,8 +7,8 @@ export const GlobalStyle = createGlobalStyle`
   box-sizing: border-box;
 }
 
-*:before,
-*:after {
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -22,6 +22,13 @@ button,
 ._btn {
   cursor: pointer;
   outline: none;
+}
+
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
 }
 
 ul li {
