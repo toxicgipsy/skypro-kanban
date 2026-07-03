@@ -1,48 +1,49 @@
 import {
-  SContainerSignin,
-  SModal,
-  SModalBlock,
-  SModalBtnEnter,
-  SModalBtnEnterA,
-  SModalFormGroupA,
-  SModalFormGroupP,
-  SModalFormLogin,
-  SModalInput,
-  SModalTtl,
-  SWrapper,
-} from "./SignIn.styled";
+  SAuthBlock,
+  SAuthBtnEnterA,
+  SAuthButton,
+  SAuthContainer,
+  SAuthForm,
+  SAuthFormGroup,
+  SAuthInput,
+  SAuthLink,
+  SAuthModal,
+  SAuthText,
+  SAuthTitle,
+  SAuthWrapper,
+} from "./Auth.styled";
 
 export function SignIn() {
   return (
-    <SWrapper>
-      <SContainerSignin>
-        <SModal>
-          <SModalBlock>
-            <SModalTtl>Вход</SModalTtl>
-            <SModalFormLogin id="formLogIn" action="#">
-              <SModalInput
+    <SAuthWrapper>
+      <SAuthContainer>
+        <SAuthModal>
+          <SAuthBlock>
+            <SAuthTitle>Вход</SAuthTitle>
+            <SAuthForm id="formLogIn" action="#">
+              <SAuthInput
                 type="text"
                 name="login"
                 id="formlogin"
                 placeholder="Эл. почта"
               />
-              <SModalInput
+              <SAuthInput
                 type="password"
                 name="password"
                 id="formpassword"
                 placeholder="Пароль"
               />
-              <SModalBtnEnter id="btnEnter">
-                <SModalBtnEnterA>Войти</SModalBtnEnterA>
-              </SModalBtnEnter>
-              <div className="modal__form-group">
-                <SModalFormGroupP>Нужно зарегистрироваться?</SModalFormGroupP>
-                <SModalFormGroupA href="signup.html">Регистрируйтесь здесь</SModalFormGroupA>
-              </div>
-            </SModalFormLogin>
-          </SModalBlock>
-        </SModal>
-      </SContainerSignin>
-    </SWrapper>
+              <SAuthButton id="btnEnter">
+                <SAuthBtnEnterA>Войти</SAuthBtnEnterA>
+              </SAuthButton>
+              <SAuthFormGroup>
+                <SAuthText>Нужно зарегистрироваться?</SAuthText>
+                <SAuthLink href="signup.html">Регистрируйтесь здесь</SAuthLink>
+              </SAuthFormGroup>
+            </SAuthForm>
+          </SAuthBlock>
+        </SAuthModal>
+      </SAuthContainer>
+    </SAuthWrapper>
   );
 }

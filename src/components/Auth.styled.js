@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const SWrapper = styled.div`
+export const SAuthWrapper = styled.div`
   width: 100%;
   height: 100%;
   overflow-x: hidden;
@@ -8,14 +8,14 @@ export const SWrapper = styled.div`
   background-color: #eaeef6;
 `;
 
-export const SContainerSignin = styled.div`
+export const SAuthContainer = styled.div`
   display: block;
   width: 100vw;
   min-height: 100vh;
   margin: 0 auto;
 `;
 
-export const SModal = styled.div`
+export const SAuthModal = styled.div`
   width: 100%;
   height: 100%;
   min-width: 320px;
@@ -30,7 +30,7 @@ export const SModal = styled.div`
   }
 `;
 
-export const SModalBlock = styled.div`
+export const SAuthBlock = styled.div`
   display: block;
   margin: 0 auto;
   background-color: #ffffff;
@@ -51,7 +51,7 @@ export const SModalBlock = styled.div`
   }
 `;
 
-export const SModalTtl = styled.h2`
+export const SAuthTitle = styled.h2`
   text-align: center;
   font-size: 20px;
   font-weight: 700;
@@ -60,7 +60,7 @@ export const SModalTtl = styled.h2`
   margin-bottom: 20px;
 `;
 
-export const SModalFormLogin = styled.form`
+export const SAuthForm = styled.form`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -72,7 +72,7 @@ export const SModalFormLogin = styled.form`
   }
 `;
 
-export const SModalInput = styled.input`
+export const SAuthInput = styled.input`
   width: 100%;
   min-width: 100%;
   border-radius: 8px;
@@ -99,7 +99,7 @@ export const SModalInput = styled.input`
   }
 `;
 
-export const SModalBtnEnter = styled.button`
+export const SAuthButton = styled.button`
   width: 100%;
   height: 30px;
   background-color: #565eef;
@@ -126,7 +126,7 @@ export const SModalBtnEnter = styled.button`
   }
 `;
 
-export const SModalBtnEnterA = styled.a`
+export const SAuthBtnEnterA = styled.a`
   width: 100%;
   height: 100%;
   color: inherit;
@@ -135,11 +135,11 @@ export const SModalBtnEnterA = styled.a`
   justify-content: center;
 `;
 
-export const SModalFormGroup = styled.div`
+export const SAuthFormGroup = styled.div`
   text-align: center;
 `;
 
-export const SModalFormGroupP = styled.p`
+export const SAuthText = styled.p`
   color: rgba(148, 166, 190, 0.4);
   font-size: 14px;
   font-weight: 400;
@@ -147,7 +147,7 @@ export const SModalFormGroupP = styled.p`
   letter-spacing: -0.14px;
 `;
 
-export const SModalFormGroupA = styled.a`
+export const SAuthLink = styled.a`
   color: rgba(148, 166, 190, 0.4);
   font-size: 14px;
   font-weight: 400;
