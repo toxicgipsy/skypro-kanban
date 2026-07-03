@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const SAuthWrapper = styled.div`
@@ -147,7 +148,7 @@ export const SAuthText = styled.p`
   letter-spacing: -0.14px;
 `;
 
-export const SAuthLink = styled.a`
+export const SAuthLink = styled(Link)`
   color: rgba(148, 166, 190, 0.4);
   font-size: 14px;
   font-weight: 400;
