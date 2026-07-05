@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   SAuthBlock,
   SAuthBtnEnterA,
@@ -7,16 +7,18 @@ import {
   SAuthForm,
   SAuthFormGroup,
   SAuthInput,
+  SAuthLink,
   SAuthModal,
   SAuthText,
   SAuthTitle,
   SAuthWrapper,
 } from "./Auth.styled";
 
-export function AuthForm({ isSignUp }) {
+function AuthForm({ isSignUp, setIsAuth }) {
   const navigate = useNavigate();
   const handleLogin = (e) => {
     e.preventDefault();
+    setIsAuth(true);
     navigate("/");
   };
   return (
@@ -54,13 +56,13 @@ export function AuthForm({ isSignUp }) {
               {!isSignUp && (
                 <SAuthFormGroup>
                   <SAuthText>Нужно зарегистрироваться?</SAuthText>
-                  <Link to="/sign-up">Регистрируйтесь здесь</Link>
+                  <SAuthLink to="/sign-up">Регистрируйтесь здесь</SAuthLink>
                 </SAuthFormGroup>
               )}
               {isSignUp && (
                 <SAuthFormGroup>
                   <SAuthText>Уже есть аккаунт?</SAuthText>
-                  <Link to="/sign-in">Войдите здесь</Link>
+                  <SAuthLink to="/sign-in">Войдите здесь</SAuthLink>
                 </SAuthFormGroup>
               )}
             </SAuthForm>
@@ -70,3 +72,5 @@ export function AuthForm({ isSignUp }) {
     </SAuthWrapper>
   );
 }
+
+export default AuthForm;

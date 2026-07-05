@@ -7,6 +7,7 @@ import PopNewCard from "./components/PopNewCard";
 import Loader from "./components/Loader";
 import { GlobalStyle } from "./styles/GlobalStyle";
 import { SWrapper } from "./App.styled";
+import { Outlet } from "react-router-dom";
 
 function MainPage({ loading }) {
   const [selectCard, setSelectCard] = useState(null);
@@ -20,6 +21,7 @@ function MainPage({ loading }) {
         <PopBrowse card={selectCard} />
         <Header />
         {loading ? <Loader /> : <Main onClickCard={setSelectCard} />}
+        <Outlet />
       </SWrapper>
     </>
   );

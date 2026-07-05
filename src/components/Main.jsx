@@ -2,7 +2,7 @@ import Column from "./Column";
 import { cardList, columnStatus } from "../data";
 import { SContainer, SMainBlock, SMainContent, SMainWrapper } from "./Main.styled";
 
-export function Main() {
+function Main() {
   return (
     <>
       <SMainWrapper>

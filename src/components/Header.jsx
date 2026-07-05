@@ -16,7 +16,6 @@ import {
 
 function Header() {
   const [isPopUserOpen, setIsPopUserOpen] = useState(false);
-
   const toggleUserPopup = () => setIsPopUserOpen((prev) => !prev);
 
   return (

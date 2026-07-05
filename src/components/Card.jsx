@@ -14,7 +14,7 @@ import {
 } from "./Card.styled";
 import { color } from "../data";
 
-export function Card({ item: card }) {
+function Card({ item: card }) {
   const themeColor = color[card.theme] || "_gray";
 
   return (

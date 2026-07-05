@@ -1,10 +1,13 @@
 import { Route, Routes } from "react-router-dom";
-import SignInPage from "../pages/SignIn";
-import SignUpPage from "../pages/SignUp";
+import SignInPage from "../pages/SignInPage";
+import SignUpPage from "../pages/SignUpPage";
 import { useEffect, useState } from "react";
-import MainPage from "../pages/Main";
+import MainPage from "../pages/MainPage";
+import NotFoundPage from "../pages/NotFoundPage";
+import PrivateRoute from "./PrivateRoute";
 
-function AppRouts() {
+function AppRoutes() {
+  const [isAuth, setIsAuth] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -16,12 +19,22 @@ function AppRouts() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<MainPage loading={loading} />} />
-        <Route path="/sign-in" element={<SignInPage />} />
-        <Route path="/sign-in" element={<SignUpPage />} />
+        <Route element={<PrivateRoute isAuth={isAuth} />}>
+          <Route
+            path="/"
+            element={<MainPage setIsAuth={setIsAuth} loading={loading} />}
+          />
+          <Route />
+          <Route />
+          <Route />
+          <Route />
+          <Route path="/*" element={<NotFoundPage />} />
+        </Route>
+        <Route path="/sign-in" element={<SignInPage setIsAuth={setIsAuth} />} />
+        <Route path="/sign-up" element={<SignUpPage />} />
       </Routes>
     </>
   );
 }
 
-export default AppRouts;
+export default AppRoutes;

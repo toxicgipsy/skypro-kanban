@@ -1,7 +1,7 @@
 import Card from "./Card";
 import { SColumnTitle, SColumnTitlP, SMainColumn } from "./Column.styled";
 
-export function Column({ title, cards }) {
+function Column({ title, cards }) {
   return (
     <SMainColumn>
       <SColumnTitle>

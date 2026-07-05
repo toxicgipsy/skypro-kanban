@@ -17,7 +17,7 @@ import {
   SPopNewCardCalendar,
 } from "./Calendar.styled";
 
-export function Calendar() {
+function Calendar() {
   return (
     <CalendarWrapper>
       <SPopNewCardCalendar>

@@ -29,7 +29,7 @@ import {
   SThemeTop,
 } from "./PopBrowse.styled";
 
-export function PopBrowse() {
+function PopBrowse() {
   return (
     <SPopBrowseWrapper id="popBrowse">
       <SPopBrowseContainer>
