@@ -14,7 +14,7 @@ import {
   SHeaderWrapper,
 } from "./Header.styled";
 
-function Header() {
+function Header({setIsAuth}) {
   const [isPopUserOpen, setIsPopUserOpen] = useState(false);
   const toggleUserPopup = () => setIsPopUserOpen((prev) => !prev);
 
@@ -41,7 +41,7 @@ function Header() {
             <SHeaderUser href="#user-set-target" onClick={toggleUserPopup}>
               Ivan Ivanov
             </SHeaderUser>
-            {isPopUserOpen && <PopUser />}
+            {isPopUserOpen && <PopUser setIsAuth={setIsAuth}/>}
           </SHeaderNav>
         </SHeaderBlock>
       </SContainer>

@@ -1,7 +1,7 @@
-import { AuthForm } from "./AuthForm";
+import AuthForm from "./AuthForm";
 
-function SignUp() {
-  return <AuthForm isSignUp />;
+function SignUp( {setIsAuth} ) {
+  return <AuthForm isSignUp setIsAuth={setIsAuth}/>;
 }
 
 export default SignUp;

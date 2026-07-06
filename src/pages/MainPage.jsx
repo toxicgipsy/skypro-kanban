@@ -1,15 +1,15 @@
 import { useState } from "react";
-import Header from "./components/Header";
-import Main from "./components/Main";
-import PopBrowse from "./components/PopBrowse";
-import PopExit from "./components/PopExit";
-import PopNewCard from "./components/PopNewCard";
-import Loader from "./components/Loader";
-import { GlobalStyle } from "./styles/GlobalStyle";
-import { SWrapper } from "./App.styled";
+import Header from "../components/Header";
+import Main from "../components/Main";
+import PopBrowse from "../components/PopBrowse";
+import PopExit from "../components/PopExit";
+import PopNewCard from "../components/PopNewCard";
+import Loader from "../components/Loader";
+import { GlobalStyle } from "../styles/GlobalStyle";
+import { SWrapper } from "../App.styled";
 import { Outlet } from "react-router-dom";
 
-function MainPage({ loading }) {
+function MainPage({ loading, setIsAuth }) {
   const [selectCard, setSelectCard] = useState(null);
 
   return (
@@ -19,7 +19,7 @@ function MainPage({ loading }) {
         <PopExit />
         <PopNewCard />
         <PopBrowse card={selectCard} />
-        <Header />
+        <Header setIsAuth={setIsAuth} />
         {loading ? <Loader /> : <Main onClickCard={setSelectCard} />}
         <Outlet />
       </SWrapper>

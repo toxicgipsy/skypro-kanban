@@ -1,7 +1,7 @@
-import { SignUp } from "../components/SignUp";
+import SignUp from "../components/SignUp";
 
-const SignUpPage = () => {
-  return <SignUp />;
+const SignUpPage = (setIsAuth) => {
+  return <SignUp setIsAuth />;
 };
 
 export default SignUpPage;

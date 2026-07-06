@@ -1,4 +1,4 @@
-import { AuthForm } from "./AuthForm";
+import AuthForm from "./AuthForm";
 
 function SignIn({ setIsAuth }) {
   return <AuthForm setIsAuth={setIsAuth} isSignUp={false} />;

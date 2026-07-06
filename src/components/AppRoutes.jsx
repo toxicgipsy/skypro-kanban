@@ -4,7 +4,8 @@ import SignUpPage from "../pages/SignUpPage";
 import { useEffect, useState } from "react";
 import MainPage from "../pages/MainPage";
 import NotFoundPage from "../pages/NotFoundPage";
-import PrivateRoute from "./PrivateRoute";
+import PrivateRoute from "./PrivateRout";
+
 
 function AppRoutes() {
   const [isAuth, setIsAuth] = useState(false);
@@ -31,7 +32,7 @@ function AppRoutes() {
           <Route path="/*" element={<NotFoundPage />} />
         </Route>
         <Route path="/sign-in" element={<SignInPage setIsAuth={setIsAuth} />} />
-        <Route path="/sign-up" element={<SignUpPage />} />
+        <Route path="/sign-up" element={<SignUpPage setIsAuth={setIsAuth}/>} />
       </Routes>
     </>
   );
