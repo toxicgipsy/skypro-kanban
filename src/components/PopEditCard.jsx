@@ -1,3 +1,4 @@
+import { useParams } from "react-router-dom";
 import Calendar from "./Calendar";
 import {
   SBtnBg,
@@ -28,15 +29,18 @@ import {
   SThemeDownCategories,
   SThemeTop,
 } from "./PopBrowse.styled";
+import { cardList } from "../data";
 
 function PopEditCard() {
+  const { id } = useParams();
+  const card = cardList.find((card) => card.id === Number(id));
   return (
     <SPopBrowseWrapper id="popBrowse">
       <SPopBrowseContainer>
         <SPopBrowseBlock>
           <SPopBrowseContent>
             <SPopBrowseTopBlock>
-              <SPopBrowseTtl>Название задачи</SPopBrowseTtl>
+              <SPopBrowseTtl>{card.title}</SPopBrowseTtl>c
               <SThemeTop>
                 <SCategoriesTheme $active>
                   <SCategoriesThemeP>Web Design</SCategoriesThemeP>
@@ -86,30 +90,32 @@ function PopEditCard() {
             <SPopBrowseBtnBrowse>
               <SBtnGroup>
                 <SBtnBor>
-                  <SBtnBorA href="#">Редактировать задачу</SBtnBorA>
+                  <SBtnBorA to={`/card/${card.id}/edit`}>
+                    Редактировать задачу
+                  </SBtnBorA>
                 </SBtnBor>
                 <SBtnBor>
-                  <SBtnBorA href="#">Удалить задачу</SBtnBorA>
+                  <SBtnBorA to="#">Удалить задачу</SBtnBorA>
                 </SBtnBor>
               </SBtnGroup>
               <SBtnBg>
-                <SBtnBorA href="#">Закрыть</SBtnBorA>
+                <SBtnBorA to="/">Закрыть</SBtnBorA>
               </SBtnBg>
             </SPopBrowseBtnBrowse>
-            <SPopBrowseBtnEdit>
+            <SPopBrowseBtnEdit $hide>
               <SBtnGroup>
                 <SBtnBg>
-                  <SBtnBorA href="#">Сохранить</SBtnBorA>
+                  <SBtnBorA to="#">Сохранить</SBtnBorA>
                 </SBtnBg>
                 <SBtnBor>
-                  <SBtnBorA href="#">Отменить</SBtnBorA>
+                  <SBtnBorA to="#">Отменить</SBtnBorA>
                 </SBtnBor>
                 <SBtnBor id="btnDelete">
-                  <SBtnBorA href="#">Удалить задачу</SBtnBorA>
+                  <SBtnBorA to="#">Удалить задачу</SBtnBorA>
                 </SBtnBor>
               </SBtnGroup>
               <SBtnBg>
-                <SBtnBorA href="#">Закрыть</SBtnBorA>
+                <SBtnBorA to="/">Закрыть</SBtnBorA>
               </SBtnBg>
             </SPopBrowseBtnEdit>
           </SPopBrowseContent>
