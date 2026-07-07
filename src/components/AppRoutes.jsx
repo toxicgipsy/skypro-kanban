@@ -31,7 +31,7 @@ function AppRoutes() {
             <Route path="card/:id" element={<PopBrowsePage />} />
             <Route path="card/add" element={<PopNewCardPage />} />
             <Route path="card/:id/edit" element={<PopEditCardPage />} />
-            <Route path="exit" element={<PopExit />} />
+            <Route path="exit" element={<PopExit setIsAuth={setIsAuth} />} />
           </Route>
         </Route>
         <Route path="/*" element={<NotFoundPage />} />

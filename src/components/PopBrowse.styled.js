@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const SPopBrowseWrapper = styled.div`
-  display: none;
   width: 100%;
   height: 100%;
   min-width: 375px;
@@ -11,10 +10,6 @@ export const SPopBrowseWrapper = styled.div`
   top: 0;
   left: 0;
   z-index: 7;
-
-  &:target {
-    display: block;
-  }
 `;
 
 export const SPopBrowseContainer = styled.div`

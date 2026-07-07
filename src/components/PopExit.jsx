@@ -30,7 +30,7 @@ function PopExit({ setIsAuth }) {
               </SPopExitYesA>
             </SPopExitYes>
             <SPopExitNo id="exitNo">
-              <SPopExitNoA to="main">Нет, остаться</SPopExitNoA>
+              <SPopExitNoA to="/">Нет, остаться</SPopExitNoA>
             </SPopExitNo>
           </SPopExitFormGroup>
         </SPopExitBlock>

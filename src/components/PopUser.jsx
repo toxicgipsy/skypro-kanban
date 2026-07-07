@@ -19,7 +19,7 @@ function PopUser() {
         <SPopUserCheckbox type="checkbox" name="checkbox" />
       </SPopUserSetTheme>
       <SPopUserSetButton type="button">
-        <SPopUserSetButtonA to="exit">Выйти</SPopUserSetButtonA>
+        <SPopUserSetButtonA to="/exit">Выйти</SPopUserSetButtonA>
       </SPopUserSetButton>
     </SHeaderPopUserSet>
   );

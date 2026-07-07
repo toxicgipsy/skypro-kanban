@@ -26,7 +26,7 @@ function Card({ item: card }) {
             <SCardTheme $themeColor={themeColor}>
               <SCardThemeP>{card.theme}</SCardThemeP>
             </SCardTheme>
-            <Link to={`card/${card.id}`} target="_self">
+            <Link to={`/card/${card.id}`} target="_self">
               <SCardBtn>
                 <div></div>
                 <div></div>
@@ -35,7 +35,7 @@ function Card({ item: card }) {
             </Link>
           </SCardGroup>
           <SCardContent>
-            <Link to="" target="_blank">
+            <Link to={`/card/${card.id}`}>
               <SCardTitle>{card.title}</SCardTitle>
             </Link>
             <SCardDate>

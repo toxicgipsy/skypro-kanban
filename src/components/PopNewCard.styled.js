@@ -23,7 +23,6 @@ const themeStyles = {
 };
 
 export const SPopNewCard = styled.div`
-  display: none;
   width: 100%;
   min-width: 375px;
   height: 100%;
@@ -32,10 +31,6 @@ export const SPopNewCard = styled.div`
   top: 0;
   left: 0;
   z-index: 6;
-
-  &:target {
-    display: block;
-  }
 
   @media screen and (max-width: 660px) {
     top: 70px;
