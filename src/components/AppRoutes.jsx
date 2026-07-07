@@ -34,9 +34,9 @@ function AppRoutes() {
             <Route path="exit" element={<PopExit setIsAuth={setIsAuth} />} />
           </Route>
         </Route>
-        <Route path="/*" element={<NotFoundPage />} />
         <Route path="/sign-in" element={<SignInPage setIsAuth={setIsAuth} />} />
         <Route path="/sign-up" element={<SignUpPage setIsAuth={setIsAuth} />} />
+        <Route path="/*" element={<NotFoundPage />} />
       </Routes>
     </>
   );

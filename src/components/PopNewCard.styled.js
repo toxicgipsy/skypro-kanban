@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const themeStyles = {
@@ -87,7 +88,7 @@ export const SPopNewCardTtl = styled.h3`
   margin-bottom: 20px;
 `;
 
-export const SPopNewCardClose = styled.a`
+export const SPopNewCardClose = styled(Link)`
   position: absolute;
   top: 20px;
   right: 30px;

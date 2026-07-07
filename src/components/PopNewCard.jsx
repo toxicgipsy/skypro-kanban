@@ -27,7 +27,7 @@ function PopNewCard() {
         <SPopNewCardBlock>
           <SPopNewCardContent>
             <SPopNewCardTtl>Создание задачи</SPopNewCardTtl>
-            <SPopNewCardClose href="#">&#10006;</SPopNewCardClose>
+            <SPopNewCardClose to="/">&#10006;</SPopNewCardClose>
             <SPopNewCardWrap>
               <SPopNewCardForm id="formNewCard" action="#">
                 <SFormNewBlock>

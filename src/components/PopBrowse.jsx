@@ -1,3 +1,4 @@
+import { useParams } from "react-router-dom";
 import Calendar from "./Calendar";
 import {
   SBtnBg,
@@ -28,8 +29,11 @@ import {
   SThemeDownCategories,
   SThemeTop,
 } from "./PopBrowse.styled";
+import { cardList } from "../data";
 
 function PopBrowse() {
+  const { id } = useParams;
+  const card = cardList.find((card) => card.id === Number(id));
   return (
     <SPopBrowseWrapper id="popBrowse">
       <SPopBrowseContainer>
@@ -86,7 +90,9 @@ function PopBrowse() {
             <SPopBrowseBtnBrowse>
               <SBtnGroup>
                 <SBtnBor>
-                  <SBtnBorA to={`card/id/edit`}>Редактировать задачу</SBtnBorA>
+                  <SBtnBorA to={`/card/${card.id}/edit`}>
+                    Редактировать задачу
+                  </SBtnBorA>
                 </SBtnBor>
                 <SBtnBor>
                   <SBtnBorA to="#">Удалить задачу</SBtnBorA>
