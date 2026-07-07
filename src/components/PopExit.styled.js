@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const SPopExitWrapper = styled.div`
@@ -93,7 +94,7 @@ export const SPopExitYes = styled.button`
   }
 `;
 
-export const SPopExitYesA = styled.a`
+export const SPopExitYesA = styled(Link)`
   width: 100%;
   height: 100%;
   color: #ffffff;
@@ -129,7 +130,7 @@ export const SPopExitNo = styled.button`
   }
 `;
 
-export const SPopExitNoA = styled.a`
+export const SPopExitNoA = styled(Link)`
   width: 100%;
   height: 100%;
   color: inherit;

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const SHeaderWrapper = styled.header`
@@ -81,11 +82,11 @@ export const SHeaderBtnMainNew = styled.button`
   }
 `;
 
-export const SHeaderBtnMainNewA = styled.a`
+export const SHeaderBtnMainNewA = styled(Link)`
   color: #ffffff;
 `;
 
-export const SHeaderUser = styled.a`
+export const SHeaderUser = styled(Link)`
   height: 20px;
   display: flex;
   flex-wrap: nowrap;

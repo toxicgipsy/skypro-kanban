@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import {
   SPopExitBlock,
   SPopExitContainer,
@@ -10,7 +11,13 @@ import {
   SPopExitYesA,
 } from "./PopExit.styled";
 
-function PopExit() {
+function PopExit({ setIsAuth }) {
+  const navigate = useNavigate();
+  function handleLogout(e) {
+    e.preventDefault();
+    setIsAuth(false);
+    navigate("/sign-in");
+  }
   return (
     <SPopExitWrapper id="popExit">
       <SPopExitContainer>
@@ -18,10 +25,12 @@ function PopExit() {
           <SPopExitTtl>Выйти из аккаунта?</SPopExitTtl>
           <SPopExitFormGroup>
             <SPopExitYes id="exitYes">
-              <SPopExitYesA href="modal/signin.html">Да, выйти</SPopExitYesA>
+              <SPopExitYesA to="/sign-in" onClick={handleLogout}>
+                Да, выйти
+              </SPopExitYesA>
             </SPopExitYes>
             <SPopExitNo id="exitNo">
-              <SPopExitNoA href="main.html">Нет, остаться</SPopExitNoA>
+              <SPopExitNoA to="main">Нет, остаться</SPopExitNoA>
             </SPopExitNo>
           </SPopExitFormGroup>
         </SPopExitBlock>

@@ -5,7 +5,10 @@ import { useEffect, useState } from "react";
 import MainPage from "../pages/MainPage";
 import NotFoundPage from "../pages/NotFoundPage";
 import PrivateRoute from "./PrivateRout";
-
+import PopNewCardPage from "../pages/PopNewCardPage";
+import PopExit from "./PopExit";
+import PopEditCardPage from "../pages/PopEditCardPage";
+import PopBrowsePage from "../pages/PopBrowsePage";
 
 function AppRoutes() {
   const [isAuth, setIsAuth] = useState(false);
@@ -24,15 +27,16 @@ function AppRoutes() {
           <Route
             path="/"
             element={<MainPage setIsAuth={setIsAuth} loading={loading} />}
-          />
-          <Route />
-          <Route />
-          <Route />
-          <Route />
-          <Route path="/*" element={<NotFoundPage />} />
+          >
+            <Route path="card/:id" element={<PopBrowsePage />} />
+            <Route path="card/add" element={<PopNewCardPage />} />
+            <Route path="card/:id/edit" element={<PopEditCardPage />} />
+            <Route path="exit" element={<PopExit />} />
+          </Route>
         </Route>
+        <Route path="/*" element={<NotFoundPage />} />
         <Route path="/sign-in" element={<SignInPage setIsAuth={setIsAuth} />} />
-        <Route path="/sign-up" element={<SignUpPage setIsAuth={setIsAuth}/>} />
+        <Route path="/sign-up" element={<SignUpPage setIsAuth={setIsAuth} />} />
       </Routes>
     </>
   );

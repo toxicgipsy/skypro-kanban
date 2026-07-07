@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const SPopBrowseWrapper = styled.div`
@@ -248,7 +249,7 @@ export const SBtnBor = styled.button`
   }
 `;
 
-export const SBtnBorA = styled.a`
+export const SBtnBorA = styled(Link)`
   color: inherit;
   width: 100%;
   height: 100%;

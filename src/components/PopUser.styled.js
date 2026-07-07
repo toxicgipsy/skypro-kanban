@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const SHeaderPopUserSet = styled.div`
@@ -90,6 +91,6 @@ export const SPopUserSetButton = styled.button`
   }
 `;
 
-export const SPopUserSetButtonA = styled.a`
+export const SPopUserSetButtonA = styled(Link)`
   color: inherit;
 `;

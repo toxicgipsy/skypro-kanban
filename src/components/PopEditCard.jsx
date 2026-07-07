@@ -29,7 +29,7 @@ import {
   SThemeTop,
 } from "./PopBrowse.styled";
 
-function PopBrowse() {
+function PopEditCard() {
   return (
     <SPopBrowseWrapper id="popBrowse">
       <SPopBrowseContainer>
@@ -86,30 +86,30 @@ function PopBrowse() {
             <SPopBrowseBtnBrowse>
               <SBtnGroup>
                 <SBtnBor>
-                  <SBtnBorA to={`card/id/edit`}>Редактировать задачу</SBtnBorA>
+                  <SBtnBorA href="#">Редактировать задачу</SBtnBorA>
                 </SBtnBor>
                 <SBtnBor>
-                  <SBtnBorA to="#">Удалить задачу</SBtnBorA>
+                  <SBtnBorA href="#">Удалить задачу</SBtnBorA>
                 </SBtnBor>
               </SBtnGroup>
               <SBtnBg>
-                <SBtnBorA to="/">Закрыть</SBtnBorA>
+                <SBtnBorA href="#">Закрыть</SBtnBorA>
               </SBtnBg>
             </SPopBrowseBtnBrowse>
-            <SPopBrowseBtnEdit $hide>
+            <SPopBrowseBtnEdit>
               <SBtnGroup>
                 <SBtnBg>
-                  <SBtnBorA to="#">Сохранить</SBtnBorA>
+                  <SBtnBorA href="#">Сохранить</SBtnBorA>
                 </SBtnBg>
                 <SBtnBor>
-                  <SBtnBorA to="#">Отменить</SBtnBorA>
+                  <SBtnBorA href="#">Отменить</SBtnBorA>
                 </SBtnBor>
                 <SBtnBor id="btnDelete">
-                  <SBtnBorA to="#">Удалить задачу</SBtnBorA>
+                  <SBtnBorA href="#">Удалить задачу</SBtnBorA>
                 </SBtnBor>
               </SBtnGroup>
               <SBtnBg>
-                <SBtnBorA to="/">Закрыть</SBtnBorA>
+                <SBtnBorA href="#">Закрыть</SBtnBorA>
               </SBtnBg>
             </SPopBrowseBtnEdit>
           </SPopBrowseContent>
@@ -119,4 +119,4 @@ function PopBrowse() {
   );
 }
 
-export default PopBrowse;
+export default PopEditCard;

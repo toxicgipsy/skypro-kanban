@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import {
   SHeaderPopUserSet,
   SPopUserCheckbox,
@@ -10,13 +9,7 @@ import {
   SPopUserSetThemeP,
 } from "./PopUser.styled";
 
-function PopUser({ setIsAuth }) {
-  const navigate = useNavigate();
-  function handleLogout(e) {
-    e.preventDefault();
-    setIsAuth(false);
-    navigate("/sign-in");
-  }
+function PopUser() {
   return (
     <SHeaderPopUserSet id="user-set-target">
       <SPopUserSetName>Ivan Ivanov</SPopUserSetName>
@@ -26,9 +19,7 @@ function PopUser({ setIsAuth }) {
         <SPopUserCheckbox type="checkbox" name="checkbox" />
       </SPopUserSetTheme>
       <SPopUserSetButton type="button">
-        <SPopUserSetButtonA href="#popExit" onClick={handleLogout}>
-          Выйти
-        </SPopUserSetButtonA>
+        <SPopUserSetButtonA to="exit">Выйти</SPopUserSetButtonA>
       </SPopUserSetButton>
     </SHeaderPopUserSet>
   );

@@ -13,6 +13,7 @@ import {
   SCardTitle,
 } from "./Card.styled";
 import { color } from "../data";
+import { Link } from "react-router-dom";
 
 function Card({ item: card }) {
   const themeColor = color[card.theme] || "_gray";
@@ -25,18 +26,18 @@ function Card({ item: card }) {
             <SCardTheme $themeColor={themeColor}>
               <SCardThemeP>{card.theme}</SCardThemeP>
             </SCardTheme>
-            <a href="#popBrowse" target="_self">
+            <Link to={`card/${card.id}`} target="_self">
               <SCardBtn>
                 <div></div>
                 <div></div>
                 <div></div>
               </SCardBtn>
-            </a>
+            </Link>
           </SCardGroup>
           <SCardContent>
-            <a href="" target="_blank">
+            <Link to="" target="_blank">
               <SCardTitle>{card.title}</SCardTitle>
-            </a>
+            </Link>
             <SCardDate>
               <SCardDateSVG
                 xmlns="http://www.w3.org/2000/svg"

@@ -13,8 +13,9 @@ import {
   SHeaderUser,
   SHeaderWrapper,
 } from "./Header.styled";
+import { Link } from "react-router-dom";
 
-function Header({setIsAuth}) {
+function Header() {
   const [isPopUserOpen, setIsPopUserOpen] = useState(false);
   const toggleUserPopup = () => setIsPopUserOpen((prev) => !prev);
 
@@ -23,25 +24,25 @@ function Header({setIsAuth}) {
       <SContainer>
         <SHeaderBlock>
           <SHeaderLogo>
-            <a href="" target="_self">
+            <Link to="" target="_self">
               <img src={logo} className="vite" alt="Vite logo" />
-            </a>
+            </Link>
           </SHeaderLogo>
           <SHeaderLogoDark>
-            <a href="" target="_self">
+            <Link to="" target="_self">
               <img src={logo_dark} className="vite" alt="Vite logo" />
-            </a>
+            </Link>
           </SHeaderLogoDark>
           <SHeaderNav>
             <SHeaderBtnMainNew id="btnMainNew">
-              <SHeaderBtnMainNewA href="#popNewCard">
+              <SHeaderBtnMainNewA to="/card/add">
                 Создать новую задачу
               </SHeaderBtnMainNewA>
             </SHeaderBtnMainNew>
-            <SHeaderUser href="#user-set-target" onClick={toggleUserPopup}>
+            <SHeaderUser to="#user-set-target" onClick={toggleUserPopup}>
               Ivan Ivanov
             </SHeaderUser>
-            {isPopUserOpen && <PopUser setIsAuth={setIsAuth}/>}
+            {isPopUserOpen && <PopUser to="exit" />}
           </SHeaderNav>
         </SHeaderBlock>
       </SContainer>
