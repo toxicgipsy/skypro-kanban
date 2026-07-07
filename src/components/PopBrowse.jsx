@@ -32,7 +32,7 @@ import {
 import { cardList } from "../data";
 
 function PopBrowse() {
-  const { id } = useParams;
+  const { id } = useParams();
   const card = cardList.find((card) => card.id === Number(id));
   return (
     <SPopBrowseWrapper id="popBrowse">
