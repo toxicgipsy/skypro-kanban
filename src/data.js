@@ -22,7 +22,7 @@ export const cardList = [
   },
   {
     id: 4,
-    theme: "Тест",
+    theme: "Test",
     title: "На тестирование",
     date: "30.10.23",
     status: "Тестирование",
@@ -54,7 +54,7 @@ export const color = {
   "Web Design": "_orange",
   Research: "_green",
   Copywriting: "_purple",
-  Тест: "_gray",
+  Test: "_gray",
   Dev: "_blue",
   PM: "_yellow",
 };

@@ -17,7 +17,7 @@ import {
   SPopNewCardCalendar,
 } from "./Calendar.styled";
 
-function Calendar() {
+function Calendar({ selectedDate, onDateChange }) {
   return (
     <CalendarWrapper>
       <SPopNewCardCalendar>
@@ -62,8 +62,20 @@ function Calendar() {
               <SCalendarCell $otherMonth>28</SCalendarCell>
               <SCalendarCell $otherMonth>29</SCalendarCell>
               <SCalendarCell $otherMonth>30</SCalendarCell>
-              <SCalendarCell $cellDay>31</SCalendarCell>
-              <SCalendarCell $cellDay>1</SCalendarCell>
+              <SCalendarCell
+                $cellDay
+                $current={selectedDate === "31.08.2023"}
+                onClick={() => onDateChange?.("31.08.2023")}
+              >
+                31
+              </SCalendarCell>
+              <SCalendarCell
+                $cellDay
+                $current={selectedDate === "01.09.2023"}
+                onClick={() => onDateChange?.("01.09.2023")}
+              >
+                1
+              </SCalendarCell>
               <SCalendarCell $cellDay>2</SCalendarCell>
               <SCalendarCell $cellDay>3</SCalendarCell>
               <SCalendarCell $cellDay>4</SCalendarCell>
@@ -102,7 +114,8 @@ function Calendar() {
           <input type="hidden" id="datepick_value" defaultValue="08.09.2023" />
           <SCalendarPeriod>
             <SCalendarP>
-              Выберите срок исполнения <SDateControl></SDateControl>.
+              Выберите срок исполнения
+              <SDateControl>{selectedDate}</SDateControl>.
             </SCalendarP>
           </SCalendarPeriod>
         </SCalendarBlock>

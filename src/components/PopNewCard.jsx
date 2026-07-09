@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Calendar from "./Calendar";
 import {
   SCategories,
@@ -19,8 +20,45 @@ import {
   SPopNewCardWrap,
   SSubttl,
 } from "./PopNewCard.styled";
+import { useNavigate } from "react-router-dom";
+import { columnStatus } from "../data";
 
-function PopNewCard() {
+function PopNewCard({ cards, addCard }) {
+  const navigate = useNavigate();
+
+  const [formData, setFormData] = useState({
+    title: "",
+    description: "",
+    theme: "Web Design",
+    date: "",
+  });
+
+  const categories = [
+    { title: "Web Design", color: "_orange" },
+    { title: "Research", color: "_green" },
+    { title: "Copywriting", color: "_purple" },
+    { title: "Dev", color: "_blue" },
+    { title: "PM", color: "_yellow" },
+  ];
+
+  const handleCreatedCard = () => {
+    if (!formData.title.trim()) return;
+    if (!formData.date) return;
+
+    const nextId = Math.max(...cards.map((card) => card.id), 0) + 1;
+
+    const newCard = {
+      id: nextId,
+      title: formData.title.trim(),
+      description: formData.description,
+      theme: formData.theme,
+      date: formData.date,
+      status: columnStatus[0],
+    };
+
+    addCard(newCard);
+    navigate("/");
+  };
   return (
     <SPopNewCard id="popNewCard">
       <SPopNewCardContainer>
@@ -38,6 +76,10 @@ function PopNewCard() {
                     id="formTitle"
                     placeholder="Введите название задачи..."
                     autoFocus
+                    value={formData.title}
+                    onChange={(e) =>
+                      setFormData({ ...formData, title: e.target.value })
+                    }
                   />
                 </SFormNewBlock>
                 <SFormNewBlock>
@@ -46,26 +88,40 @@ function PopNewCard() {
                     name="text"
                     id="textArea"
                     placeholder="Введите описание задачи..."
+                    value={formData.description}
+                    onChange={(e) =>
+                      setFormData({ ...formData, description: e.target.value })
+                    }
                   ></SFormNewArea>
                 </SFormNewBlock>
               </SPopNewCardForm>
-              <Calendar />
+              <Calendar
+                selectedDate={formData.date}
+                onDateChange={(date) => setFormData({ ...formData, date })}
+              />
             </SPopNewCardWrap>
             <SCategories>
               <SCategoriesP>Категория</SCategoriesP>
               <SCategoriesThemes>
-                <SCategoriesTheme $themeColor="_orange" $active>
-                  <SCategoriesThemeP>Web Design</SCategoriesThemeP>
-                </SCategoriesTheme>
-                <SCategoriesTheme $themeColor="_green">
-                  <SCategoriesThemeP>Research</SCategoriesThemeP>
-                </SCategoriesTheme>
-                <SCategoriesTheme $themeColor="_purple">
-                  <SCategoriesThemeP>Copywriting</SCategoriesThemeP>
-                </SCategoriesTheme>
+                {categories.map((category) => (
+                  <SCategoriesTheme
+                    key={category.title}
+                    $themeColor={category.color}
+                    $active={formData.theme === category.title}
+                    onClick={() =>
+                      setFormData({ ...formData, theme: category.title })
+                    }
+                  >
+                    <SCategoriesThemeP>{category.title}</SCategoriesThemeP>
+                  </SCategoriesTheme>
+                ))}
               </SCategoriesThemes>
             </SCategories>
-            <SFormNewCreate id="btnCreate" type="button">
+            <SFormNewCreate
+              id="btnCreate"
+              type="button"
+              onClick={handleCreatedCard}
+            >
               Создать задачу
             </SFormNewCreate>
           </SPopNewCardContent>

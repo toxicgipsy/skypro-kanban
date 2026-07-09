@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { themeStyles } from "./Card.styled";
+import { themeStyles } from "../data";
 
 export const SPopBrowseWrapper = styled.div`
   width: 100%;
