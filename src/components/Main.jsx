@@ -1,8 +1,13 @@
 import Column from "./Column";
-import { cardList, columnStatus } from "../data";
-import { SContainer, SMainBlock, SMainContent, SMainWrapper } from "./Main.styled";
+import { columnStatus } from "../data";
+import {
+  SContainer,
+  SMainBlock,
+  SMainContent,
+  SMainWrapper,
+} from "./Main.styled";
 
-function Main() {
+function Main({ cards }) {
   return (
     <>
       <SMainWrapper>
@@ -10,7 +15,7 @@ function Main() {
           <SMainBlock>
             <SMainContent>
               {columnStatus.map((status) => {
-                const filterCards = cardList.filter(
+                const filterCards = cards.filter(
                   (item) => item.status === status,
                 );
                 return (

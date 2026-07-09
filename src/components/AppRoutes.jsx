@@ -9,10 +9,19 @@ import PopNewCardPage from "../pages/PopNewCardPage";
 import PopExit from "./PopExit";
 import PopEditCardPage from "../pages/PopEditCardPage";
 import PopBrowsePage from "../pages/PopBrowsePage";
+import { cardList } from "../data";
 
 function AppRoutes() {
   const [isAuth, setIsAuth] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [cards, setCards] = useState(cardList);
+  const addCard = (addCard) => setCards((prev) => [...prev, addCard]);
+  const updateCard = ({ updated, id }) =>
+    setCards((prev) =>
+      prev.map((card) => (card.id === Number(id) ? updated : card)),
+    );
+  const deleteCard = (id) =>
+    setCards((prev) => prev.filter((card) => card.id !== Number(id)));
 
   useEffect(() => {
     setTimeout(() => {
@@ -26,7 +35,16 @@ function AppRoutes() {
         <Route element={<PrivateRoute isAuth={isAuth} />}>
           <Route
             path="/"
-            element={<MainPage setIsAuth={setIsAuth} loading={loading} />}
+            element={
+              <MainPage
+                setIsAuth={setIsAuth}
+                loading={loading}
+                cards={cards}
+                addCard={addCard}
+                updateCard={updateCard}
+                deleteCard={deleteCard}
+              />
+            }
           >
             <Route path="card/:id" element={<PopBrowsePage />} />
             <Route path="card/add" element={<PopNewCardPage />} />

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { themeStyles } from "./Card.styled";
 
 export const SPopBrowseWrapper = styled.div`
   width: 100%;
@@ -62,9 +63,13 @@ export const SCategoriesTheme = styled.div`
   padding: 8px 20px;
   border-radius: 24px;
   margin-right: 7px;
-  background-color: #ffe4c2;
-  color: #ff6d00;
   opacity: ${({ $active }) => ($active ? 1 : 0.4)};
+
+  background-color: ${({ $themeColor }) =>
+    themeStyles[$themeColor]?.background || themeStyles._gray.background};
+
+  color: ${({ $themeColor }) =>
+    themeStyles[$themeColor]?.color || themeStyles._gray.color};
 `;
 
 export const SCategoriesThemeP = styled.p`

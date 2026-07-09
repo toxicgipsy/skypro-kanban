@@ -39,10 +39,8 @@ function Header() {
                 Создать новую задачу
               </SHeaderBtnMainNewA>
             </SHeaderBtnMainNew>
-            <SHeaderUser to="#user-set-target" onClick={toggleUserPopup}>
-              Ivan Ivanov
-            </SHeaderUser>
-            {isPopUserOpen && <PopUser to="exit" />}
+            <SHeaderUser onClick={toggleUserPopup}>Ivan Ivanov</SHeaderUser>
+            {isPopUserOpen && <PopUser/>}
           </SHeaderNav>
         </SHeaderBlock>
       </SContainer>

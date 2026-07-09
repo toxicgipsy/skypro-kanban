@@ -1,18 +1,39 @@
 import Header from "../components/Header";
 import Main from "../components/Main";
 import Loader from "../components/Loader";
-import { GlobalStyle } from "../styles/GlobalStyle";
 import { SWrapper } from "../App.styled";
 import { Outlet } from "react-router-dom";
 
-function MainPage({ loading, setIsAuth }) {
+function MainPage({
+  loading,
+  setIsAuth,
+  cards,
+  addCard,
+  updateCard,
+  deleteCard,
+}) {
   return (
     <>
-      <GlobalStyle />
       <SWrapper>
         <Header setIsAuth={setIsAuth} />
-        {loading ? <Loader /> : <Main />}
-        <Outlet />
+        {loading ? (
+          <Loader />
+        ) : (
+          <Main
+            cards={cards}
+            addCard={addCard}
+            updateCard={updateCard}
+            deleteCard={deleteCard}
+          />
+        )}
+        <Outlet
+          context={{
+            cards,
+            addCard,
+            updateCard,
+            deleteCard,
+          }}
+        />
       </SWrapper>
     </>
   );

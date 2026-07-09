@@ -68,7 +68,7 @@ export const SAuthForm = styled.form`
   align-items: center;
   justify-content: center;
 
-  input:first-child {
+  input {
     margin-bottom: 7px;
   }
 `;

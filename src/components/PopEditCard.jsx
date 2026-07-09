@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Calendar from "./Calendar";
 import {
   SBtnBg,
@@ -10,7 +10,6 @@ import {
   SCategoriesThemeP,
   SFormBrowseArea,
   SPopBrowseBlock,
-  SPopBrowseBtnBrowse,
   SPopBrowseBtnEdit,
   SPopBrowseContainer,
   SPopBrowseContent,
@@ -29,40 +28,88 @@ import {
   SThemeDownCategories,
   SThemeTop,
 } from "./PopBrowse.styled";
-import { cardList } from "../data";
+import NotFoundPage from "../pages/NotFoundPage";
+import { useState } from "react";
+import { color } from "../data";
 
-function PopEditCard() {
+function PopEditCard({ cards, updateCard }) {
   const { id } = useParams();
-  const card = cardList.find((card) => card.id === Number(id));
+  const navigate = useNavigate();
+  const card = cards.find((card) => card.id === Number(id));
+  const [formData, setFormData] = useState({
+    title: card?.title,
+    description: card?.description || "",
+    status: card?.status,
+    theme: card?.theme,
+    date: card?.date,
+  });
+  if (!card) return <NotFoundPage />;
+
+  const handleDescriptionChange = (e) => {
+    setFormData({ ...formData, description: e.target.value });
+  };
+
+  const handleStatusChange = (status) => {
+    setFormData({ ...formData, status });
+  };
+
+  const handleSave = () => {
+    const updated = { ...card, ...formData };
+    updateCard({ id, updated });
+    navigate(`/card/${id}`);
+  };
+
+  const themeColor = color[formData.theme] || "_gray";
+
   return (
     <SPopBrowseWrapper id="popBrowse">
       <SPopBrowseContainer>
         <SPopBrowseBlock>
           <SPopBrowseContent>
             <SPopBrowseTopBlock>
-              <SPopBrowseTtl>{card.title}</SPopBrowseTtl>c
+              <SPopBrowseTtl>{formData.title}</SPopBrowseTtl>
               <SThemeTop>
-                <SCategoriesTheme $active>
-                  <SCategoriesThemeP>Web Design</SCategoriesThemeP>
+                <SCategoriesTheme $themeColor={themeColor} $active>
+                  <SCategoriesThemeP>{formData.theme}</SCategoriesThemeP>
                 </SCategoriesTheme>
               </SThemeTop>
             </SPopBrowseTopBlock>
             <SStatus>
-              <SStatusP>Статус</SStatusP>
+              <SStatusP>{formData.status}</SStatusP>
               <SStatusThemes>
-                <SStatusTheme>
+                <SStatusTheme
+                  $themeColor={themeColor}
+                  $active={formData.status === "Без статуса"}
+                  onClick={() => handleStatusChange("Без статуса")}
+                >
                   <SStatusThemeP>Без статуса</SStatusThemeP>
                 </SStatusTheme>
-                <SStatusTheme $active>
+                <SStatusTheme
+                  $themeColor={themeColor}
+                  $active={formData.status === "Нужно сделать"}
+                  onClick={() => handleStatusChange("Нужно сделать")}
+                >
                   <SStatusThemeP>Нужно сделать</SStatusThemeP>
                 </SStatusTheme>
-                <SStatusTheme>
+                <SStatusTheme
+                  $themeColor={themeColor}
+                  $active={formData.status === "В работе"}
+                  onClick={() => handleStatusChange("В работе")}
+                >
                   <SStatusThemeP>В работе</SStatusThemeP>
                 </SStatusTheme>
-                <SStatusTheme>
+                <SStatusTheme
+                  $themeColor={themeColor}
+                  $active={formData.status === "Тестирование"}
+                  onClick={() => handleStatusChange("Тестирование")}
+                >
                   <SStatusThemeP>Тестирование</SStatusThemeP>
                 </SStatusTheme>
-                <SStatusTheme>
+                <SStatusTheme
+                  $themeColor={themeColor}
+                  $active={formData.status === "Готово"}
+                  onClick={() => handleStatusChange("Готово")}
+                >
                   <SStatusThemeP>Готово</SStatusThemeP>
                 </SStatusTheme>
               </SStatusThemes>
@@ -70,12 +117,13 @@ function PopEditCard() {
             <SPopBrowseWrapForm>
               <SPopBrowseForm id="formBrowseCard" action="#">
                 <SPopBrowseFormBlock>
-                  <SSubttl htmlFor="textArea01">Описание задачи</SSubttl>
+                  <SSubttl htmlFor="textArea01">{card.title}</SSubttl>
                   <SFormBrowseArea
                     name="text"
                     id="textArea01"
-                    readOnly
                     placeholder="Введите описание задачи..."
+                    value={formData.description}
+                    onChange={handleDescriptionChange}
                   ></SFormBrowseArea>
                 </SPopBrowseFormBlock>
               </SPopBrowseForm>
@@ -84,31 +132,16 @@ function PopEditCard() {
             <SThemeDownCategories>
               <SCategoriesP>Категория</SCategoriesP>
               <SCategoriesTheme $active>
-                <SCategoriesThemeP>Web Design</SCategoriesThemeP>
+                <SCategoriesThemeP>{formData.theme}</SCategoriesThemeP>
               </SCategoriesTheme>
             </SThemeDownCategories>
-            <SPopBrowseBtnBrowse>
+            <SPopBrowseBtnEdit>
               <SBtnGroup>
-                <SBtnBor>
-                  <SBtnBorA to={`/card/${card.id}/edit`}>
-                    Редактировать задачу
-                  </SBtnBorA>
-                </SBtnBor>
-                <SBtnBor>
-                  <SBtnBorA to="#">Удалить задачу</SBtnBorA>
-                </SBtnBor>
-              </SBtnGroup>
-              <SBtnBg>
-                <SBtnBorA to="/">Закрыть</SBtnBorA>
-              </SBtnBg>
-            </SPopBrowseBtnBrowse>
-            <SPopBrowseBtnEdit $hide>
-              <SBtnGroup>
-                <SBtnBg>
-                  <SBtnBorA to="#">Сохранить</SBtnBorA>
+                <SBtnBg type="button" onClick={handleSave}>
+                  Сохранить
                 </SBtnBg>
                 <SBtnBor>
-                  <SBtnBorA to="#">Отменить</SBtnBorA>
+                  <SBtnBorA to={`/card/${id}`}>Отменить</SBtnBorA>
                 </SBtnBor>
                 <SBtnBor id="btnDelete">
                   <SBtnBorA to="#">Удалить задачу</SBtnBorA>
