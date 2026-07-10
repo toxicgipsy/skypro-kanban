@@ -1,3 +1,4 @@
+import { days } from "../data";
 import {
   CalendarWrapper,
   SCalendarBlock,
@@ -59,62 +60,28 @@ function Calendar({ selectedDate, onDateChange }) {
               <SCalendarDayName>вс</SCalendarDayName>
             </SCalendarDaysNames>
             <SCalendarCells>
-              <SCalendarCell $otherMonth>28</SCalendarCell>
-              <SCalendarCell $otherMonth>29</SCalendarCell>
-              <SCalendarCell $otherMonth>30</SCalendarCell>
-              <SCalendarCell
-                $cellDay
-                $current={selectedDate === "31.08.2023"}
-                onClick={() => onDateChange?.("31.08.2023")}
-              >
-                31
-              </SCalendarCell>
-              <SCalendarCell
-                $cellDay
-                $current={selectedDate === "01.09.2023"}
-                onClick={() => onDateChange?.("01.09.2023")}
-              >
-                1
-              </SCalendarCell>
-              <SCalendarCell $cellDay>2</SCalendarCell>
-              <SCalendarCell $cellDay>3</SCalendarCell>
-              <SCalendarCell $cellDay>4</SCalendarCell>
-              <SCalendarCell $cellDay>5</SCalendarCell>
-              <SCalendarCell $cellDay>6</SCalendarCell>
-              <SCalendarCell $cellDay>7</SCalendarCell>
-              <SCalendarCell $cellDay $current>
-                8
-              </SCalendarCell>
-              <SCalendarCell $cellDay>9</SCalendarCell>
-              <SCalendarCell $cellDay>10</SCalendarCell>
-              <SCalendarCell $cellDay>11</SCalendarCell>
-              <SCalendarCell $cellDay>12</SCalendarCell>
-              <SCalendarCell $cellDay>13</SCalendarCell>
-              <SCalendarCell $cellDay>14</SCalendarCell>
-              <SCalendarCell $cellDay>15</SCalendarCell>
-              <SCalendarCell $cellDay>16</SCalendarCell>
-              <SCalendarCell $cellDay>17</SCalendarCell>
-              <SCalendarCell $cellDay>18</SCalendarCell>
-              <SCalendarCell $cellDay>19</SCalendarCell>
-              <SCalendarCell $cellDay>20</SCalendarCell>
-              <SCalendarCell $cellDay>21</SCalendarCell>
-              <SCalendarCell $cellDay>22</SCalendarCell>
-              <SCalendarCell $cellDay>23</SCalendarCell>
-              <SCalendarCell $cellDay>24</SCalendarCell>
-              <SCalendarCell $cellDay>25</SCalendarCell>
-              <SCalendarCell $cellDay>26</SCalendarCell>
-              <SCalendarCell $cellDay>27</SCalendarCell>
-              <SCalendarCell $cellDay>28</SCalendarCell>
-              <SCalendarCell $cellDay>29</SCalendarCell>
-              <SCalendarCell $cellDay>30</SCalendarCell>
-              <SCalendarCell $otherMonth>1</SCalendarCell>
+              {days.map((item, index) => (
+                <SCalendarCell
+                  key={index}
+                  $otherMonth={item.otherMonth}
+                  $cellDay={!item.otherMonth}
+                  $current={selectedDate === item.date}
+                  onClick={() => {
+                    if (item.date) {
+                      onDateChange?.(item.date);
+                    }
+                  }}
+                >
+                  {item.day}
+                </SCalendarCell>
+              ))}
             </SCalendarCells>
           </SCalendarContent>
 
           <input type="hidden" id="datepick_value" defaultValue="08.09.2023" />
           <SCalendarPeriod>
             <SCalendarP>
-              Выберите срок исполнения
+              Выберите срок исполнения{" "}
               <SDateControl>{selectedDate}</SDateControl>.
             </SCalendarP>
           </SCalendarPeriod>
