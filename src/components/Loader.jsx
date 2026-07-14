@@ -1,10 +1,10 @@
-import { SLoaderWrapper } from "./Loader.styled";
+import { SCenteredPage, SCenteredPageText } from "../styles/Common.styled";
 
 const Loader = () => {
   return (
-    <SLoaderWrapper>
-      <p>Данные загружаются</p>
-    </SLoaderWrapper>
+    <SCenteredPage>
+      <SCenteredPageText>Данные загружаются</SCenteredPageText>
+    </SCenteredPage>
   );
 };
 

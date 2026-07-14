@@ -1,29 +1,8 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
-
-const themeStyles = {
-  _orange: {
-    background: "#ffe4c2",
-    color: "#ff6d00",
-  },
-
-  _green: {
-    background: "#b4fdd1",
-    color: "#06b16e",
-  },
-
-  _purple: {
-    background: "#e9d4ff",
-    color: "#9a48f1",
-  },
-
-  _gray: {
-    background: "#94a6be",
-    color: "#ffffff",
-  },
-};
+import { themeStyles } from "../data";
 
 export const SPopNewCard = styled.div`
-  display: none;
   width: 100%;
   min-width: 375px;
   height: 100%;
@@ -32,10 +11,6 @@ export const SPopNewCard = styled.div`
   top: 0;
   left: 0;
   z-index: 6;
-
-  &:target {
-    display: block;
-  }
 
   @media screen and (max-width: 660px) {
     top: 70px;
@@ -92,7 +67,7 @@ export const SPopNewCardTtl = styled.h3`
   margin-bottom: 20px;
 `;
 
-export const SPopNewCardClose = styled.a`
+export const SPopNewCardClose = styled(Link)`
   position: absolute;
   top: 20px;
   right: 30px;

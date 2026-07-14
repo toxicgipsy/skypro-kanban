@@ -9,7 +9,7 @@ import {
   SPopUserSetThemeP,
 } from "./PopUser.styled";
 
-export function PopUser() {
+function PopUser() {
   return (
     <SHeaderPopUserSet id="user-set-target">
       <SPopUserSetName>Ivan Ivanov</SPopUserSetName>
@@ -19,7 +19,7 @@ export function PopUser() {
         <SPopUserCheckbox type="checkbox" name="checkbox" />
       </SPopUserSetTheme>
       <SPopUserSetButton type="button">
-        <SPopUserSetButtonA href="#popExit">Выйти</SPopUserSetButtonA>
+        <SPopUserSetButtonA to="/exit">Выйти</SPopUserSetButtonA>
       </SPopUserSetButton>
     </SHeaderPopUserSet>
   );

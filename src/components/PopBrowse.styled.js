@@ -1,7 +1,8 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { themeStyles } from "../data";
 
 export const SPopBrowseWrapper = styled.div`
-  display: none;
   width: 100%;
   height: 100%;
   min-width: 375px;
@@ -10,10 +11,6 @@ export const SPopBrowseWrapper = styled.div`
   top: 0;
   left: 0;
   z-index: 7;
-
-  &:target {
-    display: block;
-  }
 `;
 
 export const SPopBrowseContainer = styled.div`
@@ -66,9 +63,13 @@ export const SCategoriesTheme = styled.div`
   padding: 8px 20px;
   border-radius: 24px;
   margin-right: 7px;
-  background-color: #ffe4c2;
-  color: #ff6d00;
   opacity: ${({ $active }) => ($active ? 1 : 0.4)};
+
+  background-color: ${({ $themeColor }) =>
+    themeStyles[$themeColor]?.background || themeStyles._gray.background};
+
+  color: ${({ $themeColor }) =>
+    themeStyles[$themeColor]?.color || themeStyles._gray.color};
 `;
 
 export const SCategoriesThemeP = styled.p`
@@ -248,7 +249,7 @@ export const SBtnBor = styled.button`
   }
 `;
 
-export const SBtnBorA = styled.a`
+export const SBtnBorA = styled(Link)`
   color: inherit;
   width: 100%;
   height: 100%;

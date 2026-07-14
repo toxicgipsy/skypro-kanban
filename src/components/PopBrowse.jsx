@@ -1,3 +1,4 @@
+import { useParams } from "react-router-dom";
 import Calendar from "./Calendar";
 import {
   SBtnBg,
@@ -10,7 +11,6 @@ import {
   SFormBrowseArea,
   SPopBrowseBlock,
   SPopBrowseBtnBrowse,
-  SPopBrowseBtnEdit,
   SPopBrowseContainer,
   SPopBrowseContent,
   SPopBrowseForm,
@@ -28,37 +28,42 @@ import {
   SThemeDownCategories,
   SThemeTop,
 } from "./PopBrowse.styled";
+import { color } from "../data";
 
-export function PopBrowse() {
+function PopBrowse({ cards }) {
+  const { id } = useParams();
+  const card = cards.find((card) => card.id === Number(id));
+  const themeColor = color[card.theme] || "_gray";
+  if (!card) return null;
   return (
     <SPopBrowseWrapper id="popBrowse">
       <SPopBrowseContainer>
         <SPopBrowseBlock>
           <SPopBrowseContent>
             <SPopBrowseTopBlock>
-              <SPopBrowseTtl>Название задачи</SPopBrowseTtl>
+              <SPopBrowseTtl>{card.title}</SPopBrowseTtl>
               <SThemeTop>
-                <SCategoriesTheme $active>
-                  <SCategoriesThemeP>Web Design</SCategoriesThemeP>
+                <SCategoriesTheme $themeColor={themeColor} $active>
+                  <SCategoriesThemeP>{card.theme}</SCategoriesThemeP>
                 </SCategoriesTheme>
               </SThemeTop>
             </SPopBrowseTopBlock>
             <SStatus>
-              <SStatusP>Статус</SStatusP>
+              <SStatusP>{card.status}</SStatusP>
               <SStatusThemes>
-                <SStatusTheme>
+                <SStatusTheme $active={card.status === "Без статуса"}>
                   <SStatusThemeP>Без статуса</SStatusThemeP>
                 </SStatusTheme>
-                <SStatusTheme $active>
+                <SStatusTheme $active={card.status === "Нужно сделать"}>
                   <SStatusThemeP>Нужно сделать</SStatusThemeP>
                 </SStatusTheme>
-                <SStatusTheme>
+                <SStatusTheme $active={card.status === "В работе"}>
                   <SStatusThemeP>В работе</SStatusThemeP>
                 </SStatusTheme>
-                <SStatusTheme>
+                <SStatusTheme $active={card.status === "Тестирование"}>
                   <SStatusThemeP>Тестирование</SStatusThemeP>
                 </SStatusTheme>
-                <SStatusTheme>
+                <SStatusTheme $active={card.status === "Готово"}>
                   <SStatusThemeP>Готово</SStatusThemeP>
                 </SStatusTheme>
               </SStatusThemes>
@@ -66,8 +71,9 @@ export function PopBrowse() {
             <SPopBrowseWrapForm>
               <SPopBrowseForm id="formBrowseCard" action="#">
                 <SPopBrowseFormBlock>
-                  <SSubttl htmlFor="textArea01">Описание задачи</SSubttl>
+                  <SSubttl htmlFor="textArea01">{card.title}</SSubttl>
                   <SFormBrowseArea
+                    value={card.description || ""}
                     name="text"
                     id="textArea01"
                     readOnly
@@ -79,39 +85,25 @@ export function PopBrowse() {
             </SPopBrowseWrapForm>
             <SThemeDownCategories>
               <SCategoriesP>Категория</SCategoriesP>
-              <SCategoriesTheme $active>
-                <SCategoriesThemeP>Web Design</SCategoriesThemeP>
+              <SCategoriesTheme $themeColor={themeColor} $active>
+                <SCategoriesThemeP>{card.theme}</SCategoriesThemeP>
               </SCategoriesTheme>
             </SThemeDownCategories>
             <SPopBrowseBtnBrowse>
               <SBtnGroup>
                 <SBtnBor>
-                  <SBtnBorA href="#">Редактировать задачу</SBtnBorA>
+                  <SBtnBorA to={`/card/${card.id}/edit`}>
+                    Редактировать задачу
+                  </SBtnBorA>
                 </SBtnBor>
                 <SBtnBor>
-                  <SBtnBorA href="#">Удалить задачу</SBtnBorA>
+                  <SBtnBorA to="#">Удалить задачу</SBtnBorA>
                 </SBtnBor>
               </SBtnGroup>
               <SBtnBg>
-                <SBtnBorA href="#">Закрыть</SBtnBorA>
+                <SBtnBorA to="/">Закрыть</SBtnBorA>
               </SBtnBg>
             </SPopBrowseBtnBrowse>
-            <SPopBrowseBtnEdit $hide>
-              <SBtnGroup>
-                <SBtnBg>
-                  <SBtnBorA href="#">Сохранить</SBtnBorA>
-                </SBtnBg>
-                <SBtnBor>
-                  <SBtnBorA href="#">Отменить</SBtnBorA>
-                </SBtnBor>
-                <SBtnBor id="btnDelete">
-                  <SBtnBorA href="#">Удалить задачу</SBtnBorA>
-                </SBtnBor>
-              </SBtnGroup>
-              <SBtnBg>
-                <SBtnBorA href="#">Закрыть</SBtnBorA>
-              </SBtnBg>
-            </SPopBrowseBtnEdit>
           </SPopBrowseContent>
         </SPopBrowseBlock>
       </SPopBrowseContainer>
