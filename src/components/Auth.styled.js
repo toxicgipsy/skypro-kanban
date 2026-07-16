@@ -100,6 +100,10 @@ export const SAuthInput = styled.input`
   }
 `;
 
+export const ErrorModule = styled.div`
+  color: red;
+`;
+
 export const SAuthButton = styled.button`
   width: 100%;
   height: 30px;
