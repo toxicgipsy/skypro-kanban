@@ -32,7 +32,7 @@ function AuthForm({ isSignUp, setIsAuth }) {
     password: false,
   });
 
-  const [error, setError] = useState(null);
+  const [error, setError] = useState("");
 
   const validateForm = () => {
     const newErrors = { name: false, login: false, password: false };
@@ -93,24 +93,19 @@ function AuthForm({ isSignUp, setIsAuth }) {
     }
   };
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    setIsAuth(true);
-    navigate("/");
-  };
   return (
     <SAuthWrapper>
       <SAuthContainer>
         <SAuthModal>
           <SAuthBlock>
             <SAuthTitle>{isSignUp ? "Регистрация" : "Вход"}</SAuthTitle>
-            <SAuthForm id="formLogIn" action="#" onSubmit={handleSubmit}>
+            <SAuthForm id="formLogIn" onSubmit={handleSubmit}>
               {isSignUp && (
                 <SAuthInput
                   error={errors.name}
                   type="text"
-                  name="first-name"
-                  id="first-name"
+                  name="name"
+                  id="name"
                   placeholder="Имя"
                   value={formData.name}
                   onChange={handleChange}
@@ -121,8 +116,8 @@ function AuthForm({ isSignUp, setIsAuth }) {
                 type="text"
                 name="login"
                 id="formlogin"
-                placeholder="Эл. почта
-                value={formData.login}"
+                placeholder="Эл. почта"
+                value={formData.login}
                 onChange={handleChange}
               />
               <SAuthInput
@@ -135,8 +130,8 @@ function AuthForm({ isSignUp, setIsAuth }) {
                 onChange={handleChange}
               />
               <ErrorModule>{error}</ErrorModule>
-              <SAuthButton id="btnEnter">
-                <SAuthBtnEnterA onClick={handleLogin}>
+              <SAuthButton id="btnEnter" type="submit">
+                <SAuthBtnEnterA>
                   {isSignUp ? "Зарегистрироваться" : "Войти"}
                 </SAuthBtnEnterA>
               </SAuthButton>
