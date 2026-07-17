@@ -49,7 +49,7 @@ function PopNewCard({ cards, addCard }) {
     const nextId = Math.max(...cards.map((card) => card.id), 0) + 1;
 
     const newCard = {
-      id: nextId,
+      _id: _id,
       title: formData.title.trim(),
       description: formData.description,
       topic: formData.topic,
@@ -60,6 +60,27 @@ function PopNewCard({ cards, addCard }) {
     createCard({token, task})
     navigate("/");
   };
+
+    useEffect(() => {
+      async function loadCards() {
+        try {
+          setLoading(true);
+          setError("");
+  
+          const userInfo = getUserInfo();
+          if (!userInfo?.token) {
+            setIsAuth(false);
+            return;
+          }
+          const  data = await fetchCards({token: userInfo.token})
+  
+          setCards(data.tasks);
+        } catch (error) {
+          setError(error.message)
+        } finally {setLoading(false)}
+      }
+        if(isAuth) {loadCards()}
+    }, [isAuth]);
   return (
     <SPopNewCard id="popNewCard">
       <SPopNewCardContainer>

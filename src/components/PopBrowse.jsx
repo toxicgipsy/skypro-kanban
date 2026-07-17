@@ -31,7 +31,7 @@ import {
 import { color } from "../data";
 
 function PopBrowse({ cards }) {
-  const { _id } = useParams();
+  const { id } = useParams();
   const card = cards.find((card) => card._id === _id);
   const themeColor = color[card.topic] || "_gray";
   if (!card) return null;
