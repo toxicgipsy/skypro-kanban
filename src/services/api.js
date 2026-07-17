@@ -22,7 +22,7 @@ export async function fetchCardById({ token, id }) {
       headers: { Authorization: `Bearer ${token}` },
     });
 
-    return response.data.tasks;
+    return response.data.task;
   } catch (error) {
     throw new Error(error.message, { cause: error });
   }

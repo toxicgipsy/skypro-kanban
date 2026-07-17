@@ -10,7 +10,7 @@ function MainPage({
   cards,
   addCard,
   updateCard,
-  deleteCard,
+  deleteCard, error
 }) {
   return (
     <>
@@ -24,6 +24,7 @@ function MainPage({
             addCard={addCard}
             updateCard={updateCard}
             deleteCard={deleteCard}
+            error={error}
           />
         )}
         <Outlet

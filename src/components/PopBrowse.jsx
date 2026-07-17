@@ -31,9 +31,9 @@ import {
 import { color } from "../data";
 
 function PopBrowse({ cards }) {
-  const { id } = useParams();
-  const card = cards.find((card) => card.id === Number(id));
-  const themeColor = color[card.theme] || "_gray";
+  const { _id } = useParams();
+  const card = cards.find((card) => card._id === _id);
+  const themeColor = color[card.topic] || "_gray";
   if (!card) return null;
   return (
     <SPopBrowseWrapper id="popBrowse">
@@ -44,7 +44,7 @@ function PopBrowse({ cards }) {
               <SPopBrowseTtl>{card.title}</SPopBrowseTtl>
               <SThemeTop>
                 <SCategoriesTheme $themeColor={themeColor} $active>
-                  <SCategoriesThemeP>{card.theme}</SCategoriesThemeP>
+                  <SCategoriesThemeP>{card.topic}</SCategoriesThemeP>
                 </SCategoriesTheme>
               </SThemeTop>
             </SPopBrowseTopBlock>
@@ -86,13 +86,13 @@ function PopBrowse({ cards }) {
             <SThemeDownCategories>
               <SCategoriesP>Категория</SCategoriesP>
               <SCategoriesTheme $themeColor={themeColor} $active>
-                <SCategoriesThemeP>{card.theme}</SCategoriesThemeP>
+                <SCategoriesThemeP>{card.topic}</SCategoriesThemeP>
               </SCategoriesTheme>
             </SThemeDownCategories>
             <SPopBrowseBtnBrowse>
               <SBtnGroup>
                 <SBtnBor>
-                  <SBtnBorA to={`/card/${card.id}/edit`}>
+                  <SBtnBorA to={`/card/${card._id}/edit`}>
                     Редактировать задачу
                   </SBtnBorA>
                 </SBtnBor>

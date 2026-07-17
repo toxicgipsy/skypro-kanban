@@ -35,12 +35,12 @@ import { color } from "../data";
 function PopEditCard({ cards, updateCard }) {
   const { id } = useParams();
   const navigate = useNavigate();
-  const card = cards.find((card) => card.id === Number(id));
+  const card = cards.find((card) => card._id === _id);
   const [formData, setFormData] = useState({
     title: card?.title,
     description: card?.description || "",
     status: card?.status,
-    theme: card?.theme,
+    topic: card?.topic,
     date: card?.date,
   });
   if (!card) return <NotFoundPage />;
@@ -55,11 +55,11 @@ function PopEditCard({ cards, updateCard }) {
 
   const handleSave = () => {
     const updated = { ...card, ...formData };
-    updateCard({ id, updated });
-    navigate(`/card/${id}`);
+    updateCard({ _id, updated });
+    navigate(`/card/${_id}`);
   };
 
-  const themeColor = color[formData.theme] || "_gray";
+  const themeColor = color[formData.topic] || "_gray";
 
   return (
     <SPopBrowseWrapper id="popBrowse">
@@ -132,7 +132,7 @@ function PopEditCard({ cards, updateCard }) {
             <SThemeDownCategories>
               <SCategoriesP>Категория</SCategoriesP>
               <SCategoriesTheme $active>
-                <SCategoriesThemeP>{formData.theme}</SCategoriesThemeP>
+                <SCategoriesThemeP>{formData.topic}</SCategoriesThemeP>
               </SCategoriesTheme>
             </SThemeDownCategories>
             <SPopBrowseBtnEdit>
@@ -144,7 +144,7 @@ function PopEditCard({ cards, updateCard }) {
                   <SBtnBorA to={`/card/${id}`}>Отменить</SBtnBorA>
                 </SBtnBor>
                 <SBtnBor id="btnDelete">
-                  <SBtnBorA to="#">Удалить задачу</SBtnBorA>
+                  <SBtnBorA>Удалить задачу</SBtnBorA>
                 </SBtnBor>
               </SBtnGroup>
               <SBtnBg>

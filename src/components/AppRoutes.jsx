@@ -9,25 +9,50 @@ import PopNewCardPage from "../pages/PopNewCardPage";
 import PopExit from "./PopExit";
 import PopEditCardPage from "../pages/PopEditCardPage";
 import PopBrowsePage from "../pages/PopBrowsePage";
-import { cardList } from "../data";
+import { fetchCards } from "../services/api";
+
+  function getUserInfo() {
+    try {
+      return JSON.parse(localStorage.getItem("userInfo"))
+    } catch {
+      return null
+    }
+  }
 
 function AppRoutes() {
-  const [isAuth, setIsAuth] = useState(false);
+
+  const [isAuth, setIsAuth] = useState(() => Boolean(getUserInfo()?.token));
   const [loading, setLoading] = useState(true);
-  const [cards, setCards] = useState(cardList);
+  const [cards, setCards] = useState([]);
+  const [error, setError] = useState("");
   const addCard = (addCard) => setCards((prev) => [...prev, addCard]);
-  const updateCard = ({ updated, id }) =>
+  const updateCard = ({ updated, _id }) =>
     setCards((prev) =>
-      prev.map((card) => (card.id === Number(id) ? updated : card)),
+      prev.map((card) => (card._id === _id ? updated : card)),
     );
-  const deleteCard = (id) =>
-    setCards((prev) => prev.filter((card) => card.id !== Number(id)));
+  const deleteCard = (_id) =>
+    setCards((prev) => prev.filter((card) => card._id !== _id));
 
   useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-  }, []);
+    async function loadCards() {
+      try {
+        setLoading(true);
+        setError("");
+
+        const userInfo = getUserInfo();
+        if (!userInfo?.token) {
+          setIsAuth(false);
+          return;
+        }
+        const  data = await fetchCards({token: userInfo.token})
+
+        setCards(data.tasks);
+      } catch (error) {
+        setError(error.message)
+      } finally {setLoading(false)}
+    }
+      if(isAuth) {loadCards()}
+  }, [isAuth]);
 
   return (
     <>
@@ -40,6 +65,7 @@ function AppRoutes() {
                 setIsAuth={setIsAuth}
                 loading={loading}
                 cards={cards}
+                error={error}
                 addCard={addCard}
                 updateCard={updateCard}
                 deleteCard={deleteCard}

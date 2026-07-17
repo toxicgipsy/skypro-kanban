@@ -22,6 +22,7 @@ import {
 } from "./PopNewCard.styled";
 import { useNavigate } from "react-router-dom";
 import { columnStatus } from "../data";
+import { createCard } from "../services/api";
 
 function PopNewCard({ cards, addCard }) {
   const navigate = useNavigate();
@@ -29,7 +30,7 @@ function PopNewCard({ cards, addCard }) {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
-    theme: "Web Design",
+    topic: "Web Design",
     date: "",
   });
 
@@ -51,12 +52,12 @@ function PopNewCard({ cards, addCard }) {
       id: nextId,
       title: formData.title.trim(),
       description: formData.description,
-      theme: formData.theme,
+      topic: formData.topic,
       date: formData.date,
       status: columnStatus[0],
     };
 
-    addCard(newCard);
+    createCard({token, task})
     navigate("/");
   };
   return (
@@ -107,9 +108,9 @@ function PopNewCard({ cards, addCard }) {
                   <SCategoriesTheme
                     key={category.title}
                     $themeColor={category.color}
-                    $active={formData.theme === category.title}
+                    $active={formData.topic === category.title}
                     onClick={() =>
-                      setFormData({ ...formData, theme: category.title })
+                      setFormData({ ...formData, topic: category.title })
                     }
                   >
                     <SCategoriesThemeP>{category.title}</SCategoriesThemeP>
