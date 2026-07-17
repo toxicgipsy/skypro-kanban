@@ -32,9 +32,10 @@ import { color } from "../data";
 
 function PopBrowse({ cards }) {
   const { id } = useParams();
-  const card = cards.find((card) => card._id === _id);
-  const themeColor = color[card.topic] || "_gray";
+  const card = cards.find((card) => card._id === id);
   if (!card) return null;
+
+  const themeColor = color[card.topic] || "_gray";
   return (
     <SPopBrowseWrapper id="popBrowse">
       <SPopBrowseContainer>

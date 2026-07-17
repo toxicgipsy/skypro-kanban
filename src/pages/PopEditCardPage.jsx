@@ -2,13 +2,15 @@ import { useOutletContext } from "react-router-dom";
 import PopEditCard from "../components/PopEditCard";
 
 function PopEditCardPage() {
-  const { cards, updateCard, deleteCard } = useOutletContext();
+  const { cards, handleUpdateCard, handleDeleteCard, setError } =
+    useOutletContext();
 
   return (
     <PopEditCard
       cards={cards}
-      updateCard={updateCard}
-      deleteCard={deleteCard}
+      setError={setError}
+      handleUpdateCard={handleUpdateCard}
+      handleDeleteCard={handleDeleteCard}
     />
   );
 }

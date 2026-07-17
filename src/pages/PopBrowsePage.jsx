@@ -2,9 +2,9 @@ import { useOutletContext } from "react-router-dom";
 import PopBrowse from "../components/PopBrowse";
 
 function PopBrowsePage() {
-  const { cards } = useOutletContext();
+  const { cards, handleDeleteCard } = useOutletContext();
 
-  return <PopBrowse cards={cards} />;
+  return <PopBrowse cards={cards} handleDeleteCard={handleDeleteCard} />;
 }
 
 export default PopBrowsePage;

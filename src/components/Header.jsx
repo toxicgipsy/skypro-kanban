@@ -40,7 +40,7 @@ function Header() {
               </SHeaderBtnMainNewA>
             </SHeaderBtnMainNew>
             <SHeaderUser onClick={toggleUserPopup}>Ivan Ivanov</SHeaderUser>
-            {isPopUserOpen && <PopUser/>}
+            {isPopUserOpen && <PopUser />}
           </SHeaderNav>
         </SHeaderBlock>
       </SContainer>

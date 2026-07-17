@@ -9,49 +9,86 @@ import PopNewCardPage from "../pages/PopNewCardPage";
 import PopExit from "./PopExit";
 import PopEditCardPage from "../pages/PopEditCardPage";
 import PopBrowsePage from "../pages/PopBrowsePage";
-import { fetchCards } from "../services/api";
+import {
+  changeTaskById,
+  createCard,
+  deleteTaskById,
+  fetchCards,
+} from "../services/api";
 
-  function getUserInfo() {
-    try {
-      return JSON.parse(localStorage.getItem("userInfo"))
-    } catch {
-      return null
-    }
+function getUserInfo() {
+  try {
+    return JSON.parse(localStorage.getItem("userInfo"));
+  } catch {
+    return null;
   }
+}
 
 function AppRoutes() {
-
   const [isAuth, setIsAuth] = useState(() => Boolean(getUserInfo()?.token));
   const [loading, setLoading] = useState(true);
   const [cards, setCards] = useState([]);
   const [error, setError] = useState("");
-  const addCard = (addCard) => setCards((prev) => [...prev, addCard]);
-  const updateCard = ({ updated, _id }) =>
-    setCards((prev) =>
-      prev.map((card) => (card._id === _id ? updated : card)),
-    );
-  const deleteCard = (_id) =>
-    setCards((prev) => prev.filter((card) => card._id !== _id));
 
+  // Создание карточки
+  const handleCreateCard = async (task) => {
+    const userInfo = getUserInfo();
+
+    const tasks = await createCard({ token: userInfo?.token, task: task });
+
+    setCards(tasks);
+  };
+
+  // Обновление карточки
+  const handleUpdateCard = async (id, task) => {
+    const userInfo = getUserInfo();
+
+    const tasks = await changeTaskById({
+      token: userInfo?.token,
+      id: id,
+      task: task,
+    });
+
+    setCards(tasks);
+  };
+
+  // Удаление карточки
+  const handleDeleteCard = async (id) => {
+    const userInfo = getUserInfo();
+
+    const tasks = await deleteTaskById({
+      token: userInfo?.token,
+      id: id,
+    });
+
+    setCards(tasks);
+  };
+
+  // Загрузка карточек
   useEffect(() => {
     async function loadCards() {
+      const userInfo = getUserInfo();
+
       try {
         setLoading(true);
         setError("");
 
-        const userInfo = getUserInfo();
         if (!userInfo?.token) {
           setIsAuth(false);
           return;
         }
-        const  data = await fetchCards({token: userInfo.token})
 
+        const data = await fetchCards({ token: userInfo?.token });
         setCards(data.tasks);
       } catch (error) {
-        setError(error.message)
-      } finally {setLoading(false)}
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
     }
-      if(isAuth) {loadCards()}
+    if (isAuth) {
+      loadCards();
+    }
   }, [isAuth]);
 
   return (
@@ -66,9 +103,10 @@ function AppRoutes() {
                 loading={loading}
                 cards={cards}
                 error={error}
-                addCard={addCard}
-                updateCard={updateCard}
-                deleteCard={deleteCard}
+                handleCreateCard={handleCreateCard}
+                handleUpdateCard={handleUpdateCard}
+                handleDeleteCard={handleDeleteCard}
+                setError={setError}
               />
             }
           >
