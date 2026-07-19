@@ -36,16 +36,25 @@ function PopBrowse({ cards, handleDeleteCard }) {
   const { id } = useParams();
   const navigate = useNavigate();
   const [isDeleting, setIsDeleting] = useState(false);
-  const []
+  const [deleteError, setDeleteError] = useState("");
   const card = cards.find((card) => card._id === id);
   if (!card) return null;
 
   const handleDelete = async () => {
+    if (isDeleting) return;
+
+    setDeleteError("");
+
     try {
+      setIsDeleting(true);
+
       await handleDeleteCard(id);
+
       navigate(`/`);
     } catch (error) {
-      setError(error.message);
+      setDeleteError(error.message || "Не удалось удалить задачу");
+    } finally {
+      setIsDeleting(false);
     }
   };
 
@@ -104,6 +113,7 @@ function PopBrowse({ cards, handleDeleteCard }) {
                 <SCategoriesThemeP>{card.topic}</SCategoriesThemeP>
               </SCategoriesTheme>
             </SThemeDownCategories>
+            {deleteError && <p role="alert">{deleteError}</p>}
             <SPopBrowseBtnBrowse>
               <SBtnGroup>
                 <SBtnBor>
@@ -111,7 +121,9 @@ function PopBrowse({ cards, handleDeleteCard }) {
                     Редактировать задачу
                   </SBtnBorA>
                 </SBtnBor>
-                <SBtnBor onClick={handleDelete}>Удалить задачу</SBtnBor>
+                <SBtnBor onClick={handleDelete} disabled={isDeleting}>
+                  {isDeleting ? "Удаление" : "Удалить задачу"}
+                </SBtnBor>
               </SBtnGroup>
               <SBtnBg>
                 <SBtnBorA to="/">Закрыть</SBtnBorA>
