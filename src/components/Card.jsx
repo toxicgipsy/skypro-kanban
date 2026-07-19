@@ -14,6 +14,7 @@ import {
 } from "./Card.styled";
 import { color } from "../data";
 import { Link } from "react-router-dom";
+import { formatDateForCalendar } from "../utils/date";
 
 function Card({ item: card }) {
   const themeColor = color[card.topic] || "_gray";
@@ -67,7 +68,7 @@ function Card({ item: card }) {
                   </clipPath>
                 </defs>
               </SCardDateSVG>
-              <SCardDateP>{card.date}</SCardDateP>
+              <SCardDateP>{formatDateForCalendar(card.date)}</SCardDateP>
             </SCardDate>
           </SCardContent>
         </SCardsCard>

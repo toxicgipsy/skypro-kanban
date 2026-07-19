@@ -31,17 +31,23 @@ import {
 import NotFoundPage from "../pages/NotFoundPage";
 import { useState } from "react";
 import { color } from "../data";
+import { formatDateForApi, formatDateForCalendar } from "../utils/date";
 
-function PopEditCard({ cards, handleUpdateCard, setError }) {
+function PopEditCard({ cards, handleUpdateCard, handleDeleteCard }) {
   const { id } = useParams();
   const navigate = useNavigate();
+  const [pendingAction, setPendingAction] = useState(null);
+  const [submitError, setSubmitError] = useState("");
+
+  const isSubmitting = pendingAction !== null;
+
   const card = cards.find((card) => card._id === id);
   const [formData, setFormData] = useState({
     title: card?.title,
     description: card?.description || "",
     status: card?.status,
     topic: card?.topic,
-    date: card?.date,
+    date: formatDateForCalendar(card?.date),
   });
   if (!card) return <NotFoundPage />;
 
@@ -53,21 +59,52 @@ function PopEditCard({ cards, handleUpdateCard, setError }) {
     setFormData({ ...formData, status });
   };
 
-  const task = {
-    title: formData.title,
-    description: formData.description,
-    topic: formData.topic,
-    date: formData.date,
-    status: formData.status,
-  };
   const handleSave = async () => {
-    setFormData({ ...formData, task });
+    if (isSubmitting) return;
 
+    setSubmitError("");
+
+    const apiDate = formatDateForApi(formData.date);
+    if (!apiDate) {
+      setSubmitError("Выберите корректную датиу");
+      return;
+    }
+
+    const task = {
+      title: formData.title,
+      description: formData.description.trim(),
+      topic: formData.topic,
+      status: formData.status,
+      date: apiDate,
+    };
     try {
+      setPendingAction("save");
+
       await handleUpdateCard(id, task);
+
       navigate(`/card/${id}`);
     } catch (error) {
-      setError(error.message);
+      setSubmitError(error.message || "Не удалось сохранить задачу");
+    } finally {
+      setPendingAction(null);
+    }
+  };
+
+  const handleDelete = async () => {
+    if (isSubmitting) return;
+
+    setSubmitError("");
+
+    try {
+      setPendingAction("delete");
+
+      await handleDeleteCard(id);
+
+      navigate(`/`);
+    } catch (error) {
+      setSubmitError(error.message || "Не удалось удалить задачу");
+    } finally {
+      setPendingAction(null);
     }
   };
 
@@ -139,7 +176,10 @@ function PopEditCard({ cards, handleUpdateCard, setError }) {
                   ></SFormBrowseArea>
                 </SPopBrowseFormBlock>
               </SPopBrowseForm>
-              <Calendar />
+              <Calendar
+                selectedDate={formData.date}
+                onDateChange={(date) => setFormData({ ...formData, date })}
+              />
             </SPopBrowseWrapForm>
             <SThemeDownCategories>
               <SCategoriesP>Категория</SCategoriesP>
@@ -147,16 +187,27 @@ function PopEditCard({ cards, handleUpdateCard, setError }) {
                 <SCategoriesThemeP>{formData.topic}</SCategoriesThemeP>
               </SCategoriesTheme>
             </SThemeDownCategories>
+            {submitError && <p role="alert">{submitError}</p>}
             <SPopBrowseBtnEdit>
               <SBtnGroup>
-                <SBtnBg type="button" onClick={handleSave}>
-                  Сохранить
+                <SBtnBg
+                  type="button"
+                  onClick={handleSave}
+                  disabled={isSubmitting}
+                >
+                  {pendingAction === "save" ? "Сохранение..." : "Сохранить"}
                 </SBtnBg>
                 <SBtnBor>
                   <SBtnBorA to={`/card/${id}`}>Отменить</SBtnBorA>
                 </SBtnBor>
-                <SBtnBor id="btnDelete">
-                  <SBtnBorA>Удалить задачу</SBtnBorA>
+                <SBtnBor
+                  type="button"
+                  onClick={handleDelete}
+                  disabled={isSubmitting}
+                >
+                  {pendingAction === "delete"
+                    ? "Удаление..."
+                    : "Удалить задачу"}
                 </SBtnBor>
               </SBtnGroup>
               <SBtnBg>

@@ -22,9 +22,12 @@ import {
 } from "./PopNewCard.styled";
 import { useNavigate } from "react-router-dom";
 import { columnStatus } from "../data";
+import { formatDateForApi } from "../utils/date";
 
-function PopNewCard({ handleCreateCard, setError }) {
+function PopNewCard({ handleCreateCard }) {
   const navigate = useNavigate();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   const [formData, setFormData] = useState({
     title: "",
@@ -42,22 +45,45 @@ function PopNewCard({ handleCreateCard, setError }) {
   ];
 
   const handleCreatedCard = async () => {
-    if (!formData.title.trim()) return;
-    if (!formData.date) return;
+    if (isSubmitting) return;
+
+    setSubmitError("");
+
+    if (!formData.title.trim()) {
+      setSubmitError("Введите название задачи");
+      return;
+    }
+
+    if (!formData.date) {
+      setSubmitError("Выберите дату");
+      return;
+    }
+
+    const apiDate = formatDateForApi(formData.date);
+
+    if (!apiDate) {
+      setSubmitError("Выбрана некорректная дата");
+      return;
+    }
 
     const newCard = {
       title: formData.title.trim(),
-      description: formData.description,
+      description: formData.description.trim(),
       topic: formData.topic,
-      date: formData.date,
+      date: apiDate,
       status: columnStatus[0],
     };
 
     try {
+      setIsSubmitting(true);
+
       await handleCreateCard(newCard);
+
       navigate("/");
     } catch (error) {
-      setError(error.message);
+      setSubmitError(error.message || "Не удалось создать задачу");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -119,12 +145,14 @@ function PopNewCard({ handleCreateCard, setError }) {
                 ))}
               </SCategoriesThemes>
             </SCategories>
+            {submitError && <p role="alert">{submitError}</p>}
             <SFormNewCreate
               id="btnCreate"
               type="button"
               onClick={handleCreatedCard}
+              disabled={isSubmitting}
             >
-              Создать задачу
+              {isSubmitting ? "Создание..." : "Создать задачу"}
             </SFormNewCreate>
           </SPopNewCardContent>
         </SPopNewCardBlock>

@@ -247,6 +247,11 @@ export const SBtnBor = styled.button`
     background-color: #33399b;
     color: #ffffff;
   }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
 `;
 
 export const SBtnBorA = styled(Link)`
@@ -270,5 +275,10 @@ export const SBtnBg = styled.button`
 
   &:hover {
     background-color: #33399b;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
   }
 `;

@@ -102,7 +102,7 @@ function AuthForm({ isSignUp, setIsAuth }) {
             <SAuthForm id="formLogIn" onSubmit={handleSubmit}>
               {isSignUp && (
                 <SAuthInput
-                  error={errors.name}
+                  $error={errors.name}
                   type="text"
                   name="name"
                   id="name"
@@ -112,7 +112,7 @@ function AuthForm({ isSignUp, setIsAuth }) {
                 />
               )}
               <SAuthInput
-                error={errors.login}
+                $error={errors.login}
                 type="text"
                 name="login"
                 id="formlogin"
@@ -121,7 +121,7 @@ function AuthForm({ isSignUp, setIsAuth }) {
                 onChange={handleChange}
               />
               <SAuthInput
-                error={errors.password}
+                $error={errors.password}
                 type="password"
                 name="password"
                 id="formpassword"

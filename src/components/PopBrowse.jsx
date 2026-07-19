@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Calendar from "./Calendar";
 import {
   SBtnBg,
@@ -29,11 +29,25 @@ import {
   SThemeTop,
 } from "./PopBrowse.styled";
 import { color } from "../data";
+import { formatDateForCalendar } from "../utils/date";
+import { useState } from "react";
 
-function PopBrowse({ cards }) {
+function PopBrowse({ cards, handleDeleteCard }) {
   const { id } = useParams();
+  const navigate = useNavigate();
+  const [isDeleting, setIsDeleting] = useState(false);
+  const []
   const card = cards.find((card) => card._id === id);
   if (!card) return null;
+
+  const handleDelete = async () => {
+    try {
+      await handleDeleteCard(id);
+      navigate(`/`);
+    } catch (error) {
+      setError(error.message);
+    }
+  };
 
   const themeColor = color[card.topic] || "_gray";
   return (
@@ -82,7 +96,7 @@ function PopBrowse({ cards }) {
                   ></SFormBrowseArea>
                 </SPopBrowseFormBlock>
               </SPopBrowseForm>
-              <Calendar />
+              <Calendar selectedDate={formatDateForCalendar(card.date)} />
             </SPopBrowseWrapForm>
             <SThemeDownCategories>
               <SCategoriesP>Категория</SCategoriesP>
@@ -97,9 +111,7 @@ function PopBrowse({ cards }) {
                     Редактировать задачу
                   </SBtnBorA>
                 </SBtnBor>
-                <SBtnBor>
-                  <SBtnBorA to="#">Удалить задачу</SBtnBorA>
-                </SBtnBor>
+                <SBtnBor onClick={handleDelete}>Удалить задачу</SBtnBor>
               </SBtnGroup>
               <SBtnBg>
                 <SBtnBorA to="/">Закрыть</SBtnBorA>

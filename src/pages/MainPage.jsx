@@ -21,24 +21,22 @@ function MainPage({
         {loading ? (
           <Loader />
         ) : (
-          <Main
-            cards={cards}
-            error={error}
-            setError={setError}
-            handleCreateCard={handleCreateCard}
-            handleUpdateCard={handleUpdateCard}
-            handleDeleteCard={handleDeleteCard}
-          />
+          <>
+            <Main
+              cards={cards}
+              error={error}
+            />
+            <Outlet
+              context={{
+                cards,
+                setError,
+                handleCreateCard,
+                handleUpdateCard,
+                handleDeleteCard,
+              }}
+            />
+          </>
         )}
-        <Outlet
-          context={{
-            cards,
-            setError,
-            handleCreateCard,
-            handleUpdateCard,
-            handleDeleteCard,
-          }}
-        />
       </SWrapper>
     </>
   );
