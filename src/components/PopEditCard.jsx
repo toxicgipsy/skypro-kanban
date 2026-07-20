@@ -66,7 +66,7 @@ function PopEditCard({ cards, handleUpdateCard, handleDeleteCard }) {
 
     const apiDate = formatDateForApi(formData.date);
     if (!apiDate) {
-      setSubmitError("Выберите корректную датиу");
+      setSubmitError("Выберите корректную дату");
       return;
     }
 

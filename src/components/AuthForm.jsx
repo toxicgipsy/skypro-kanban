@@ -2,7 +2,6 @@ import { useNavigate } from "react-router-dom";
 import {
   ErrorModule,
   SAuthBlock,
-  SAuthBtnEnterA,
   SAuthButton,
   SAuthContainer,
   SAuthForm,
@@ -19,6 +18,7 @@ import { signIn, signUp } from "../services/auth";
 
 function AuthForm({ isSignUp, setIsAuth }) {
   const navigate = useNavigate();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -72,24 +72,41 @@ function AuthForm({ isSignUp, setIsAuth }) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (!validateForm()) {
-      return;
-    }
+
+    if (isSubmitting) return;
+
+    if (!validateForm()) return;
+
+    setError("");
+    setIsSubmitting(true);
+
     try {
       const data = !isSignUp
-        ? await signIn({ login: formData.login, password: formData.password })
+        ? await signIn({
+            login: formData.login.trim(),
+            password: formData.password,
+          })
         : await signUp({
-            name: formData.name,
-            login: formData.login,
+            name: formData.name.trim(),
+            login: formData.login.trim(),
             password: formData.password,
           });
-      if (data) {
-        setIsAuth(true);
-        localStorage.setItem("userInfo", JSON.stringify(data));
-        navigate("/");
-      }
+
+      const userInfo = {
+        id: data._id ?? data.id,
+        name: data.name,
+        login: data.login,
+        token: data.token,
+        imageUrl: data.imageUrl,
+      };
+
+      localStorage.setItem("userInfo", JSON.stringify(userInfo));
+      setIsAuth(true);
+      navigate("/");
     } catch (error) {
-      setError(error.message);
+      setError(error.message || "Не удалось выполнить запрос");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -130,10 +147,14 @@ function AuthForm({ isSignUp, setIsAuth }) {
                 onChange={handleChange}
               />
               <ErrorModule>{error}</ErrorModule>
-              <SAuthButton id="btnEnter" type="submit">
-                <SAuthBtnEnterA>
-                  {isSignUp ? "Зарегистрироваться" : "Войти"}
-                </SAuthBtnEnterA>
+              <SAuthButton id="btnEnter" type="submit" disabled={isSubmitting}>
+                {isSubmitting
+                  ? isSignUp
+                    ? "Регистрация"
+                    : "Вход..."
+                  : isSignUp
+                    ? "Зарегистрироваться"
+                    : "Войти"}
               </SAuthButton>
               {!isSignUp && (
                 <SAuthFormGroup>

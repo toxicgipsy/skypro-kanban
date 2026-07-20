@@ -15,14 +15,7 @@ import {
   deleteTaskById,
   fetchCards,
 } from "../services/api";
-
-function getUserInfo() {
-  try {
-    return JSON.parse(localStorage.getItem("userInfo"));
-  } catch {
-    return null;
-  }
-}
+import { getUserInfo } from "../services/userInfo";
 
 function AppRoutes() {
   const [isAuth, setIsAuth] = useState(() => Boolean(getUserInfo()?.token));
@@ -30,38 +23,65 @@ function AppRoutes() {
   const [cards, setCards] = useState([]);
   const [error, setError] = useState("");
 
+  // Обработка ошибок
+  const handleUnauthorized = (error) => {
+    if (error.status !== 401) {
+      return false;
+    }
+
+    localStorage.removeItem("userInfo");
+    setCards([]);
+    setError("");
+    setIsAuth(false);
+    return true;
+  };
+
   // Создание карточки
   const handleCreateCard = async (task) => {
     const userInfo = getUserInfo();
 
-    const tasks = await createCard({ token: userInfo?.token, task: task });
+    try {
+      const tasks = await createCard({ token: userInfo?.token, task: task });
 
-    setCards(tasks);
+      setCards(tasks);
+    } catch (error) {
+      handleUnauthorized(error);
+      throw error;
+    }
   };
 
   // Обновление карточки
   const handleUpdateCard = async (id, task) => {
     const userInfo = getUserInfo();
 
-    const tasks = await changeTaskById({
-      token: userInfo?.token,
-      id: id,
-      task: task,
-    });
-
-    setCards(tasks);
+    try {
+      const tasks = await changeTaskById({
+        token: userInfo?.token,
+        id: id,
+        task: task,
+      });
+      setCards(tasks);
+    } catch (error) {
+      handleUnauthorized(error);
+      throw error;
+    }
   };
 
   // Удаление карточки
   const handleDeleteCard = async (id) => {
     const userInfo = getUserInfo();
 
-    const tasks = await deleteTaskById({
-      token: userInfo?.token,
-      id: id,
-    });
+    try {
+      const tasks = await deleteTaskById({
+        token: userInfo?.token,
+        id: id,
+      });
 
-    setCards(tasks);
+      setCards(tasks);
+    } catch (error) {
+      handleUnauthorized(error);
+      throw error;
+    }
   };
 
   // Загрузка карточек
@@ -78,10 +98,12 @@ function AppRoutes() {
           return;
         }
 
-        const data = await fetchCards({ token: userInfo?.token });
-        setCards(data.tasks);
+        const tasks = await fetchCards({ token: userInfo?.token });
+        setCards(tasks);
       } catch (error) {
-        setError(error.message);
+        if (!handleUnauthorized(error)) {
+          setError(error.message);
+        }
       } finally {
         setLoading(false);
       }
@@ -106,7 +128,6 @@ function AppRoutes() {
                 handleCreateCard={handleCreateCard}
                 handleUpdateCard={handleUpdateCard}
                 handleDeleteCard={handleDeleteCard}
-                setError={setError}
               />
             }
           >

@@ -127,18 +127,14 @@ export const SAuthButton = styled.button`
     background-color: #33399b;
   }
 
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
   @media screen and (max-width: 375px) {
     height: 40px;
   }
-`;
-
-export const SAuthBtnEnterA = styled.a`
-  width: 100%;
-  height: 100%;
-  color: inherit;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `;
 
 export const SAuthFormGroup = styled.div`

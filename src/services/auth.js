@@ -1,42 +1,29 @@
-import axios from "axios";
+import { request } from "./http";
 
 const API_URL = "https://wedev-api.sky.pro/api/user";
 
 // Получить пользователей
-export async function getUsers({ token }) {
-  try {
-    const response = await axios.get(API_URL, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    return response.data.users;
-  } catch (error) {
-    throw new Error(error.message, { cause: error });
-  }
+export async function getUsers() {
+  const data = await request(API_URL);
+  return data.users;
 }
 
 // Регистрация
 export async function signUp({ name, login, password }) {
-  try {
-    const response = await axios.post(API_URL, {
-      name,
-      login,
-      password,
-    });
-    return response.data.user;
-  } catch (error) {
-    throw new Error(error.message, { cause: error });
-  }
+  const data = await request(API_URL, {
+    method: "POST",
+    body: JSON.stringify({ name, login, password }),
+  });
+
+  return data.user;
 }
 
 // Авторизация
 export async function signIn({ login, password }) {
-  try {
-    const response = await axios.post(`${API_URL}/login`, {
-      login,
-      password,
-    });
-    return response.data.user;
-  } catch (error) {
-    throw new Error(error.message, { cause: error });
-  }
+  const data = await request(`${API_URL}/login`, {
+    method: "POST",
+    body: JSON.stringify({ login, password }),
+  });
+
+  return data.user;
 }

@@ -12,7 +12,6 @@ function MainPage({
   handleCreateCard,
   handleUpdateCard,
   handleDeleteCard,
-  setError,
 }) {
   return (
     <>
@@ -22,14 +21,10 @@ function MainPage({
           <Loader />
         ) : (
           <>
-            <Main
-              cards={cards}
-              error={error}
-            />
+            <Main cards={cards} error={error} />
             <Outlet
               context={{
                 cards,
-                setError,
                 handleCreateCard,
                 handleUpdateCard,
                 handleDeleteCard,

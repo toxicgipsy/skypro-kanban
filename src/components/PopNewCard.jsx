@@ -54,6 +54,16 @@ function PopNewCard({ handleCreateCard }) {
       return;
     }
 
+    if (!formData.description.trim()) {
+      setSubmitError("Введите название задачи");
+      return;
+    }
+
+    if (!formData.topic) {
+      setSubmitError("Выберите категорию");
+      return;
+    }
+
     if (!formData.date) {
       setSubmitError("Выберите дату");
       return;

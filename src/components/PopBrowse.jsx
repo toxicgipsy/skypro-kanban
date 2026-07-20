@@ -31,6 +31,7 @@ import {
 import { color } from "../data";
 import { formatDateForCalendar } from "../utils/date";
 import { useState } from "react";
+import NotFoundPage from "../pages/NotFoundPage";
 
 function PopBrowse({ cards, handleDeleteCard }) {
   const { id } = useParams();
@@ -38,7 +39,7 @@ function PopBrowse({ cards, handleDeleteCard }) {
   const [isDeleting, setIsDeleting] = useState(false);
   const [deleteError, setDeleteError] = useState("");
   const card = cards.find((card) => card._id === id);
-  if (!card) return null;
+  if (!card) return <NotFoundPage />;
 
   const handleDelete = async () => {
     if (isDeleting) return;
