@@ -24,6 +24,10 @@ export const SMainBlock = styled.div`
   }
 `;
 
+export const ErrorModule = styled.div`
+  color: red;
+`;
+
 export const SMainContent = styled.div`
   width: 100%;
   display: flex;

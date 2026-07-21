@@ -239,6 +239,15 @@ export const SFormNewCreate = styled.button`
     background-color: #33399b;
   }
 
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  &:disabled:hover {
+    background-color: #565eef;
+  }
+
   @media screen and (max-width: 495px) {
     width: 100%;
     height: 40px;

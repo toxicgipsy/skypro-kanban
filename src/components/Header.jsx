@@ -14,10 +14,12 @@ import {
   SHeaderWrapper,
 } from "./Header.styled";
 import { Link } from "react-router-dom";
+import { getUserInfo } from "../services/userInfo";
 
 function Header() {
   const [isPopUserOpen, setIsPopUserOpen] = useState(false);
   const toggleUserPopup = () => setIsPopUserOpen((prev) => !prev);
+  const userInfo = getUserInfo();
 
   return (
     <SHeaderWrapper>
@@ -39,8 +41,10 @@ function Header() {
                 Создать новую задачу
               </SHeaderBtnMainNewA>
             </SHeaderBtnMainNew>
-            <SHeaderUser onClick={toggleUserPopup}>Ivan Ivanov</SHeaderUser>
-            {isPopUserOpen && <PopUser/>}
+            <SHeaderUser onClick={toggleUserPopup}>
+              {userInfo?.name || userInfo?.login || "Пользователь"}
+            </SHeaderUser>
+            {isPopUserOpen && <PopUser userInfo={userInfo} />}
           </SHeaderNav>
         </SHeaderBlock>
       </SContainer>

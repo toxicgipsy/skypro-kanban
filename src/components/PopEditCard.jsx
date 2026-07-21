@@ -31,17 +31,23 @@ import {
 import NotFoundPage from "../pages/NotFoundPage";
 import { useState } from "react";
 import { color } from "../data";
+import { formatDateForApi, formatDateForCalendar } from "../utils/date";
 
-function PopEditCard({ cards, updateCard }) {
+function PopEditCard({ cards, handleUpdateCard, handleDeleteCard }) {
   const { id } = useParams();
   const navigate = useNavigate();
-  const card = cards.find((card) => card.id === Number(id));
+  const [pendingAction, setPendingAction] = useState(null);
+  const [submitError, setSubmitError] = useState("");
+
+  const isSubmitting = pendingAction !== null;
+
+  const card = cards.find((card) => card._id === id);
   const [formData, setFormData] = useState({
     title: card?.title,
     description: card?.description || "",
     status: card?.status,
-    theme: card?.theme,
-    date: card?.date,
+    topic: card?.topic,
+    date: formatDateForCalendar(card?.date),
   });
   if (!card) return <NotFoundPage />;
 
@@ -53,13 +59,56 @@ function PopEditCard({ cards, updateCard }) {
     setFormData({ ...formData, status });
   };
 
-  const handleSave = () => {
-    const updated = { ...card, ...formData };
-    updateCard({ id, updated });
-    navigate(`/card/${id}`);
+  const handleSave = async () => {
+    if (isSubmitting) return;
+
+    setSubmitError("");
+
+    const apiDate = formatDateForApi(formData.date);
+    if (!apiDate) {
+      setSubmitError("Выберите корректную дату");
+      return;
+    }
+
+    const task = {
+      title: formData.title,
+      description: formData.description.trim(),
+      topic: formData.topic,
+      status: formData.status,
+      date: apiDate,
+    };
+    try {
+      setPendingAction("save");
+
+      await handleUpdateCard(id, task);
+
+      navigate(`/card/${id}`);
+    } catch (error) {
+      setSubmitError(error.message || "Не удалось сохранить задачу");
+    } finally {
+      setPendingAction(null);
+    }
   };
 
-  const themeColor = color[formData.theme] || "_gray";
+  const handleDelete = async () => {
+    if (isSubmitting) return;
+
+    setSubmitError("");
+
+    try {
+      setPendingAction("delete");
+
+      await handleDeleteCard(id);
+
+      navigate(`/`);
+    } catch (error) {
+      setSubmitError(error.message || "Не удалось удалить задачу");
+    } finally {
+      setPendingAction(null);
+    }
+  };
+
+  const themeColor = color[formData.topic] || "_gray";
 
   return (
     <SPopBrowseWrapper id="popBrowse">
@@ -70,7 +119,7 @@ function PopEditCard({ cards, updateCard }) {
               <SPopBrowseTtl>{formData.title}</SPopBrowseTtl>
               <SThemeTop>
                 <SCategoriesTheme $themeColor={themeColor} $active>
-                  <SCategoriesThemeP>{formData.theme}</SCategoriesThemeP>
+                  <SCategoriesThemeP>{formData.topic}</SCategoriesThemeP>
                 </SCategoriesTheme>
               </SThemeTop>
             </SPopBrowseTopBlock>
@@ -127,24 +176,38 @@ function PopEditCard({ cards, updateCard }) {
                   ></SFormBrowseArea>
                 </SPopBrowseFormBlock>
               </SPopBrowseForm>
-              <Calendar />
+              <Calendar
+                selectedDate={formData.date}
+                onDateChange={(date) => setFormData({ ...formData, date })}
+              />
             </SPopBrowseWrapForm>
             <SThemeDownCategories>
               <SCategoriesP>Категория</SCategoriesP>
               <SCategoriesTheme $active>
-                <SCategoriesThemeP>{formData.theme}</SCategoriesThemeP>
+                <SCategoriesThemeP>{formData.topic}</SCategoriesThemeP>
               </SCategoriesTheme>
             </SThemeDownCategories>
+            {submitError && <p role="alert">{submitError}</p>}
             <SPopBrowseBtnEdit>
               <SBtnGroup>
-                <SBtnBg type="button" onClick={handleSave}>
-                  Сохранить
+                <SBtnBg
+                  type="button"
+                  onClick={handleSave}
+                  disabled={isSubmitting}
+                >
+                  {pendingAction === "save" ? "Сохранение..." : "Сохранить"}
                 </SBtnBg>
                 <SBtnBor>
                   <SBtnBorA to={`/card/${id}`}>Отменить</SBtnBorA>
                 </SBtnBor>
-                <SBtnBor id="btnDelete">
-                  <SBtnBorA to="#">Удалить задачу</SBtnBorA>
+                <SBtnBor
+                  type="button"
+                  onClick={handleDelete}
+                  disabled={isSubmitting}
+                >
+                  {pendingAction === "delete"
+                    ? "Удаление..."
+                    : "Удалить задачу"}
                 </SBtnBor>
               </SBtnGroup>
               <SBtnBg>

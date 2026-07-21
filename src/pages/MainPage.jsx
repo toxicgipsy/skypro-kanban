@@ -5,12 +5,13 @@ import { SWrapper } from "../App.styled";
 import { Outlet } from "react-router-dom";
 
 function MainPage({
+  cards,
   loading,
   setIsAuth,
-  cards,
-  addCard,
-  updateCard,
-  deleteCard,
+  error,
+  handleCreateCard,
+  handleUpdateCard,
+  handleDeleteCard,
 }) {
   return (
     <>
@@ -19,21 +20,18 @@ function MainPage({
         {loading ? (
           <Loader />
         ) : (
-          <Main
-            cards={cards}
-            addCard={addCard}
-            updateCard={updateCard}
-            deleteCard={deleteCard}
-          />
+          <>
+            <Main cards={cards} error={error} />
+            <Outlet
+              context={{
+                cards,
+                handleCreateCard,
+                handleUpdateCard,
+                handleDeleteCard,
+              }}
+            />
+          </>
         )}
-        <Outlet
-          context={{
-            cards,
-            addCard,
-            updateCard,
-            deleteCard,
-          }}
-        />
       </SWrapper>
     </>
   );

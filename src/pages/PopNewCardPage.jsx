@@ -2,9 +2,9 @@ import { useOutletContext } from "react-router-dom";
 import PopNewCard from "../components/PopNewCard";
 
 function PopNewCardPage() {
-  const { cards, addCard } = useOutletContext();
+  const { handleCreateCard } = useOutletContext();
 
-  return <PopNewCard cards={cards} addCard={addCard} />;
+  return <PopNewCard handleCreateCard={handleCreateCard} />;
 }
 
 export default PopNewCardPage;

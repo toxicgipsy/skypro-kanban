@@ -79,7 +79,7 @@ export const SCalendarDayName = styled.div`
 
 export const SCalendarCells = styled.div`
   width: 182px;
-  height: 126px;
+  height: 156px;
   display: flex;
   flex-wrap: wrap;
 
@@ -101,7 +101,8 @@ export const SCalendarCell = styled.div`
   flex-wrap: nowrap;
   align-items: center;
   justify-content: center;
-  color: #94a6be;
+  color: ${({ $current }) => ($current ? "#ffffff" : "#94a6be")};
+background-color: ${({ $current }) => ($current ? "#94a6be" : "transparent")};
   font-size: 10px;
   line-height: 1;
   letter-spacing: -0.2px;

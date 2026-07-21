@@ -9,25 +9,109 @@ import PopNewCardPage from "../pages/PopNewCardPage";
 import PopExit from "./PopExit";
 import PopEditCardPage from "../pages/PopEditCardPage";
 import PopBrowsePage from "../pages/PopBrowsePage";
-import { cardList } from "../data";
+import {
+  changeTaskById,
+  createCard,
+  deleteTaskById,
+  fetchCards,
+} from "../services/api";
+import { getUserInfo } from "../services/userInfo";
 
 function AppRoutes() {
-  const [isAuth, setIsAuth] = useState(false);
+  const [isAuth, setIsAuth] = useState(() => Boolean(getUserInfo()?.token));
   const [loading, setLoading] = useState(true);
-  const [cards, setCards] = useState(cardList);
-  const addCard = (addCard) => setCards((prev) => [...prev, addCard]);
-  const updateCard = ({ updated, id }) =>
-    setCards((prev) =>
-      prev.map((card) => (card.id === Number(id) ? updated : card)),
-    );
-  const deleteCard = (id) =>
-    setCards((prev) => prev.filter((card) => card.id !== Number(id)));
+  const [cards, setCards] = useState([]);
+  const [error, setError] = useState("");
 
+  // Обработка ошибок
+  const handleUnauthorized = (error) => {
+    if (error.status !== 401) {
+      return false;
+    }
+
+    localStorage.removeItem("userInfo");
+    setCards([]);
+    setError("");
+    setIsAuth(false);
+    return true;
+  };
+
+  // Создание карточки
+  const handleCreateCard = async (task) => {
+    const userInfo = getUserInfo();
+
+    try {
+      const tasks = await createCard({ token: userInfo?.token, task: task });
+
+      setCards(tasks);
+    } catch (error) {
+      handleUnauthorized(error);
+      throw error;
+    }
+  };
+
+  // Обновление карточки
+  const handleUpdateCard = async (id, task) => {
+    const userInfo = getUserInfo();
+
+    try {
+      const tasks = await changeTaskById({
+        token: userInfo?.token,
+        id: id,
+        task: task,
+      });
+      setCards(tasks);
+    } catch (error) {
+      handleUnauthorized(error);
+      throw error;
+    }
+  };
+
+  // Удаление карточки
+  const handleDeleteCard = async (id) => {
+    const userInfo = getUserInfo();
+
+    try {
+      const tasks = await deleteTaskById({
+        token: userInfo?.token,
+        id: id,
+      });
+
+      setCards(tasks);
+    } catch (error) {
+      handleUnauthorized(error);
+      throw error;
+    }
+  };
+
+  // Загрузка карточек
   useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-  }, []);
+    async function loadCards() {
+      const userInfo = getUserInfo();
+
+      try {
+        setLoading(true);
+        setError("");
+
+        if (!userInfo?.token) {
+          setIsAuth(false);
+          return;
+        }
+
+        const tasks = await fetchCards({ token: userInfo?.token });
+        setCards(tasks);
+      } catch (error) {
+        if (!handleUnauthorized(error)) {
+          setError(error.message);
+        }
+      } finally {
+        setLoading(false);
+      }
+    }
+    if (isAuth) {
+      loadCards();
+    }
+  }, [isAuth]);
 
   return (
     <>
@@ -40,9 +124,10 @@ function AppRoutes() {
                 setIsAuth={setIsAuth}
                 loading={loading}
                 cards={cards}
-                addCard={addCard}
-                updateCard={updateCard}
-                deleteCard={deleteCard}
+                error={error}
+                handleCreateCard={handleCreateCard}
+                handleUpdateCard={handleUpdateCard}
+                handleDeleteCard={handleDeleteCard}
               />
             }
           >

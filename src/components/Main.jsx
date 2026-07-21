@@ -1,18 +1,20 @@
 import Column from "./Column";
 import { columnStatus } from "../data";
 import {
+  ErrorModule,
   SContainer,
   SMainBlock,
   SMainContent,
   SMainWrapper,
 } from "./Main.styled";
 
-function Main({ cards }) {
+function Main({ cards, error }) {
   return (
     <>
       <SMainWrapper>
         <SContainer>
           <SMainBlock>
+            <ErrorModule>{error}</ErrorModule>
             <SMainContent>
               {columnStatus.map((status) => {
                 const filterCards = cards.filter(

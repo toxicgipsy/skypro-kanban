@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Calendar from "./Calendar";
 import {
   SBtnBg,
@@ -29,12 +29,37 @@ import {
   SThemeTop,
 } from "./PopBrowse.styled";
 import { color } from "../data";
+import { formatDateForCalendar } from "../utils/date";
+import { useState } from "react";
+import NotFoundPage from "../pages/NotFoundPage";
 
-function PopBrowse({ cards }) {
+function PopBrowse({ cards, handleDeleteCard }) {
   const { id } = useParams();
-  const card = cards.find((card) => card.id === Number(id));
-  const themeColor = color[card.theme] || "_gray";
-  if (!card) return null;
+  const navigate = useNavigate();
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [deleteError, setDeleteError] = useState("");
+  const card = cards.find((card) => card._id === id);
+  if (!card) return <NotFoundPage />;
+
+  const handleDelete = async () => {
+    if (isDeleting) return;
+
+    setDeleteError("");
+
+    try {
+      setIsDeleting(true);
+
+      await handleDeleteCard(id);
+
+      navigate(`/`);
+    } catch (error) {
+      setDeleteError(error.message || "Не удалось удалить задачу");
+    } finally {
+      setIsDeleting(false);
+    }
+  };
+
+  const themeColor = color[card.topic] || "_gray";
   return (
     <SPopBrowseWrapper id="popBrowse">
       <SPopBrowseContainer>
@@ -44,7 +69,7 @@ function PopBrowse({ cards }) {
               <SPopBrowseTtl>{card.title}</SPopBrowseTtl>
               <SThemeTop>
                 <SCategoriesTheme $themeColor={themeColor} $active>
-                  <SCategoriesThemeP>{card.theme}</SCategoriesThemeP>
+                  <SCategoriesThemeP>{card.topic}</SCategoriesThemeP>
                 </SCategoriesTheme>
               </SThemeTop>
             </SPopBrowseTopBlock>
@@ -81,23 +106,24 @@ function PopBrowse({ cards }) {
                   ></SFormBrowseArea>
                 </SPopBrowseFormBlock>
               </SPopBrowseForm>
-              <Calendar />
+              <Calendar selectedDate={formatDateForCalendar(card.date)} />
             </SPopBrowseWrapForm>
             <SThemeDownCategories>
               <SCategoriesP>Категория</SCategoriesP>
               <SCategoriesTheme $themeColor={themeColor} $active>
-                <SCategoriesThemeP>{card.theme}</SCategoriesThemeP>
+                <SCategoriesThemeP>{card.topic}</SCategoriesThemeP>
               </SCategoriesTheme>
             </SThemeDownCategories>
+            {deleteError && <p role="alert">{deleteError}</p>}
             <SPopBrowseBtnBrowse>
               <SBtnGroup>
                 <SBtnBor>
-                  <SBtnBorA to={`/card/${card.id}/edit`}>
+                  <SBtnBorA to={`/card/${card._id}/edit`}>
                     Редактировать задачу
                   </SBtnBorA>
                 </SBtnBor>
-                <SBtnBor>
-                  <SBtnBorA to="#">Удалить задачу</SBtnBorA>
+                <SBtnBor onClick={handleDelete} disabled={isDeleting}>
+                  {isDeleting ? "Удаление" : "Удалить задачу"}
                 </SBtnBor>
               </SBtnGroup>
               <SBtnBg>

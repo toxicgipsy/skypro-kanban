@@ -77,7 +77,8 @@ export const SAuthInput = styled.input`
   width: 100%;
   min-width: 100%;
   border-radius: 8px;
-  border: 0.7px solid rgba(148, 166, 190, 0.4);
+  border: 0.7px solid
+    ${({ $error }) => ($error ? "#f84d4d" : "rgba(148, 166, 190, 0.4)")};
   outline: none;
   padding: 10px 8px;
 
@@ -98,6 +99,10 @@ export const SAuthInput = styled.input`
     letter-spacing: -0.28px;
     color: #94a6be;
   }
+`;
+
+export const ErrorModule = styled.div`
+  color: red;
 `;
 
 export const SAuthButton = styled.button`
@@ -122,18 +127,14 @@ export const SAuthButton = styled.button`
     background-color: #33399b;
   }
 
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
   @media screen and (max-width: 375px) {
     height: 40px;
   }
-`;
-
-export const SAuthBtnEnterA = styled.a`
-  width: 100%;
-  height: 100%;
-  color: inherit;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `;
 
 export const SAuthFormGroup = styled.div`

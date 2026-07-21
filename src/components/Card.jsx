@@ -14,9 +14,10 @@ import {
 } from "./Card.styled";
 import { color } from "../data";
 import { Link } from "react-router-dom";
+import { formatDateForCalendar } from "../utils/date";
 
 function Card({ item: card }) {
-  const themeColor = color[card.theme] || "_gray";
+  const themeColor = color[card.topic] || "_gray";
 
   return (
     <SCardsWrapper>
@@ -24,9 +25,9 @@ function Card({ item: card }) {
         <SCardsCard>
           <SCardGroup>
             <SCardTheme $themeColor={themeColor}>
-              <SCardThemeP>{card.theme}</SCardThemeP>
+              <SCardThemeP>{card.topic}</SCardThemeP>
             </SCardTheme>
-            <Link to={`/card/${card.id}`} target="_self">
+            <Link to={`/card/${card._id}`} target="_self">
               <SCardBtn>
                 <div></div>
                 <div></div>
@@ -35,7 +36,7 @@ function Card({ item: card }) {
             </Link>
           </SCardGroup>
           <SCardContent>
-            <Link to={`/card/${card.id}`}>
+            <Link to={`/card/${card._id}`}>
               <SCardTitle>{card.title}</SCardTitle>
             </Link>
             <SCardDate>
@@ -67,7 +68,7 @@ function Card({ item: card }) {
                   </clipPath>
                 </defs>
               </SCardDateSVG>
-              <SCardDateP>{card.date}</SCardDateP>
+              <SCardDateP>{formatDateForCalendar(card.date)}</SCardDateP>
             </SCardDate>
           </SCardContent>
         </SCardsCard>

@@ -22,14 +22,17 @@ import {
 } from "./PopNewCard.styled";
 import { useNavigate } from "react-router-dom";
 import { columnStatus } from "../data";
+import { formatDateForApi } from "../utils/date";
 
-function PopNewCard({ cards, addCard }) {
+function PopNewCard({ handleCreateCard }) {
   const navigate = useNavigate();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   const [formData, setFormData] = useState({
     title: "",
     description: "",
-    theme: "Web Design",
+    topic: "Web Design",
     date: "",
   });
 
@@ -41,24 +44,59 @@ function PopNewCard({ cards, addCard }) {
     { title: "PM", color: "_yellow" },
   ];
 
-  const handleCreatedCard = () => {
-    if (!formData.title.trim()) return;
-    if (!formData.date) return;
+  const handleCreatedCard = async () => {
+    if (isSubmitting) return;
 
-    const nextId = Math.max(...cards.map((card) => card.id), 0) + 1;
+    setSubmitError("");
+
+    if (!formData.title.trim()) {
+      setSubmitError("Введите название задачи");
+      return;
+    }
+
+    if (!formData.description.trim()) {
+      setSubmitError("Введите название задачи");
+      return;
+    }
+
+    if (!formData.topic) {
+      setSubmitError("Выберите категорию");
+      return;
+    }
+
+    if (!formData.date) {
+      setSubmitError("Выберите дату");
+      return;
+    }
+
+    const apiDate = formatDateForApi(formData.date);
+
+    if (!apiDate) {
+      setSubmitError("Выбрана некорректная дата");
+      return;
+    }
 
     const newCard = {
-      id: nextId,
       title: formData.title.trim(),
-      description: formData.description,
-      theme: formData.theme,
-      date: formData.date,
+      description: formData.description.trim(),
+      topic: formData.topic,
+      date: apiDate,
       status: columnStatus[0],
     };
 
-    addCard(newCard);
-    navigate("/");
+    try {
+      setIsSubmitting(true);
+
+      await handleCreateCard(newCard);
+
+      navigate("/");
+    } catch (error) {
+      setSubmitError(error.message || "Не удалось создать задачу");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
+
   return (
     <SPopNewCard id="popNewCard">
       <SPopNewCardContainer>
@@ -107,9 +145,9 @@ function PopNewCard({ cards, addCard }) {
                   <SCategoriesTheme
                     key={category.title}
                     $themeColor={category.color}
-                    $active={formData.theme === category.title}
+                    $active={formData.topic === category.title}
                     onClick={() =>
-                      setFormData({ ...formData, theme: category.title })
+                      setFormData({ ...formData, topic: category.title })
                     }
                   >
                     <SCategoriesThemeP>{category.title}</SCategoriesThemeP>
@@ -117,12 +155,14 @@ function PopNewCard({ cards, addCard }) {
                 ))}
               </SCategoriesThemes>
             </SCategories>
+            {submitError && <p role="alert">{submitError}</p>}
             <SFormNewCreate
               id="btnCreate"
               type="button"
               onClick={handleCreatedCard}
+              disabled={isSubmitting}
             >
-              Создать задачу
+              {isSubmitting ? "Создание..." : "Создать задачу"}
             </SFormNewCreate>
           </SPopNewCardContent>
         </SPopNewCardBlock>
