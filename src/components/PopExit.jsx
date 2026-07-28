@@ -10,13 +10,15 @@ import {
   SPopExitYes,
   SPopExitYesA,
 } from "./PopExit.styled";
+import { useContext } from "react";
+import { AuthContext } from "../context/contextAPI";
 
-function PopExit({ setIsAuth }) {
+function PopExit() {
+  const { logoutUser } = useContext(AuthContext);
   const navigate = useNavigate();
   function handleLogout(e) {
     e.preventDefault();
-    localStorage.removeItem("userInfo");
-    setIsAuth(false);
+    logoutUser();
     navigate("/sign-in");
   }
   return (

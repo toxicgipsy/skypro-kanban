@@ -1,7 +1,7 @@
 import SingIn from "../components/SignIn";
 
-const SignInPage = ({ setIsAuth }) => {
-  return <SingIn setIsAuth={setIsAuth} />;
+const SignInPage = () => {
+  return <SingIn />;
 };
 
 export default SignInPage;

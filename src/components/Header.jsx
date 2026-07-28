@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import logo from "/logo.png";
 import logo_dark from "/logo_dark.png";
 import PopUser from "./PopUser";
@@ -14,12 +14,12 @@ import {
   SHeaderWrapper,
 } from "./Header.styled";
 import { Link } from "react-router-dom";
-import { getUserInfo } from "../services/userInfo";
+import { AuthContext } from "../context/contextAPI";
 
 function Header() {
+  const { user } = useContext(AuthContext);
   const [isPopUserOpen, setIsPopUserOpen] = useState(false);
   const toggleUserPopup = () => setIsPopUserOpen((prev) => !prev);
-  const userInfo = getUserInfo();
 
   return (
     <SHeaderWrapper>
@@ -42,9 +42,9 @@ function Header() {
               </SHeaderBtnMainNewA>
             </SHeaderBtnMainNew>
             <SHeaderUser onClick={toggleUserPopup}>
-              {userInfo?.name || userInfo?.login || "Пользователь"}
+              {user?.name || user?.login || "Пользователь"}
             </SHeaderUser>
-            {isPopUserOpen && <PopUser userInfo={userInfo} />}
+            {isPopUserOpen && <PopUser user={user} />}
           </SHeaderNav>
         </SHeaderBlock>
       </SContainer>

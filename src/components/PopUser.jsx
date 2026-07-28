@@ -9,11 +9,11 @@ import {
   SPopUserSetThemeP,
 } from "./PopUser.styled";
 
-function PopUser({ userInfo }) {
+function PopUser({ user }) {
   return (
     <SHeaderPopUserSet id="user-set-target">
-      <SPopUserSetName>{userInfo?.name || "Пользователь"}</SPopUserSetName>
-      <SPopUserSetMail>{userInfo?.login || ""}</SPopUserSetMail>
+      <SPopUserSetName>{user?.name || "Пользователь"}</SPopUserSetName>
+      <SPopUserSetMail>{user?.login || ""}</SPopUserSetMail>
       <SPopUserSetTheme>
         <SPopUserSetThemeP>Темная тема</SPopUserSetThemeP>
         <SPopUserCheckbox type="checkbox" name="checkbox" />

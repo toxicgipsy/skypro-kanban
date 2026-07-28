@@ -15,8 +15,11 @@ import {
 } from "./Auth.styled";
 import { useState } from "react";
 import { signIn, signUp } from "../services/auth";
+import { useContext } from "react";
+import { AuthContext } from "../context/contextAPI";
 
-function AuthForm({ isSignUp, setIsAuth }) {
+function AuthForm({ isSignUp }) {
+  const { loginUser } = useContext(AuthContext);
   const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -100,8 +103,7 @@ function AuthForm({ isSignUp, setIsAuth }) {
         imageUrl: data.imageUrl,
       };
 
-      localStorage.setItem("userInfo", JSON.stringify(userInfo));
-      setIsAuth(true);
+      loginUser(userInfo);
       navigate("/");
     } catch (error) {
       setError(error.message || "Не удалось выполнить запрос");
