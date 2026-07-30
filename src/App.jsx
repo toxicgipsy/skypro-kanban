@@ -8,7 +8,7 @@ import {
   deleteTaskById,
   fetchCards,
 } from "./services/api";
-import { getUserInfo } from "./services/auth";
+import { getUserInfo } from "./services/userInfo";
 
 function App() {
   const [user, setUser] = useState(() => getUserInfo());
@@ -90,6 +90,8 @@ function App() {
       try {
         if (!token) {
           setLoading(false);
+          setTasks([]);
+          setError("");
           return;
         }
         setLoading(true);

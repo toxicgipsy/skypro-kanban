@@ -4,13 +4,11 @@ import Loader from "../components/Loader";
 import { SWrapper } from "../App.styled";
 import { Outlet } from "react-router-dom";
 import { useContext } from "react";
-import { AuthContext } from "../context/contextAPI";
+import { TaskContext } from "../context/contextAPI";
 
 function MainPage() {
-  // {
-  //   (handleCreateCard, handleUpdateCard, handleDeleteCard);
-  // }
-  const { tasks, loading, error } = useContext(AuthContext);
+
+  const { tasks, loading, error } = useContext(TaskContext);
   return (
     <>
       <SWrapper>
