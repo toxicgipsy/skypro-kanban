@@ -1,6 +1,7 @@
 import Column from "./Column";
 import { columnStatus } from "../data";
 import {
+  EmptyCards,
   ErrorModule,
   SContainer,
   SMainBlock,
@@ -9,12 +10,16 @@ import {
 } from "./Main.styled";
 
 function Main({ cards, error }) {
+  const emptyCards = cards.length === 0;
   return (
-    <>
-      <SMainWrapper>
-        <SContainer>
-          <SMainBlock>
+    <SMainWrapper>
+      <SContainer>
+        <SMainBlock>
+          {error ? (
             <ErrorModule>{error}</ErrorModule>
+          ) : emptyCards ? (
+            <EmptyCards>Новых задач нет</EmptyCards>
+          ) : (
             <SMainContent>
               {columnStatus.map((status) => {
                 const filterCards = cards.filter(
@@ -25,10 +30,10 @@ function Main({ cards, error }) {
                 );
               })}
             </SMainContent>
-          </SMainBlock>
-        </SContainer>
-      </SMainWrapper>
-    </>
+          )}
+        </SMainBlock>
+      </SContainer>
+    </SMainWrapper>
   );
 }
 

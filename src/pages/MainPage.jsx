@@ -7,22 +7,19 @@ import { useContext } from "react";
 import { TaskContext } from "../context/contextAPI";
 
 function MainPage() {
-
   const { tasks, loading, error } = useContext(TaskContext);
   return (
-    <>
-      <SWrapper>
-        <Header />
-        {loading ? (
-          <Loader />
-        ) : (
-          <>
-            <Main cards={tasks} error={error} />
-            <Outlet />
-          </>
-        )}
-      </SWrapper>
-    </>
+    <SWrapper>
+      <Header />
+      {loading ? (
+        <Loader />
+      ) : (
+        <>
+          <Main cards={tasks} error={error} />
+          <Outlet />
+        </>
+      )}
+    </SWrapper>
   );
 }
 

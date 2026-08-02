@@ -9,7 +9,7 @@ export const SMainColumn = styled.div`
 export const SColumnTitle = styled.div`
   padding: 0 10px;
   margin: 15px 0;
-  color: #94a6be;
+  color: ${({ theme }) => theme.colors.muted};
   font-size: 14px;
   font-weight: 600;
   line-height: 1;

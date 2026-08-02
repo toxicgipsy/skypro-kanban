@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const SMainWrapper = styled.main`
   width: 100%;
-  background-color: #eaeef6;
+  background-color: ${({ theme }) => theme.colors.page};
 `;
 
 export const SContainer = styled.div`
@@ -22,6 +22,16 @@ export const SMainBlock = styled.div`
     margin: 0 auto;
     padding: 40px 0 64px;
   }
+`;
+
+export const EmptyCards = styled.div`
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #94a6be;
+  font-size: 18px;
+  font-weight: 500;
 `;
 
 export const ErrorModule = styled.div`

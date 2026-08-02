@@ -9,7 +9,7 @@ export const SPopNewCard = styled.div`
   inset: 0;
   z-index: 6;
   overflow-y: auto;
-  background: rgba(0, 0, 0, 0.4);
+  background: ${({ theme }) => theme.colors.overlay};
 `;
 
 export const SPopNewCardContainer = styled.div`
@@ -30,12 +30,12 @@ export const SPopNewCardContainer = styled.div`
 export const SPopNewCardBlock = styled.div`
   display: block;
   margin: 0 auto;
-  background-color: #ffffff;
+  background-color: ${({ theme }) => theme.colors.surface};
   max-width: 630px;
   width: 100%;
   padding: 40px 30px 48px;
   border-radius: 10px;
-  border: 0.7px solid #d4dbe5;
+  border: 0.7px solid ${({ theme }) => theme.colors.border};
   position: relative;
 
   @media screen and (max-width: 660px) {
@@ -53,7 +53,7 @@ export const SPopNewCardContent = styled.div`
 `;
 
 export const SPopNewCardTtl = styled.h3`
-  color: #000;
+  color: ${({ theme }) => theme.colors.text};
   font-size: 20px;
   font-weight: 600;
   line-height: 24px;
@@ -64,11 +64,11 @@ export const SPopNewCardClose = styled(Link)`
   position: absolute;
   top: 20px;
   right: 30px;
-  color: #94a6be;
+  color: ${({ theme }) => theme.colors.muted};
   cursor: pointer;
 
   &:hover {
-    color: #000000;
+    color: ${({ theme }) => theme.colors.text};
   }
 `;
 
@@ -99,7 +99,7 @@ export const SFormNewBlock = styled.div`
 `;
 
 export const SSubttl = styled.label`
-  color: #000;
+  color: ${({ theme }) => theme.colors.text};
   font-size: 14px;
   font-weight: 600;
   line-height: 1;
@@ -110,18 +110,19 @@ export const SFormNewInput = styled.input`
   outline: none;
   padding: 14px;
   background: transparent;
-  border: 0.7px solid rgba(148, 166, 190, 0.4);
+  border: 0.7px solid ${({ theme }) => theme.colors.border};
   border-radius: 8px;
   font-size: 14px;
   line-height: 1;
   letter-spacing: -0.14px;
   margin: 20px 0;
+  color: ${({ theme }) => theme.colors.text};
 
   &::-moz-placeholder {
     font-weight: 400;
     font-size: 14px;
     line-height: 1px;
-    color: #94a6be;
+    color: ${({ theme }) => theme.colors.muted};
     letter-spacing: -0.14px;
   }
 
@@ -129,7 +130,7 @@ export const SFormNewInput = styled.input`
     font-weight: 400;
     font-size: 14px;
     line-height: 1px;
-    color: #94a6be;
+    color: ${({ theme }) => theme.colors.muted};
     letter-spacing: -0.14px;
   }
 `;
@@ -139,7 +140,7 @@ export const SFormNewArea = styled.textarea`
   outline: none;
   padding: 14px;
   background: transparent;
-  border: 0.7px solid rgba(148, 166, 190, 0.4);
+  border: 0.7px solid ${({ theme }) => theme.colors.border};
   border-radius: 8px;
   font-size: 14px;
   line-height: 1;
@@ -147,12 +148,13 @@ export const SFormNewArea = styled.textarea`
   max-width: 370px;
   margin-top: 14px;
   height: 200px;
+  color: ${({ theme }) => theme.colors.text};
 
   &::-moz-placeholder {
     font-weight: 400;
     font-size: 14px;
     line-height: 1px;
-    color: #94a6be;
+    color: ${({ theme }) => theme.colors.muted};
     letter-spacing: -0.14px;
   }
 
@@ -160,7 +162,7 @@ export const SFormNewArea = styled.textarea`
     font-weight: 400;
     font-size: 14px;
     line-height: 1px;
-    color: #94a6be;
+    color: ${({ theme }) => theme.colors.muted};
     letter-spacing: -0.14px;
   }
 
@@ -176,7 +178,7 @@ export const SCategories = styled.div`
 
 export const SCategoriesP = styled.p`
   margin-bottom: 14px;
-  color: #000;
+  color: ${({ theme }) => theme.colors.text};
   font-size: 14px;
   font-weight: 600;
   line-height: 1;
@@ -217,7 +219,7 @@ export const SCategoriesThemeP = styled.p`
 export const SFormNewCreate = styled.button`
   width: 132px;
   height: 30px;
-  background-color: #565eef;
+  background-color: ${({ theme }) => theme.colors.primary};
   border-radius: 4px;
   border: 0;
   outline: none;
@@ -229,7 +231,7 @@ export const SFormNewCreate = styled.button`
   cursor: pointer;
 
   &:hover {
-    background-color: #33399b;
+    background-color: ${({ theme }) => theme.colors.primaryHover};
   }
 
   &:disabled {
@@ -238,7 +240,7 @@ export const SFormNewCreate = styled.button`
   }
 
   &:disabled:hover {
-    background-color: #565eef;
+    background-color: ${({ theme }) => theme.colors.primary};
   }
 
   @media screen and (max-width: 495px) {

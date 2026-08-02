@@ -8,8 +8,8 @@ export const SHeaderPopUserSet = styled.div`
   width: 213px;
   height: 205px;
   border-radius: 10px;
-  border: 0.7px solid rgba(148, 166, 190, 0.4);
-  background: #fff;
+  border: 0.7px solid ${({ theme }) => theme.colors.border};
+  background: ${({ theme }) => theme.colors.surface};
   box-shadow: 0px 10px 39px 0px rgba(26, 56, 101, 0.21);
   padding: 34px;
   text-align: center;
@@ -17,7 +17,7 @@ export const SHeaderPopUserSet = styled.div`
 `;
 
 export const SPopUserSetName = styled.p`
-  color: #000;
+  color: ${({ theme }) => theme.colors.text};
   font-size: 14px;
   font-weight: 500;
   line-height: 21px;
@@ -26,7 +26,7 @@ export const SPopUserSetName = styled.p`
 `;
 
 export const SPopUserSetMail = styled.p`
-  color: #94a6be;
+  color: ${({ theme }) => theme.colors.muted};
   font-size: 14px;
   line-height: 21px;
   letter-spacing: -0.14px;
@@ -41,7 +41,7 @@ export const SPopUserSetTheme = styled.div`
 `;
 
 export const SPopUserSetThemeP = styled.p`
-  color: #000;
+  color: ${({ theme }) => theme.colors.text};
   font-size: 14px;
   line-height: 21px;
   letter-spacing: -0.14px;
@@ -52,7 +52,7 @@ export const SPopUserCheckbox = styled.input`
   width: 24px;
   height: 13px;
   border-radius: 100px;
-  background: #eaeef6;
+  background: ${({ theme }) => theme.colors.page};
   outline: none;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -67,12 +67,17 @@ export const SPopUserCheckbox = styled.input`
     width: 11px;
     height: 11px;
     border-radius: 50%;
-    background-color: #94a6be;
+    background-color: ${({ theme }) => theme.colors.muted};
     transition: 0.5s;
+  }
+
+  &:checked {
+    background-color: ${({ theme }) => theme.colors.primary};
   }
 
   &:checked::before {
     left: 12px;
+    background-color: #fff;
   }
 `;
 
@@ -80,14 +85,14 @@ export const SPopUserSetButton = styled.button`
   width: 72px;
   height: 30px;
   background: transparent;
-  color: #565eef;
+  color: ${({ theme }) => theme.colors.primary};
   border-radius: 4px;
-  border: 1px solid #565eef;
+  border: 1px solid ${({ theme }) => theme.colors.primary};
   cursor: pointer;
 
   &:hover {
-    color: #ffffff;
-    background-color: #33399b;
+    color: #fff;
+    background-color: ${({ theme }) => theme.colors.primaryHover};
   }
 `;
 

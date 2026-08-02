@@ -64,9 +64,14 @@ function PopEditCard({ cards, handleUpdateCard, handleDeleteCard }) {
 
     setSubmitError("");
 
+    if (formData.description.trim() === "") {
+      setSubmitError("Заполни описание");
+      return;
+    }
+
     const apiDate = formatDateForApi(formData.date);
     if (!apiDate) {
-      setSubmitError("Выберите корректную дату");
+      setSubmitError("Выбери корректную дату");
       return;
     }
 

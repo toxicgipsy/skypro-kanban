@@ -5,5 +5,5 @@ export const SWrapper = styled.div`
   width: 100vw;
   min-height: 100vh;
   overflow: hidden;
-  background-color: #eaeef6;
+  background-color: ${({ theme }) => theme.colors.page};
 `;

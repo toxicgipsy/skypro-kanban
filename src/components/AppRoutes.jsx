@@ -5,9 +5,9 @@ import MainPage from "../pages/MainPage";
 import NotFoundPage from "../pages/NotFoundPage";
 import PrivateRoute from "./PrivateRout";
 import PopNewCardPage from "../pages/PopNewCardPage";
-import PopExit from "./PopExit";
 import PopEditCardPage from "../pages/PopEditCardPage";
 import PopBrowsePage from "../pages/PopBrowsePage";
+import PopExitPage from "../pages/PopExitPage";
 
 function AppRoutes() {
   return (
@@ -17,7 +17,7 @@ function AppRoutes() {
           <Route path="card/:id" element={<PopBrowsePage />} />
           <Route path="card/add" element={<PopNewCardPage />} />
           <Route path="card/:id/edit" element={<PopEditCardPage />} />
-          <Route path="exit" element={<PopExit />} />
+          <Route path="exit" element={<PopExitPage />} />
         </Route>
       </Route>
       <Route path="/sign-in" element={<SignInPage />} />

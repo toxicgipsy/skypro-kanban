@@ -27,12 +27,12 @@ function Header() {
         <SHeaderBlock>
           <SHeaderLogo>
             <Link to="" target="_self">
-              <img src={logo} className="vite" alt="Vite logo" />
+              <img src={logo} className="vite" alt="Skypro" />
             </Link>
           </SHeaderLogo>
           <SHeaderLogoDark>
             <Link to="" target="_self">
-              <img src={logo_dark} className="vite" alt="Vite logo" />
+              <img src={logo_dark} className="vite" alt="Skypro" />
             </Link>
           </SHeaderLogoDark>
           <SHeaderNav>

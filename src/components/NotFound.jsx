@@ -1,17 +1,18 @@
 import {
-  SCenteredFourOFour,
-  SCenteredPage,
-  SCenteredPageText,
-} from "../styles/Common.styled";
+  HomeLink,
+  NotFoundImage,
+  NotFoundPage,
+  NotFoundTitle,
+} from "./NotFound.styled";
+import notFoundPage from "../assets/not-found.svg";
 
 function NotFound() {
   return (
-    <>
-      <SCenteredPage>
-        <SCenteredFourOFour>404</SCenteredFourOFour>
-        <SCenteredPageText>Страница не найдена</SCenteredPageText>
-      </SCenteredPage>
-    </>
+    <NotFoundPage>
+      <NotFoundImage src={notFoundPage} alt="" />
+      <NotFoundTitle>Страница не найдена</NotFoundTitle>
+      <HomeLink to="/">Вернуться на главную страницу</HomeLink>
+    </NotFoundPage>
   );
 }
 

@@ -3,8 +3,7 @@ import styled from "styled-components";
 
 export const SHeaderWrapper = styled.header`
   width: 100%;
-  margin: 0 auto;
-  background-color: #ffffff;
+  background-color: ${({ theme }) => theme.colors.surface};
 `;
 
 export const SContainer = styled.div`
@@ -32,13 +31,15 @@ export const SHeaderBlock = styled.div`
 `;
 
 export const SHeaderLogo = styled.div`
+  display: ${({ theme }) => (theme.mode === "light" ? "block" : "none")};
+
   img {
     width: 85px;
   }
 `;
 
 export const SHeaderLogoDark = styled.div`
-  display: none;
+  display: ${({ theme }) => (theme.mode === "dark" ? "block" : "none")};
 
   img {
     width: 85px;
@@ -57,8 +58,8 @@ export const SHeaderBtnMainNew = styled.button`
   width: 178px;
   height: 30px;
   border-radius: 4px;
-  background-color: #565eef;
-  color: #ffffff;
+  background-color: ${({ theme }) => theme.colors.primary};
+  color: #fff;
   border: none;
   font-size: 14px;
   line-height: 1;
@@ -66,7 +67,7 @@ export const SHeaderBtnMainNew = styled.button`
   margin-right: 20px;
 
   &:hover {
-    background-color: #33399b;
+    background-color: ${({ theme }) => theme.colors.primaryHover};
   }
 
   @media screen and (max-width: 495px) {
@@ -83,7 +84,7 @@ export const SHeaderBtnMainNew = styled.button`
 `;
 
 export const SHeaderBtnMainNewA = styled(Link)`
-  color: #ffffff;
+  color: #fff;
 `;
 
 export const SHeaderUser = styled(Link)`
@@ -94,15 +95,15 @@ export const SHeaderUser = styled(Link)`
   justify-content: center;
   font-size: 14px;
   line-height: 20px;
-  color: #565eef;
+  color: ${({ theme }) => theme.colors.text};
 
   &:hover {
-    color: #33399b;
+    color: ${({ theme }) => theme.colors.primaryHover};
   }
 
   &:hover::after {
-    border-left-color: #33399b;
-    border-bottom-color: #33399b;
+    border-left-color: ${({ theme }) => theme.colors.primaryHover};
+    border-bottom-color: ${({ theme }) => theme.colors.primaryHover};
   }
 
   &::after {
@@ -111,8 +112,8 @@ export const SHeaderUser = styled(Link)`
     width: 6px;
     height: 6px;
     border-radius: 1px;
-    border-left: 1.9px solid #565eef;
-    border-bottom: 1.9px solid #565eef;
+    border-left: 1.9px solid ${({ theme }) => theme.colors.border};
+    border-bottom: 1.9px solid ${({ theme }) => theme.colors.border};
     transform: rotate(-45deg);
     margin: -6px 0 0 5px;
     padding: 0;

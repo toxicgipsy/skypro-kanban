@@ -6,7 +6,6 @@ const getAuthHeaders = (token) => ({
   Authorization: `Bearer ${token}`,
 });
 
-// Получить список задач
 export async function fetchCards({ token }) {
   const data = await request(API_URL, {
     headers: getAuthHeaders(token),
@@ -15,16 +14,6 @@ export async function fetchCards({ token }) {
   return data.tasks;
 }
 
-// Получить задачу по id
-export async function fetchCardById({ token, id }) {
-  const data = await request(`${API_URL}/${id}`, {
-    headers: getAuthHeaders(token),
-  });
-
-  return data.task;
-}
-
-// Создать задачу
 export async function createCard({ token, task }) {
   const data = await request(API_URL, {
     method: "POST",
@@ -35,7 +24,6 @@ export async function createCard({ token, task }) {
   return data.tasks;
 }
 
-// Изменить задачу
 export async function changeTaskById({ token, id, task }) {
   const data = await request(`${API_URL}/${id}`, {
     method: "PUT",
@@ -46,7 +34,6 @@ export async function changeTaskById({ token, id, task }) {
   return data.tasks;
 }
 
-// Удалить задачу
 export async function deleteTaskById({ token, id }) {
   const data = await request(`${API_URL}/${id}`, {
     method: "DELETE",

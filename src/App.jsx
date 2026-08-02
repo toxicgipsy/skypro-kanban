@@ -9,13 +9,21 @@ import {
   fetchCards,
 } from "./services/api";
 import { getUserInfo } from "./services/userInfo";
+import { ThemeProvider } from "styled-components";
+import { darkTheme, lightTheme } from "./styles/theme";
+import { ThemeModeContext } from "./context/ThemeModeContext";
 
 function App() {
   const [user, setUser] = useState(() => getUserInfo());
   const [loading, setLoading] = useState(true);
   const [tasks, setTasks] = useState([]);
   const [error, setError] = useState("");
+  const [isDark, setIsDark] = useState(false);
   const token = user?.token;
+
+  const toggleTheme = () => {
+    setIsDark((previousValue) => !previousValue);
+  };
 
   const loginUser = (userData) => {
     localStorage.setItem("userInfo", JSON.stringify(userData));
@@ -27,7 +35,6 @@ function App() {
     setUser(null);
   }, []);
 
-  // Обработка ошибок
   const handleUnauthorized = useCallback(
     (error) => {
       if (error.status !== 401) {
@@ -42,7 +49,6 @@ function App() {
     [logoutUser],
   );
 
-  // Создание карточки
   const handleCreateCard = async (task) => {
     try {
       const tasks = await createCard({ token: token, task: task });
@@ -54,7 +60,6 @@ function App() {
     }
   };
 
-  // Обновление карточки
   const handleUpdateCard = async (id, task) => {
     try {
       const tasks = await changeTaskById({
@@ -69,7 +74,6 @@ function App() {
     }
   };
 
-  // Удаление карточки
   const handleDeleteCard = async (id) => {
     try {
       const tasks = await deleteTaskById({
@@ -84,7 +88,6 @@ function App() {
     }
   };
 
-  // Загрузка карточек
   useEffect(() => {
     async function loadCards(token) {
       try {
@@ -128,12 +131,16 @@ function App() {
 
   return (
     <>
-      <GlobalStyle />
-      <AuthContext.Provider value={authValue}>
-        <TaskContext.Provider value={taskValue}>
-          <AppRoutes />
-        </TaskContext.Provider>
-      </AuthContext.Provider>
+      <ThemeModeContext.Provider value={{ isDark, toggleTheme }}>
+        <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
+          <GlobalStyle />
+          <AuthContext.Provider value={authValue}>
+            <TaskContext.Provider value={taskValue}>
+              <AppRoutes />
+            </TaskContext.Provider>
+          </AuthContext.Provider>
+        </ThemeProvider>
+      </ThemeModeContext.Provider>
     </>
   );
 }
