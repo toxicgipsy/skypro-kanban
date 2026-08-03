@@ -9,7 +9,7 @@ export const NotFoundPage = styled.main`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #eaeef6;
+  background-color: ${({ theme }) => theme.colors.page};
   text-align: center;
 `;
 
@@ -23,7 +23,7 @@ export const NotFoundImage = styled.img`
 
 export const NotFoundTitle = styled.h1`
   margin: 0 0 24px;
-  color: #000;
+  color: ${({ theme }) => theme.colors.text};
   font-size: 28px;
   font-weight: 600;
   line-height: 1.2;
@@ -37,7 +37,7 @@ export const HomeLink = styled(Link)`
   align-items: center;
   justify-content: center;
   border-radius: 4px;
-  background-color: #565eef;
+  background-color: ${({ theme }) => theme.colors.primary};
   color: #fff;
   font-size: 14px;
   font-weight: 500;
@@ -46,11 +46,11 @@ export const HomeLink = styled(Link)`
   transition: background-color 150ms ease;
 
   &:hover {
-    background-color: #33399b;
+    background-color: ${({ theme }) => theme.colors.primaryHover};
   }
 
   &:focus-visible {
-    outline: 2px solid #33399b;
+    outline: 2px solid ${({ theme }) => theme.colors.primaryHover};
     outline-offset: 3px;
   }
 `;

@@ -17,7 +17,7 @@ export const SColumnTitle = styled.div`
 `;
 
 export const SColumnTitlP = styled.p`
-  color: #94a6be;
+  color: ${({ theme }) => theme.colors.muted};
   font-size: 14px;
   font-weight: 600;
   line-height: 1;

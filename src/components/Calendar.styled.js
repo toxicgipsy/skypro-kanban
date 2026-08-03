@@ -15,7 +15,7 @@ export const SPopNewCardCalendar = styled.div`
 `;
 
 export const SCalendarTtl = styled.p`
-  color: #000;
+  color: ${({ theme }) => theme.colors.text};
   font-size: 14px;
   font-weight: 600;
   line-height: 1;
@@ -28,7 +28,7 @@ export const SCalendarTtl = styled.p`
 `;
 
 export const SCalendarP = styled.p`
-  color: #94a6be;
+  color: ${({ theme }) => theme.colors.muted};
   font-size: 10px;
   line-height: 1;
 
@@ -38,7 +38,7 @@ export const SCalendarP = styled.p`
 `;
 
 export const SDateControl = styled.span`
-  color: #000000;
+  color: ${({ theme }) => theme.colors.text};
 `;
 
 export const SCalendarBlock = styled.div`
@@ -46,7 +46,7 @@ export const SCalendarBlock = styled.div`
 `;
 
 export const SCalendarMonth = styled.div`
-  color: #94a6be;
+  color: ${({ theme }) => theme.colors.muted};
   font-size: 14px;
   line-height: 25px;
   font-weight: 600;
@@ -66,7 +66,7 @@ export const SCalendarDaysNames = styled.div`
 `;
 
 export const SCalendarDayName = styled.div`
-  color: #94a6be;
+  color: ${({ theme }) => theme.colors.muted};
   font-size: 10px;
   font-weight: 500;
   line-height: normal;
@@ -114,8 +114,8 @@ export const SCalendarCell = styled.div`
     $cellDay &&
     `
       &:hover {
-    color: #94a6be;
-    background-color: #eaeef6;
+    color: ${({ theme }) => theme.colors.primary};
+    background-color: ${({ theme }) => theme.colors.primaryHover};
   }
     `}
 
@@ -154,7 +154,7 @@ export const SNavAction = styled.div`
   justify-content: center;
 
   svg {
-    fill: #94a6be;
+    fill: ${({ theme }) => theme.colors.muted};
   }
 `;
 
