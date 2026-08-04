@@ -1,16 +1,28 @@
-# React + Vite
+# Skypro Kanban
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Выполнено в рамках курсовой работы
 
-Currently, two official plugins are available:
+### Основное задание
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Все файлы проекта отформатированы с помощью Prettier
+- Удалены ненужные комментарии, переменные и неиспользуемый код
+- Удалены лишние компоненты и API-функции
+- Удалена неиспользуемая зависимость Axios
+- Исправлены ошибки и предупреждения в консоли
+- Проверена работа создания, редактирования и удаления задач
+- Добавлено отображение ошибок сервера при операциях с задачами
+- Обработаны ошибки авторизации и недоступности сервера
+- Добавлена валидация форм: нельзя отправить пустые поля или строки, состоящие только из пробелов
+- Во время отправки запросов кнопки блокируются для защиты от повторного нажатия
+- Вместо текста загрузки реализован анимированный skeleton-loader
+- Добавлено состояние пустой доски с сообщением «Новых задач нет»
+- Создана стилизованная страница 404 со ссылкой на главную страницу
+- Исправлено отображение длинных названий задач внутри карточек
+- Проверены сборка проекта, ESLint и форматирование
 
-## React Compiler
+### Дополнительное задание
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Реализованы светлая и тёмная темы с помощью `ThemeProvider`
+- Добавлен переключатель темы в меню пользователя
+- Цвета основных страниц, карточек, форм, модальных окон, календаря и loader адаптированы под обе темы
+- Выбранная тема сохраняется в `localStorage` и восстанавливается после перезагрузки страницы
