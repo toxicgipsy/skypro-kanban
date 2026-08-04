@@ -18,11 +18,19 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [tasks, setTasks] = useState([]);
   const [error, setError] = useState("");
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState(
+    () => localStorage.getItem("theme") === "dark",
+  );
   const token = user?.token;
 
   const toggleTheme = () => {
-    setIsDark((previousValue) => !previousValue);
+    setIsDark((previousValue) => {
+      const nextValue = !previousValue;
+
+      localStorage.setItem("theme", nextValue ? "dark" : "light");
+
+      return nextValue;
+    });
   };
 
   const loginUser = (userData) => {

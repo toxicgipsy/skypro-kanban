@@ -101,8 +101,10 @@ export const SCalendarCell = styled.div`
   flex-wrap: nowrap;
   align-items: center;
   justify-content: center;
-  color: ${({ $current }) => ($current ? "#ffffff" : "#94a6be")};
-  background-color: ${({ $current }) => ($current ? "#94a6be" : "transparent")};
+  color: ${({ $current, theme }) =>
+    $current ? "#ffffff" : theme.colors.muted};
+  background-color: ${({ $current, theme }) =>
+    $current ? theme.colors.muted : "transparent"};
   font-size: 10px;
   line-height: 1;
   letter-spacing: -0.2px;
@@ -110,14 +112,14 @@ export const SCalendarCell = styled.div`
 
   opacity: ${({ $otherMonth }) => ($otherMonth ? 0 : 1)};
   font-weight: ${({ $current }) => ($current ? 700 : 400)};
-  ${({ $cellDay }) =>
+  ${({ $cellDay, theme }) =>
     $cellDay &&
     `
-      &:hover {
-    color: ${({ theme }) => theme.colors.primary};
-    background-color: ${({ theme }) => theme.colors.primaryHover};
-  }
-    `}
+    &:hover {
+      color: #fff;
+      background-color: ${theme.colors.primaryHover};
+    }
+  `}
 
   @media screen and (max-width: 660px) {
     width: 42px;

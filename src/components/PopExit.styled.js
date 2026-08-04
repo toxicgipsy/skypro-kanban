@@ -6,9 +6,9 @@ export const SPopExitWrapper = styled.div`
   height: 100%;
   min-width: 320px;
   min-height: 100vh;
-  position: absolute;
-  top: 0;
-  left: 0;
+  position: fixed;
+  inset: 0;
+  overflow-y: auto;
   z-index: 5;
 `;
 
@@ -21,18 +21,18 @@ export const SPopExitContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background:  ${({ theme }) => theme.colors.overlay};
+  background: ${({ theme }) => theme.colors.overlay};
 `;
 
 export const SPopExitBlock = styled.div`
   display: block;
   margin: 0 auto;
-  background-color:  ${({ theme }) => theme.colors.surface};
+  background-color: ${({ theme }) => theme.colors.surface};
   max-width: 370px;
   width: 100%;
   padding: 50px 60px;
   border-radius: 10px;
-  border: 0.7px solid  ${({ theme }) => theme.colors.border};
+  border: 0.7px solid ${({ theme }) => theme.colors.border};
   box-shadow: 0px 4px 67px -12px rgba(0, 0, 0, 0.13);
 
   @media only screen and (max-width: 375px) {
@@ -47,7 +47,7 @@ export const SPopExitTtl = styled.div`
   line-height: 30px;
   letter-spacing: -0.4px;
   margin-bottom: 20px;
-  color:  ${({ theme }) => theme.colors.text};
+  color: ${({ theme }) => theme.colors.text};
 `;
 
 export const SPopExitFormGroup = styled.div`
@@ -64,7 +64,7 @@ export const SPopExitFormGroup = styled.div`
 export const SPopExitYes = styled.button`
   width: 153px;
   height: 30px;
-  background-color:  ${({ theme }) => theme.colors.primary};
+  background-color: ${({ theme }) => theme.colors.primary};
   border-radius: 4px;
   border: none;
   outline: none;
@@ -79,7 +79,7 @@ export const SPopExitYes = styled.button`
   margin-right: 10px;
 
   &:hover {
-    background-color:  ${({ theme }) => theme.colors.primaryHover};
+    background-color: ${({ theme }) => theme.colors.primaryHover};
   }
 
   @media only screen and (max-width: 375px) {
@@ -104,7 +104,7 @@ export const SPopExitNo = styled.button`
   height: 30px;
   background-color: transparent;
   border-radius: 4px;
-  border: 0.7px solid  ${({ theme }) => theme.colors.primary};
+  border: 0.7px solid ${({ theme }) => theme.colors.primary};
   outline: none;
   display: flex;
   align-items: center;
@@ -113,10 +113,10 @@ export const SPopExitNo = styled.button`
   line-height: 21px;
   font-weight: 500;
   letter-spacing: -0.14px;
-  color:  ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.primary};
 
   &:hover {
-    background-color:  ${({ theme }) => theme.colors.primaryHover};
+    background-color: ${({ theme }) => theme.colors.primaryHover};
     color: #ffffff;
   }
 

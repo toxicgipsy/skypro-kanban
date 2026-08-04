@@ -18,7 +18,8 @@ from {
 `;
 
 const skeletonLine = css`
-  background: linear-gradient(90deg, #d8e0ec 25%, #eef2f7 50%, #d8e0ec 75%);
+  background: ${({ theme }) =>
+    `linear-gradient(90deg, ${theme.colors.skeletonBase} 25%, ${theme.colors.skeletonHighlight} 50%, ${theme.colors.skeletonBase} 75%)`};
   background-size: 200% 100%;
   animation: ${shimmer} 1.4s linear infinite;
 `;
@@ -37,7 +38,7 @@ export const SkeletonCardItem = styled.div`
   width: 220px;
   height: 130px;
   padding: 15px 13px 19px;
-  background-color: #fff;
+  background-color: ${({ theme }) => theme.colors.surface};
   border-radius: 10px;
   opacity: 0;
   animation: ${appear} 350ms ease forwards;
@@ -68,7 +69,7 @@ export const SkeletonGroup = styled.div`
     height: 4px;
     margin-top: 8px;
     border-radius: 2px;
-    background-color: #c7d2e2;
+    background-color: ${({ theme }) => theme.colors.skeletonAccent};
   }
 `;
 
