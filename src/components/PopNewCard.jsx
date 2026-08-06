@@ -50,22 +50,22 @@ function PopNewCard({ handleCreateCard }) {
     setSubmitError("");
 
     if (!formData.title.trim()) {
-      setSubmitError("Введите название задачи");
+      setSubmitError("Заполни заголовок");
       return;
     }
 
     if (!formData.description.trim()) {
-      setSubmitError("Введите название задачи");
+      setSubmitError("Заполни описание");
       return;
     }
 
     if (!formData.topic) {
-      setSubmitError("Выберите категорию");
+      setSubmitError("Выбери категорию");
       return;
     }
 
     if (!formData.date) {
-      setSubmitError("Выберите дату");
+      setSubmitError("Выбери дату");
       return;
     }
 

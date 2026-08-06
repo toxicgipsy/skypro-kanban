@@ -3,37 +3,23 @@ import Main from "../components/Main";
 import Loader from "../components/Loader";
 import { SWrapper } from "../App.styled";
 import { Outlet } from "react-router-dom";
+import { useContext } from "react";
+import { TaskContext } from "../context/contextAPI";
 
-function MainPage({
-  cards,
-  loading,
-  setIsAuth,
-  error,
-  handleCreateCard,
-  handleUpdateCard,
-  handleDeleteCard,
-}) {
+function MainPage() {
+  const { tasks, loading, error } = useContext(TaskContext);
   return (
-    <>
-      <SWrapper>
-        <Header setIsAuth={setIsAuth} />
-        {loading ? (
-          <Loader />
-        ) : (
-          <>
-            <Main cards={cards} error={error} />
-            <Outlet
-              context={{
-                cards,
-                handleCreateCard,
-                handleUpdateCard,
-                handleDeleteCard,
-              }}
-            />
-          </>
-        )}
-      </SWrapper>
-    </>
+    <SWrapper>
+      <Header />
+      {loading ? (
+        <Loader />
+      ) : (
+        <>
+          <Main cards={tasks} error={error} />
+          <Outlet />
+        </>
+      )}
+    </SWrapper>
   );
 }
 

@@ -6,7 +6,7 @@ export const SAuthWrapper = styled.div`
   height: 100%;
   overflow-x: hidden;
   overflow-y: scroll;
-  background-color: #eaeef6;
+  background-color: ${({ theme }) => theme.colors.page};
 `;
 
 export const SAuthContainer = styled.div`
@@ -27,19 +27,19 @@ export const SAuthModal = styled.div`
   justify-content: center;
 
   @media screen and (max-width: 375px) {
-    background-color: #ffffff;
+    background-color: ${({ theme }) => theme.colors.page};
   }
 `;
 
 export const SAuthBlock = styled.div`
   display: block;
   margin: 0 auto;
-  background-color: #ffffff;
+  background-color: ${({ theme }) => theme.colors.surface};
   max-width: 368px;
   width: 100%;
   padding: 50px 60px;
   border-radius: 10px;
-  border: 0.7px solid #d4dbe5;
+  border: 0.7px solid ${({ theme }) => theme.colors.border};
   box-shadow: 0px 4px 67px -12px rgba(0, 0, 0, 0.13);
 
   @media screen and (max-width: 375px) {
@@ -59,6 +59,7 @@ export const SAuthTitle = styled.h2`
   line-height: 30px;
   letter-spacing: -0.6px;
   margin-bottom: 20px;
+  color: ${({ theme }) => theme.colors.text};
 `;
 
 export const SAuthForm = styled.form`
@@ -78,9 +79,11 @@ export const SAuthInput = styled.input`
   min-width: 100%;
   border-radius: 8px;
   border: 0.7px solid
-    ${({ $error }) => ($error ? "#f84d4d" : "rgba(148, 166, 190, 0.4)")};
+    ${({ $error, theme }) => ($error ? "#f84d4d" : theme.colors.border)};
   outline: none;
   padding: 10px 8px;
+  background-color: ${({ theme }) => theme.colors.surface};
+  color: ${({ theme }) => theme.colors.text};
 
   &::-moz-placeholder {
     font-family: "Roboto", sans-serif;
@@ -88,7 +91,7 @@ export const SAuthInput = styled.input`
     font-size: 14px;
     line-height: 21px;
     letter-spacing: -0.28px;
-    color: #94a6be;
+    color: ${({ theme }) => theme.colors.muted};
   }
 
   &::placeholder {
@@ -97,7 +100,7 @@ export const SAuthInput = styled.input`
     font-size: 14px;
     line-height: 21px;
     letter-spacing: -0.28px;
-    color: #94a6be;
+    color: ${({ theme }) => theme.colors.muted};
   }
 `;
 
@@ -108,7 +111,6 @@ export const ErrorModule = styled.div`
 export const SAuthButton = styled.button`
   width: 100%;
   height: 30px;
-  background-color: #565eef;
   border-radius: 4px;
   margin-top: 20px;
   margin-bottom: 20px;
@@ -121,10 +123,11 @@ export const SAuthButton = styled.button`
   line-height: 21px;
   font-weight: 500;
   letter-spacing: -0.14px;
-  color: #ffffff;
+  background-color: ${({ theme }) => theme.colors.primary};
+  color: #fff;
 
   &:hover {
-    background-color: #33399b;
+    background-color: ${({ theme }) => theme.colors.primaryHover};
   }
 
   &:disabled {
@@ -142,7 +145,7 @@ export const SAuthFormGroup = styled.div`
 `;
 
 export const SAuthText = styled.p`
-  color: rgba(148, 166, 190, 0.4);
+  color: ${({ theme }) => theme.colors.muted};
   font-size: 14px;
   font-weight: 400;
   line-height: 150%;
@@ -150,7 +153,7 @@ export const SAuthText = styled.p`
 `;
 
 export const SAuthLink = styled(Link)`
-  color: rgba(148, 166, 190, 0.4);
+  color: ${({ theme }) => theme.colors.muted};
   font-size: 14px;
   font-weight: 400;
   line-height: 150%;

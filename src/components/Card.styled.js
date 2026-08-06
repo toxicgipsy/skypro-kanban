@@ -23,7 +23,7 @@ export const SCardsItem = styled.div`
 export const SCardsCard = styled.div`
   width: 220px;
   height: 130px;
-  background-color: #ffffff;
+  background-color: ${({ theme }) => theme.colors.surface};
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -46,8 +46,6 @@ export const SCardTheme = styled.div`
   height: 20px;
   padding: 5px 14px;
   border-radius: 18px;
-  background-color: #ffe4c2;
-  color: #ff6d00;
 
   background-color: ${({ $themeColor }) =>
     themeStyles[$themeColor]?.background || themeStyles._gray.background};
@@ -75,23 +73,38 @@ export const SCardBtn = styled.div`
     width: 4px;
     height: 4px;
     border-radius: 50%;
-    background-color: #94a6be;
+    background-color: ${({ theme }) => theme.colors.muted};
   }
 `;
 
 export const SCardContent = styled.div`
+  width: 100%;
+  min-width: 0;
   height: 64px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
+
+  & > a {
+    display: block;
+    width: 100%;
+    min-width: 0;
+  }
 `;
 
 export const SCardTitle = styled.h3`
+  width: 100%;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
   font-size: 14px;
   font-weight: 500;
   line-height: 18px;
-  color: #000000;
+  color: ${({ theme }) => theme.colors.text};
   margin-bottom: 10px;
 `;
 
@@ -109,6 +122,6 @@ export const SCardDateP = styled.p`
   margin-left: 6px;
   font-size: 10px;
   line-height: 13px;
-  color: #94a6be;
+  color: ${({ theme }) => theme.colors.muted};
   letter-spacing: 0.2px;
 `;

@@ -1,15 +1,11 @@
-import { useOutletContext } from "react-router-dom";
 import PopBrowse from "../components/PopBrowse";
+import { useContext } from "react";
+import { TaskContext } from "../context/contextAPI";
 
 function PopBrowsePage() {
-  const { cards, handleDeleteCard } = useOutletContext();
+  const { tasks, handleDeleteCard } = useContext(TaskContext);
 
-  return (
-    <PopBrowse
-      cards={cards}
-      handleDeleteCard={handleDeleteCard}
-    />
-  );
+  return <PopBrowse cards={tasks} handleDeleteCard={handleDeleteCard} />;
 }
 
 export default PopBrowsePage;

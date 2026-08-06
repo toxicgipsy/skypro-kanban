@@ -1,12 +1,13 @@
-import { useOutletContext } from "react-router-dom";
 import PopEditCard from "../components/PopEditCard";
+import { useContext } from "react";
+import { TaskContext } from "../context/contextAPI";
 
 function PopEditCardPage() {
-  const { cards, handleUpdateCard, handleDeleteCard } = useOutletContext();
+  const { tasks, handleUpdateCard, handleDeleteCard } = useContext(TaskContext);
 
   return (
     <PopEditCard
-      cards={cards}
+      cards={tasks}
       handleUpdateCard={handleUpdateCard}
       handleDeleteCard={handleDeleteCard}
     />

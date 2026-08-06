@@ -1,7 +1,7 @@
 import SignUp from "../components/SignUp";
 
-const SignUpPage = ({ setIsAuth }) => {
-  return <SignUp setIsAuth={setIsAuth} />;
+const SignUpPage = () => {
+  return <SignUp />;
 };
 
 export default SignUpPage;

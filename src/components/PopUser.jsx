@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import {
   SHeaderPopUserSet,
   SPopUserCheckbox,
@@ -8,15 +9,23 @@ import {
   SPopUserSetTheme,
   SPopUserSetThemeP,
 } from "./PopUser.styled";
+import { ThemeModeContext } from "../context/ThemeModeContext";
 
-function PopUser({ userInfo }) {
+function PopUser({ user }) {
+  const { isDark, toggleTheme } = useContext(ThemeModeContext);
+
   return (
     <SHeaderPopUserSet id="user-set-target">
-      <SPopUserSetName>{userInfo?.name || "Пользователь"}</SPopUserSetName>
-      <SPopUserSetMail>{userInfo?.login || ""}</SPopUserSetMail>
+      <SPopUserSetName>{user?.name || "Пользователь"}</SPopUserSetName>
+      <SPopUserSetMail>{user?.login || ""}</SPopUserSetMail>
       <SPopUserSetTheme>
         <SPopUserSetThemeP>Темная тема</SPopUserSetThemeP>
-        <SPopUserCheckbox type="checkbox" name="checkbox" />
+        <SPopUserCheckbox
+          type="checkbox"
+          name="checkbox"
+          onChange={toggleTheme}
+          checked={isDark}
+        />
       </SPopUserSetTheme>
       <SPopUserSetButton type="button">
         <SPopUserSetButtonA to="/exit">Выйти</SPopUserSetButtonA>

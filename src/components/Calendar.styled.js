@@ -15,7 +15,7 @@ export const SPopNewCardCalendar = styled.div`
 `;
 
 export const SCalendarTtl = styled.p`
-  color: #000;
+  color: ${({ theme }) => theme.colors.text};
   font-size: 14px;
   font-weight: 600;
   line-height: 1;
@@ -28,7 +28,7 @@ export const SCalendarTtl = styled.p`
 `;
 
 export const SCalendarP = styled.p`
-  color: #94a6be;
+  color: ${({ theme }) => theme.colors.muted};
   font-size: 10px;
   line-height: 1;
 
@@ -38,7 +38,7 @@ export const SCalendarP = styled.p`
 `;
 
 export const SDateControl = styled.span`
-  color: #000000;
+  color: ${({ theme }) => theme.colors.text};
 `;
 
 export const SCalendarBlock = styled.div`
@@ -46,7 +46,7 @@ export const SCalendarBlock = styled.div`
 `;
 
 export const SCalendarMonth = styled.div`
-  color: #94a6be;
+  color: ${({ theme }) => theme.colors.muted};
   font-size: 14px;
   line-height: 25px;
   font-weight: 600;
@@ -66,7 +66,7 @@ export const SCalendarDaysNames = styled.div`
 `;
 
 export const SCalendarDayName = styled.div`
-  color: #94a6be;
+  color: ${({ theme }) => theme.colors.muted};
   font-size: 10px;
   font-weight: 500;
   line-height: normal;
@@ -101,8 +101,10 @@ export const SCalendarCell = styled.div`
   flex-wrap: nowrap;
   align-items: center;
   justify-content: center;
-  color: ${({ $current }) => ($current ? "#ffffff" : "#94a6be")};
-background-color: ${({ $current }) => ($current ? "#94a6be" : "transparent")};
+  color: ${({ $current, theme }) =>
+    $current ? "#ffffff" : theme.colors.muted};
+  background-color: ${({ $current, theme }) =>
+    $current ? theme.colors.muted : "transparent"};
   font-size: 10px;
   line-height: 1;
   letter-spacing: -0.2px;
@@ -110,14 +112,14 @@ background-color: ${({ $current }) => ($current ? "#94a6be" : "transparent")};
 
   opacity: ${({ $otherMonth }) => ($otherMonth ? 0 : 1)};
   font-weight: ${({ $current }) => ($current ? 700 : 400)};
-  ${({ $cellDay }) =>
+  ${({ $cellDay, theme }) =>
     $cellDay &&
     `
-      &:hover {
-    color: #94a6be;
-    background-color: #eaeef6;
-  }
-    `}
+    &:hover {
+      color: #fff;
+      background-color: ${theme.colors.primaryHover};
+    }
+  `}
 
   @media screen and (max-width: 660px) {
     width: 42px;
@@ -154,7 +156,7 @@ export const SNavAction = styled.div`
   justify-content: center;
 
   svg {
-    fill: #94a6be;
+    fill: ${({ theme }) => theme.colors.muted};
   }
 `;
 
